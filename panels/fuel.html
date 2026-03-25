@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>War Consumer Price Panel — Fuel — March 25, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0a0c0f; --panel:#111318; --panel2:#161a20;
+    --border:#1e2430; --border2:#252c38;
+    --text:#c8d4e0; --text-dim:#6a7a90; --text-bright:#e8f0f8;
+    --accent:#e05a2b; --accent2:#f28c3a;
+    --green:#3ab87a; --red:#e05a2b; --yellow:#e8b84a; --blue:#4a90d9;
+    --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px;min-height:100vh;}
+
+  header{border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;gap:14px;background:var(--bg);position:sticky;top:0;z-index:100;flex-wrap:wrap;}
+  .badge{background:var(--accent);color:#fff;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;padding:3px 8px;text-transform:uppercase;}
+  .badge-talk{background:var(--blue);color:#fff;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;padding:3px 8px;text-transform:uppercase;}
+  .header-title{font-family:var(--mono);font-size:14px;font-weight:500;color:var(--text-bright);}
+  .header-date{font-family:var(--mono);font-size:11px;color:var(--accent2);margin-left:auto;}
+
+  .breaking{background:rgba(74,144,217,0.1);border:1px solid rgba(74,144,217,0.3);border-left:3px solid var(--blue);padding:10px 16px;margin:10px 16px;display:flex;gap:10px;align-items:flex-start;}
+  .breaking-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0;margin-top:4px;animation:pulse 1.5s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+  .breaking-text{font-family:var(--sans);font-size:12px;line-height:1.55;}
+  .breaking-label{font-family:var(--mono);font-size:10px;color:var(--blue);margin-bottom:3px;}
+
+  .ticker-bar{background:var(--panel);border-bottom:1px solid var(--border);padding:7px 24px;display:flex;gap:28px;overflow-x:auto;scrollbar-width:none;}
+  .ticker-bar::-webkit-scrollbar{display:none;}
+  .ticker-item{display:flex;align-items:center;gap:7px;flex-shrink:0;font-family:var(--mono);font-size:11px;}
+  .t-label{color:var(--text-dim);}
+  .t-val{color:var(--text-bright);font-weight:500;}
+  .t-chg{font-size:10px;}
+  .up{color:var(--red);}
+  .down{color:var(--green);}
+  .neutral{color:var(--text-dim);}
+  .blue-t{color:var(--blue);}
+
+  .controls{padding:10px 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--border);}
+  .ctrl-label{font-family:var(--mono);font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.1em;}
+  .btn-group{display:flex;gap:2px;}
+  .btn{background:var(--panel);border:1px solid var(--border2);color:var(--text-dim);font-family:var(--mono);font-size:11px;padding:4px 11px;cursor:pointer;transition:all .15s;}
+  .btn:hover{border-color:var(--accent);color:var(--accent);}
+  .btn.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .search-box{background:var(--panel);border:1px solid var(--border2);color:var(--text);font-family:var(--mono);font-size:11px;padding:4px 10px;outline:none;width:150px;}
+  .search-box:focus{border-color:var(--accent2);}
+  .search-box::placeholder{color:var(--text-dim);}
+
+  .main{display:grid;grid-template-columns:1fr 300px;min-height:calc(100vh - 130px);}
+  .table-area{border-right:1px solid var(--border);overflow:auto;}
+  table{width:100%;border-collapse:collapse;min-width:780px;}
+  thead tr{background:var(--panel);border-bottom:2px solid var(--border2);position:sticky;top:0;z-index:5;}
+  thead th{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em;padding:10px 11px;text-align:left;white-space:nowrap;cursor:pointer;user-select:none;}
+  thead th:hover{color:var(--accent2);}
+  thead th.sorted{color:var(--accent2);}
+  tbody tr{border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s;}
+  tbody tr:hover{background:var(--panel);}
+  tbody tr.selected{background:#1a1f2a;border-left:3px solid var(--accent);}
+  td{padding:9px 11px;font-family:var(--mono);font-size:11px;white-space:nowrap;}
+
+  .country-cell{display:flex;align-items:center;gap:7px;}
+  .flag{font-size:16px;}
+  .cname{font-family:var(--sans);font-size:12px;color:var(--text-bright);font-weight:500;}
+  .ccity{font-family:var(--mono);font-size:9px;color:var(--text-dim);display:block;}
+  .pval{color:var(--text-bright);font-weight:500;}
+  .pbase{font-size:9px;color:var(--text-dim);}
+
+  .pill{display:inline-flex;align-items:center;font-size:10px;font-weight:700;padding:1px 5px;border-radius:2px;}
+  .pill.up{color:var(--red);background:rgba(224,90,43,.12);}
+  .pill.down{color:var(--green);background:rgba(58,184,122,.12);}
+  .pill.flat{color:var(--text-dim);background:var(--border);}
+
+  .exp-bar{height:3px;background:var(--border2);border-radius:2px;overflow:hidden;width:60px;margin-top:3px;}
+  .exp-fill{height:100%;border-radius:2px;}
+
+  .source-tag{font-size:10px;color:var(--text-dim);border:1px solid var(--border2);padding:1px 5px;cursor:pointer;}
+  .source-tag:hover{border-color:var(--accent2);color:var(--accent2);}
+
+  /* sidebar */
+  .sidebar{background:var(--panel);overflow-y:auto;}
+  .sb-sec{padding:14px 16px;border-bottom:1px solid var(--border);}
+  .sb-title{font-family:var(--mono);font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;}
+  .sb-country{font-size:18px;font-weight:600;color:var(--text-bright);}
+  .sb-city{font-family:var(--mono);font-size:11px;color:var(--text-dim);margin-bottom:12px;}
+  .metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+  .metric-box{background:var(--panel2);border:1px solid var(--border2);padding:9px;}
+  .metric-label{font-family:var(--mono);font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px;}
+  .metric-val{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--text-bright);}
+  .metric-chg{font-family:var(--mono);font-size:11px;margin-top:2px;}
+  .source-list{display:flex;flex-direction:column;gap:5px;}
+  .source-item{padding:7px 9px;background:var(--panel2);border:1px solid var(--border2);text-decoration:none;display:flex;flex-direction:column;gap:2px;}
+  .source-item:hover{border-color:var(--accent2);}
+  .source-name{font-family:var(--mono);font-size:11px;color:var(--accent2);}
+  .source-desc{font-family:var(--sans);font-size:10px;color:var(--text-dim);}
+  .source-freq{font-family:var(--mono);font-size:10px;color:var(--text-dim);}
+  .notes-box{background:var(--panel2);border:1px solid var(--border2);padding:10px;font-family:var(--sans);font-size:11px;color:var(--text-dim);line-height:1.6;}
+
+  footer{padding:10px 24px;border-top:1px solid var(--border);font-family:var(--mono);font-size:10px;color:var(--text-dim);display:flex;gap:16px;flex-wrap:wrap;}
+  footer a{color:var(--accent2);text-decoration:none;}
+  @media(max-width:900px){.main{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">⛽ Fuel Panel</div>
+  <div class="badge-talk">🕊 Ceasefire Talks</div>
+  <div class="header-title">War Consumer Price Panel — Fuel · Day 25</div>
+  <div class="header-date">March 25, 2026</div>
+</header>
+
+<div class="breaking">
+  <div class="breaking-dot"></div>
+  <div>
+    <div class="breaking-label">BREAKING TODAY · March 25, 2026</div>
+    <div class="breaking-text">
+      Brent crude fell <strong style="color:var(--blue)">~5–6% to $98/bbl</strong> after Reuters reported the US sent Iran a 15-point ceasefire proposal via Pakistan intermediaries. Iran denies direct talks; Trump said "we're negotiating." Goldman Sachs base case: Hormuz flows normalize in April over 4 weeks if ceasefire holds.
+      Pump prices have <strong style="color:var(--text)">not yet reflected</strong> today's crude drop — retail lags wholesale by 1–2 weeks. <em>All pump prices in this panel reflect actual current pump readings as of Mar 24–25.</em>
+    </div>
+  </div>
+</div>
+
+<div class="ticker-bar" id="ticker"></div>
+
+<div class="controls">
+  <span class="ctrl-label">Region</span>
+  <div class="btn-group" id="region-btns">
+    <button class="btn active" data-region="all">All</button>
+    <button class="btn" data-region="americas">Americas</button>
+    <button class="btn" data-region="europe">Europe</button>
+    <button class="btn" data-region="africa">Africa</button>
+    <button class="btn" data-region="asia">Asia</button>
+    <button class="btn" data-region="oceania">Oceania</button>
+  </div>
+  <span class="ctrl-label" style="margin-left:8px;">Sort</span>
+  <div class="btn-group" id="sort-btns">
+    <button class="btn active" data-sort="gasolineChg">Gasoline Δ%</button>
+    <button class="btn" data-sort="gasoline">Gasoline</button>
+    <button class="btn" data-sort="diesel">Diesel</button>
+    <button class="btn" data-sort="oilExposure">Exposure</button>
+  </div>
+  <input class="search-box" id="search" placeholder="Search country…" type="text">
+</div>
+
+<div class="main">
+  <div class="table-area">
+    <table>
+      <thead>
+        <tr>
+          <th>Country / City</th>
+          <th data-sort="gasoline">Gasoline $/L<br><span style="font-weight:300;color:var(--text-dim)">now / pre-war</span></th>
+          <th data-sort="diesel">Diesel $/L<br><span style="font-weight:300;color:var(--text-dim)">now / pre-war</span></th>
+          <th data-sort="gasolineChg">Gasoline Δ<br><span style="font-weight:300;color:var(--text-dim)">since Feb 28</span></th>
+          <th data-sort="dieselChg">Diesel Δ<br><span style="font-weight:300;color:var(--text-dim)">since Feb 28</span></th>
+          <th data-sort="oilExposure">Gulf Oil<br><span style="font-weight:300;color:var(--text-dim)">exposure</span></th>
+          <th>Policy<br><span style="font-weight:300;color:var(--text-dim)">response</span></th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <footer>
+      <span>Sources: <a href="https://gasprices.aaa.com" target="_blank">AAA</a> · <a href="https://www.eia.gov/petroleum/gasdiesel/" target="_blank">EIA (Mar 24)</a> · <a href="https://www.fuel-finder.uk/uk-fuel-price-index" target="_blank">Fuel Finder UK</a> · <a href="https://www.iru.org/news-resources/newsroom/fuel-prices-continue-climb" target="_blank">IRU Europe</a> · <a href="https://www.globalpetrolprices.com" target="_blank">GlobalPetrolPrices (Mar 16)</a></span>
+      <span>·</span>
+      <span>All USD/L. Pre-war baseline: Feb 24, 2026. Updated March 25, 2026.</span>
+    </footer>
+  </div>
+  <div class="sidebar">
+    <div class="sb-sec" id="sb-content">
+      <div class="sb-title">Country Detail</div>
+      <p style="font-family:var(--sans);font-size:12px;color:var(--text-dim);line-height:1.7;">Click any row to see detailed country metrics, policy responses, and source links.</p>
+    </div>
+    <div class="sb-sec">
+      <div class="sb-title">Today's Key Development</div>
+      <div class="notes-box">
+        <strong style="color:var(--blue)">Ceasefire talks signal:</strong> Brent dropped ~$6 today to $98. If a deal holds and Hormuz reopens over April, Goldman's model suggests prices could retrace 15–20% from current pump levels — but only after a 2–4 week delay.<br><br>
+        <strong style="color:var(--text)">Day 25 cumulative:</strong> Pre-war Brent ~$70 → peak $120 → today ~$98. Net: still +40% above pre-war. Retail pump prices have not fully passed through the crude decline yet.
+      </div>
+    </div>
+    <div class="sb-sec">
+      <div class="sb-title">Data Sources</div>
+      <div class="source-list">
+        <a class="source-item" href="https://gasprices.aaa.com" target="_blank">
+          <span class="source-name">AAA GasPrices (USA)</span>
+          <span class="source-desc">Daily national average. Today: $3.977/gal gasoline.</span>
+          <span class="source-freq">↻ Daily</span>
+        </a>
+        <a class="source-item" href="https://www.eia.gov/petroleum/gasdiesel/" target="_blank">
+          <span class="source-name">EIA Fuel Update (USA)</span>
+          <span class="source-desc">Mar 24: Diesel $5.375/gal, Gas $3.961/gal.</span>
+          <span class="source-freq">↻ Weekly Mon</span>
+        </a>
+        <a class="source-item" href="https://www.fuel-finder.uk/uk-fuel-price-index" target="_blank">
+          <span class="source-name">Fuel Finder UK</span>
+          <span class="source-desc">Live UK prices from 7,441 stations. Today: 149.5p petrol, 175.6p diesel.</span>
+          <span class="source-freq">↻ Every 5 min</span>
+        </a>
+        <a class="source-item" href="https://www.iru.org/news-resources/newsroom/fuel-prices-continue-climb" target="_blank">
+          <span class="source-name">IRU Fuel Monitor (Europe)</span>
+          <span class="source-desc">Weekly European diesel averages. EU avg €2.10/L (Mar 20).</span>
+          <span class="source-freq">↻ Weekly</span>
+        </a>
+        <a class="source-item" href="https://www.globalpetrolprices.com/gasoline_prices/" target="_blank">
+          <span class="source-name">GlobalPetrolPrices</span>
+          <span class="source-desc">135-country weekly pump data. Latest: Mar 16 (next update Mar 23).</span>
+          <span class="source-freq">↻ Weekly Mon</span>
+        </a>
+        <a class="source-item" href="https://www.cnbc.com/2026/03/25/oil-price-wti-brent-gas-lng-trump-iran-talks-hormuz.html" target="_blank">
+          <span class="source-name">CNBC Oil Price (Today)</span>
+          <span class="source-desc">Brent $99.30, WTI $87.63 — Iran ceasefire-talk selloff.</span>
+          <span class="source-freq">↻ Real-time</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Prices in USD/L. gasolineBase/dieselBase = Feb 24 pre-war.
+// All current prices as of March 24–25, 2026.
+const countries = [
+  {
+    id:'us', flag:'🇺🇸', country:'United States', city:'Washington D.C.', region:'americas',
+    gasoline:1.047, gasolineBase:0.777, diesel:1.419, dieselBase:0.949, oilExposure:15,
+    policy:'IEA SPR release (172M bbl). No pump tax cut.',
+    note:'EIA Mar 24: gas $3.961/gal, diesel $5.375/gal. AAA: $3.977/gal gas. West Coast diesel tops $6/gal ($1.585/L). +35% gas / +50% diesel vs pre-war. US retail prices still climbing even as crude eases today.',
+    sources:[
+      {name:'AAA GasPrices (daily)',url:'https://gasprices.aaa.com',freq:'Daily'},
+      {name:'EIA Petroleum Update',url:'https://www.eia.gov/petroleum/gasdiesel/',freq:'Weekly Mon'},
+      {name:'GasBuddy',url:'https://www.gasbuddy.com',freq:'Near-real-time'},
+    ]
+  },
+  {
+    id:'uk', flag:'🇬🇧', country:'United Kingdom', city:'London', region:'europe',
+    gasoline:1.887, gasolineBase:1.600, diesel:2.215, dieselBase:1.864, oilExposure:35,
+    policy:'No pump tax cut. Fuel Finder Scheme launched Feb 9.',
+    note:'Fuel Finder UK live (Mar 25): 149.5p/L petrol, 175.6p/L diesel. Gov.uk weekly fuel data published Mar 24. +18% petrol / +19% diesel. Chelsea London peak: 238.7p petrol, 264.9p diesel.',
+    sources:[
+      {name:'Fuel Finder UK (live)',url:'https://www.fuel-finder.uk/uk-fuel-price-index',freq:'Every 5 min'},
+      {name:'GOV.UK Weekly Fuel Prices',url:'https://www.gov.uk/government/statistics/weekly-road-fuel-prices',freq:'Weekly Mon'},
+      {name:'RAC Fuel Watch',url:'https://www.rac.co.uk/drive/advice/fuel-watch/',freq:'Daily'},
+    ]
+  },
+  {
+    id:'fr', flag:'🇫🇷', country:'France', city:'Paris', region:'europe',
+    gasoline:1.92, gasolineBase:1.72, diesel:2.08, dieselBase:1.80, oilExposure:42,
+    policy:'TotalEnergies price cap until end of March. No state tax cut.',
+    note:'TotalEnergies capped petrol/diesel nationally. France ~+12% petrol. EU weighted avg diesel EUR 2.10/L. IRU data Mar 20. Macron focused on diplomacy, no direct subsidy.',
+    sources:[
+      {name:'Prix Carburants (official)',url:'https://www.prix-carburants.gouv.fr',freq:'Daily'},
+      {name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'},
+    ]
+  },
+  {
+    id:'es', flag:'🇪🇸', country:'Spain', city:'Madrid', region:'europe',
+    gasoline:1.55, gasolineBase:1.38, diesel:1.65, dieselBase:1.22, oilExposure:38,
+    policy:'€5B crisis plan: VAT on fuel cut 21%→10%, ~30 cents/L cheaper at pump.',
+    note:'Spain had highest EU diesel increase (+34%) but €5B anti-crisis decree (from Mar 22) cuts ~30c/L. Net pump price moderates vs other EU countries. IRU data confirms Spain +27% diesel before VAT cut. Prices in panel reflect post-measure estimates.',
+    sources:[
+      {name:'Geoportal Gasolineras (ES)',url:'https://geoportalgasolineras.es',freq:'Daily'},
+      {name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'},
+    ]
+  },
+  {
+    id:'de', flag:'🇩🇪', country:'Germany', city:'Berlin', region:'europe',
+    gasoline:2.35, gasolineBase:1.99, diesel:2.18, dieselBase:1.84, oilExposure:30,
+    policy:'Price-once-daily regulation proposed (pending). No direct subsidy.',
+    note:'Euronews Mar 22: petrol soared €1.82→€2.16/L (+18.7%). Diesel >€2/L. 9 EU countries above €2 diesel incl. Germany. Economy minister proposed stations may only raise prices at 12:00 daily. Berlin Brent sensitivity high.',
+    sources:[
+      {name:'ADAC Kraftstoffpreise',url:'https://www.adac.de/verkehr/tanken-kraftstoff-und-antrieb/kraftstoff/kraftstoffpreisentwicklung/',freq:'Daily'},
+      {name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'},
+    ]
+  },
+  {
+    id:'at', flag:'🇦🇹', country:'Austria', city:'Vienna', region:'europe',
+    gasoline:2.12, gasolineBase:1.87, diesel:2.02, dieselBase:1.78, oilExposure:33,
+    policy:'Price regulation beyond Germany. Euronews: Austria "went further than Germany."',
+    note:'Austria +13% petrol (Euronews Mar 22). Has introduced stricter price regulation than Germany. ÖAMTC Spritpreismonitor tracks daily. Diesel now above €2/L.',
+    sources:[
+      {name:'ÖAMTC Spritpreismonitor',url:'https://www.oeamtc.at/thema/tanken/spritpreis',freq:'Daily'},
+      {name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'},
+    ]
+  },
+  {
+    id:'br', flag:'🇧🇷', country:'Brazil', city:'São Paulo', region:'americas',
+    gasoline:1.28, gasolineBase:1.18, diesel:1.22, dieselBase:1.08, oilExposure:12,
+    policy:'No intervention. Petrobras domestic buffer.',
+    note:'IRU: Brazil diesel +13% total since war. Gasoline estimate ~+8%. Petrobras domestic production provides buffer. BRL mild depreciation adds slight pressure on imports.',
+    sources:[
+      {name:'ANP Preços Combustíveis',url:'https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/',freq:'Weekly'},
+      {name:'GlobalPetrolPrices Brazil',url:'https://www.globalpetrolprices.com/Brazil/gasoline_prices/',freq:'Weekly'},
+    ]
+  },
+  {
+    id:'cl', flag:'🇨🇱', country:'Chile', city:'Santiago', region:'americas',
+    gasoline:1.38, gasolineBase:1.24, diesel:1.32, dieselBase:1.17, oilExposure:55,
+    policy:'MEPCO stabilisation fund partially absorbing shock.',
+    note:'ENAP/CNE weekly pricing. Chile +11% gasoline, +13% diesel. MEPCO fund cushioning some of impact. Peso mild depreciation. Spring planting season adds fertiliser pressure.',
+    sources:[
+      {name:'ENAP Bencina en Línea',url:'https://www.bencinaenlinea.cl',freq:'Daily'},
+      {name:'CNE Precios Combustibles',url:'https://www.cne.cl/estadisticas/petroleo/',freq:'Weekly'},
+    ]
+  },
+  {
+    id:'za', flag:'🇿🇦', country:'South Africa', city:'Johannesburg', region:'africa',
+    gasoline:1.18, gasolineBase:1.03, diesel:1.14, dieselBase:0.98, oilExposure:68,
+    policy:'No emergency measures. DMRE monthly regulated pricing.',
+    note:'DMRE monthly price announcement pending. ZAR weakened ~10% since war, amplifying oil shock. +14–16% estimated. Gulf exposure ~68%. Shoprite absorbing some via pricing strategy.',
+    sources:[
+      {name:'DMRE Fuel Price (SA)',url:'https://www.dmr.gov.za/petroleum/fuel-prices',freq:'Monthly'},
+      {name:'AA South Africa',url:'https://www.aa.co.za/fuel-price',freq:'Monthly'},
+    ]
+  },
+  {
+    id:'sn', flag:'🇸🇳', country:'Senegal', city:'Dakar', region:'africa',
+    gasoline:1.38, gasolineBase:1.38, diesel:1.15, dieselBase:1.15, oilExposure:72,
+    policy:'Government price freeze on regulated fuels.',
+    note:'Senegal has government-controlled fuel prices. No official change posted yet for March. Real market pressure building. ANSD update expected end of month.',
+    sources:[
+      {name:'ANSD Sénégal',url:'https://www.ansd.sn/',freq:'Monthly'},
+      {name:'GlobalPetrolPrices Senegal',url:'https://www.globalpetrolprices.com/Senegal/gasoline_prices/',freq:'Monthly'},
+    ]
+  },
+  {
+    id:'ke', flag:'🇰🇪', country:'Kenya', city:'Nairobi', region:'africa',
+    gasoline:1.30, gasolineBase:1.20, diesel:1.16, dieselBase:1.06, oilExposure:80,
+    policy:'EPRA monthly regulated pricing. No emergency freeze.',
+    note:'EPRA next monthly pricing review due early April. KES has weakened. ~+8% gasoline, +9% diesel est. Very high Gulf exposure (80%). Naivas supermarket trucking costs rising visibly.',
+    sources:[
+      {name:'EPRA Maximum Prices',url:'https://www.epra.go.ke/services/petroleum/petroleum-prices/',freq:'Monthly'},
+      {name:'GlobalPetrolPrices Kenya',url:'https://www.globalpetrolprices.com/Kenya/gasoline_prices/',freq:'Monthly'},
+    ]
+  },
+  {
+    id:'ma', flag:'🇲🇦', country:'Morocco', city:'Casablanca', region:'africa',
+    gasoline:1.45, gasolineBase:1.36, diesel:1.32, dieselBase:1.22, oilExposure:90,
+    policy:'No intervention. Deregulated market since 2015.',
+    note:'Morocco deregulated in 2015 so pump prices track Brent closely (+7 days lag). Nearly 100% oil import dependent. Weekly updates from ONHYM/petrol station chains.',
+    sources:[
+      {name:'GlobalPetrolPrices Morocco',url:'https://www.globalpetrolprices.com/Morocco/gasoline_prices/',freq:'Weekly'},
+    ]
+  },
+  {
+    id:'eg', flag:'🇪🇬', country:'Egypt', city:'Cairo', region:'africa',
+    gasoline:0.54, gasolineBase:0.54, diesel:0.49, dieselBase:0.48, oilExposure:40,
+    policy:'Heavily subsidised. No change. State of near-emergency declared.',
+    note:'Egypt subsidises fuel heavily. Official prices unchanged. But economy under severe pressure: Suez Canal revenue down, EGP falling, inflation accelerating. Real market shock deferred, not avoided.',
+    sources:[
+      {name:'Egyptian Petroleum Ministry',url:'http://www.petroleum.gov.eg',freq:'Quarterly'},
+      {name:'GlobalPetrolPrices Egypt',url:'https://www.globalpetrolprices.com/Egypt/gasoline_prices/',freq:'Monthly'},
+    ]
+  },
+  {
+    id:'lb', flag:'🇱🇧', country:'Lebanon', city:'Beirut', region:'africa',
+    gasoline:1.62, gasolineBase:1.33, diesel:1.48, dieselBase:1.21, oilExposure:95,
+    policy:'No capacity for intervention. Economy near collapse.',
+    note:'Lebanon acutely exposed: 95%+ oil import dependent, no strategic reserves, ongoing currency crisis. +22% gasoline, +22% diesel. Formal sector prices understate reality.',
+    sources:[
+      {name:'Ministry of Energy Lebanon',url:'https://www.energy.gov.lb',freq:'Weekly'},
+      {name:'GlobalPetrolPrices Lebanon',url:'https://www.globalpetrolprices.com/Lebanon/gasoline_prices/',freq:'Weekly'},
+    ]
+  },
+  {
+    id:'in', flag:'🇮🇳', country:'India', city:'New Delhi', region:'asia',
+    gasoline:1.34, gasolineBase:1.27, diesel:1.20, dieselBase:1.14, oilExposure:62,
+    policy:'Russian oil exemption. Gas priority emergency order.',
+    note:'India partially buffered by Russian crude. PPAC daily prices. Emergency gas rationing order issued (Natural Gas Supply Regulation Order 2026). Indian OMC stocks +3.4% today on ceasefire reports (Business Standard).',
+    sources:[
+      {name:'PPAC India Fuel Prices',url:'https://ppac.gov.in/consumer-info/fuel-prices',freq:'Daily'},
+      {name:'GlobalPetrolPrices India',url:'https://www.globalpetrolprices.com/India/gasoline_prices/',freq:'Weekly'},
+    ]
+  },
+  {
+    id:'ph', flag:'🇵🇭', country:'Philippines', city:'Manila', region:'asia',
+    gasoline:1.48, gasolineBase:1.16, diesel:1.42, dieselBase:1.02, oilExposure:88,
+    policy:'4-day work week for government. Electricity price rise expected.',
+    note:'Diesel +38.6% confirmed (PSA). Gasoline est. +27%. PHP fell to 59.5/USD. DOE weekly price monitor. SM Supermarket cold-chain costs rising rapidly. 4-day work week enacted to save fuel.',
+    sources:[
+      {name:'DOE Price Monitor PH',url:'https://www.doe.gov.ph/price-monitoring',freq:'Weekly'},
+      {name:'GlobalPetrolPrices Philippines',url:'https://www.globalpetrolprices.com/Philippines/gasoline_prices/',freq:'Weekly'},
+    ]
+  },
+  {
+    id:'id', flag:'🇮🇩', country:'Indonesia', city:'Jakarta', region:'asia',
+    gasoline:0.88, gasolineBase:0.84, diesel:0.88, dieselBase:0.84, oilExposure:58,
+    policy:'Pertamina absorbing shock. Fiscal pressure building.',
+    note:'Pertamina subsidising heavily. Official prices barely changed but government fiscal cost surging. BPS CPI expected to spike in April. Very limited official pump price change (+4-5%) masking true market pressure.',
+    sources:[
+      {name:'Pertamina Harga BBM',url:'https://www.pertamina.com/id/harga-bbm',freq:'Monthly'},
+      {name:'BPS Indonesia CPI',url:'https://www.bps.go.id',freq:'Monthly'},
+    ]
+  },
+  {
+    id:'au', flag:'🇦🇺', country:'Australia', city:'Sydney', region:'oceania',
+    gasoline:1.740, gasolineBase:1.370, diesel:1.902, dieselBase:1.524, oilExposure:45,
+    policy:'No direct intervention. ACCC monitoring margins.',
+    note:'FuelCheck NSW and ACCC data. Sydney avg ~AU$2.74/L = $1.740/L (+27%). Diesel AU$2.99/L. Australia has very limited domestic refining. ACCC monitoring for margin gouging.',
+    sources:[
+      {name:'ACCC Petrol Prices',url:'https://www.accc.gov.au/consumers/petrol-pricing',freq:'Weekly'},
+      {name:'FuelCheck NSW',url:'https://www.fuelcheck.nsw.gov.au',freq:'Near-real-time'},
+    ]
+  },
+  {
+    id:'nz', flag:'🇳🇿', country:'New Zealand', city:'Wellington', region:'oceania',
+    gasoline:1.893, gasolineBase:1.577, diesel:1.784, dieselBase:1.486, oilExposure:48,
+    policy:'No intervention. MBIE monitoring.',
+    note:'NZ imports all refined fuel. Pricewatch NZ: ~NZD$2.98/L petrol = $1.893/L at 0.635 NZD/USD. +20% petrol. Strong pass-through from Singapore refinery margin.',
+    sources:[
+      {name:'MBIE Fuel Price Watch',url:'https://www.mbie.govt.nz/building-and-energy/energy-and-natural-resources/energy-statistics-and-modelling/energy-statistics/oil-statistics/',freq:'Weekly'},
+      {name:'Pricewatch NZ',url:'https://pricewatch.co.nz',freq:'Near-real-time'},
+    ]
+  },
+  {
+    id:'cn', flag:'🇨🇳', country:'China', city:'Beijing', region:'asia',
+    gasoline:1.10, gasolineBase:1.02, diesel:1.07, dieselBase:1.00, oilExposure:52,
+    policy:'NDRC 10-day pricing. Strategic reserves deployed.',
+    note:'NDRC 10-day pricing cycle. China deploying strategic reserves. +8% gasoline. JD Fresh / Hema online grocery cold-chain transport costs rising. Kospi +2.7% / Hang Seng +2.8% today on ceasefire talks (CBS News).',
+    sources:[
+      {name:'NDRC Oil Price (CN)',url:'https://www.ndrc.gov.cn/fzggw/jgsj/jjjg/',freq:'Every 10 days'},
+      {name:'GlobalPetrolPrices China',url:'https://www.globalpetrolprices.com/China/gasoline_prices/',freq:'Monthly'},
+    ]
+  },
+  {
+    id:'kr', flag:'🇰🇷', country:'South Korea', city:'Seoul', region:'asia',
+    gasoline:1.230, gasolineBase:1.064, diesel:1.195, dieselBase:1.023, oilExposure:70,
+    policy:'Pump price cap (first time in 30 years, since Mar 9).',
+    note:'Opinet daily data. Price cap introduced Mar 9. ~1,800 KRW/L petrol capped = $1.23/L. 70% Gulf oil dependence. Kospi gained +2.7% today on ceasefire talks. Markets front-running potential resolution.',
+    sources:[
+      {name:'Opinet Korea NPC',url:'https://www.opinet.co.kr/user/main/mainView.do',freq:'Daily'},
+      {name:'GlobalPetrolPrices S.Korea',url:'https://www.globalpetrolprices.com/South-Korea/gasoline_prices/',freq:'Weekly'},
+    ]
+  },
+  {
+    id:'jp', flag:'🇯🇵', country:'Japan', city:'Tokyo', region:'asia',
+    gasoline:1.242, gasolineBase:1.107, diesel:1.162, dieselBase:1.028, oilExposure:95,
+    policy:'Strategic reserve release (Mar 8). METI monitoring.',
+    note:'Japan 95% Gulf-dependent. Strategic reserves deployed Mar 8. METI weekly survey. ~¥185/L petrol = $1.242 at ¥149/$. +12% gasoline. Nikkei +1.4% today on ceasefire optimism.',
+    sources:[
+      {name:'METI Petroleum Data',url:'https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/',freq:'Weekly'},
+      {name:'GlobalPetrolPrices Japan',url:'https://www.globalpetrolprices.com/Japan/gasoline_prices/',freq:'Weekly'},
+    ]
+  },
+];
+
+countries.forEach(d => {
+  d.gasolineChg = (d.gasoline - d.gasolineBase) / d.gasolineBase * 100;
+  d.dieselChg = (d.diesel - d.dieselBase) / d.dieselBase * 100;
+});
+
+let filtered = [...countries];
+let sortKey = 'gasolineChg', sortDir = -1;
+let activeRegion = 'all', searchTerm = '', selectedId = null;
+
+function pillHTML(pct) {
+  const cls = pct > 0.5 ? 'up' : pct < -0.5 ? 'down' : 'flat';
+  return `<span class="pill ${cls}">${pct>0?'+':''}${pct.toFixed(1)}%</span>`;
+}
+
+function expBar(pct) {
+  const col = pct >= 70 ? '#e05a2b' : pct >= 45 ? '#e8b84a' : '#3ab87a';
+  return `<div style="font-family:var(--mono);font-size:11px;color:var(--text-dim)">${pct}%<div class="exp-bar"><div class="exp-fill" style="width:${pct}%;background:${col}"></div></div></div>`;
+}
+
+function applyFilters() {
+  filtered = countries.filter(d => {
+    const r = activeRegion === 'all' || d.region === activeRegion;
+    const s = !searchTerm || d.country.toLowerCase().includes(searchTerm) || d.city.toLowerCase().includes(searchTerm);
+    return r && s;
+  });
+  filtered.sort((a,b) => (a[sortKey] - b[sortKey]) * sortDir);
+  renderTable();
+}
+
+function renderTable() {
+  document.getElementById('tbody').innerHTML = filtered.map(d => {
+    const sel = selectedId === d.id ? ' selected' : '';
+    return `<tr class="row${sel}" data-id="${d.id}">
+      <td><div class="country-cell"><span class="flag">${d.flag}</span><div><span class="cname">${d.country}<small class="ccity">${d.city}</small></span></div></div></td>
+      <td><span class="pval">$${d.gasoline.toFixed(3)}</span><br><span class="pbase">was $${d.gasolineBase.toFixed(3)}</span></td>
+      <td><span class="pval">$${d.diesel.toFixed(3)}</span><br><span class="pbase">was $${d.dieselBase.toFixed(3)}</span></td>
+      <td>${pillHTML(d.gasolineChg)}</td>
+      <td>${pillHTML(d.dieselChg)}</td>
+      <td>${expBar(d.oilExposure)}</td>
+      <td><span style="font-family:var(--sans);font-size:11px;color:var(--text-dim);white-space:normal;max-width:120px;display:inline-block;line-height:1.3">${d.policy}</span></td>
+      <td><span class="source-tag" data-id="${d.id}">Sources →</span></td>
+    </tr>`;
+  }).join('');
+  document.querySelectorAll('.row').forEach(r => r.addEventListener('click', () => selectRow(r.dataset.id)));
+  document.querySelectorAll('.source-tag').forEach(t => t.addEventListener('click', e => { e.stopPropagation(); selectRow(t.dataset.id); }));
+}
+
+function selectRow(id) {
+  selectedId = id;
+  const d = countries.find(x => x.id === id);
+  if (!d) return;
+  renderTable();
+  const gCol = d.gasolineChg >= 20 ? '#e05a2b' : d.gasolineChg >= 10 ? '#e8b84a' : '#4a90d9';
+  const dCol = d.dieselChg >= 20 ? '#e05a2b' : d.dieselChg >= 10 ? '#e8b84a' : '#4a90d9';
+  document.getElementById('sb-content').innerHTML = `
+    <div class="sb-title">Country Detail</div>
+    <div class="sb-country">${d.flag} ${d.country}</div>
+    <div class="sb-city">${d.city}</div>
+    <div class="metric-grid">
+      <div class="metric-box"><div class="metric-label">Gasoline Now</div><div class="metric-val">$${d.gasoline.toFixed(3)}</div><div class="metric-chg" style="color:${gCol}">+${d.gasolineChg.toFixed(1)}% vs pre-war</div></div>
+      <div class="metric-box"><div class="metric-label">Diesel Now</div><div class="metric-val">$${d.diesel.toFixed(3)}</div><div class="metric-chg" style="color:${dCol}">+${d.dieselChg.toFixed(1)}% vs pre-war</div></div>
+      <div class="metric-box"><div class="metric-label">Pre-war Gas</div><div class="metric-val" style="color:var(--text-dim)">$${d.gasolineBase.toFixed(3)}</div><div class="metric-chg neutral">Feb 24, 2026</div></div>
+      <div class="metric-box"><div class="metric-label">Pre-war Diesel</div><div class="metric-val" style="color:var(--text-dim)">$${d.dieselBase.toFixed(3)}</div><div class="metric-chg neutral">Feb 24, 2026</div></div>
+      <div class="metric-box" style="grid-column:1/-1"><div class="metric-label">Gulf Oil Exposure</div><div class="metric-val" style="color:${d.oilExposure>=70?'#e05a2b':d.oilExposure>=45?'#e8b84a':'#3ab87a'}">${d.oilExposure}%</div><div class="exp-bar" style="margin-top:6px"><div class="exp-fill" style="width:${d.oilExposure}%;background:${d.oilExposure>=70?'#e05a2b':d.oilExposure>=45?'#e8b84a':'#3ab87a'}"></div></div></div>
+    </div>
+    <div style="margin:10px 0"><div class="sb-title">Policy Response</div><div class="notes-box">${d.policy}</div></div>
+    <div style="margin-top:10px"><div class="sb-title">Notes</div><div class="notes-box">${d.note}</div></div>
+    <div style="margin-top:10px"><div class="sb-title">Sources</div><div class="source-list">${d.sources.map(s=>`<a class="source-item" href="${s.url}" target="_blank"><span class="source-name">${s.name}</span><span class="source-freq">↻ ${s.freq}</span></a>`).join('')}</div></div>`;
+}
+
+// ticker
+document.getElementById('ticker').innerHTML = [
+  {label:'Brent Crude',val:'$98.41',chg:'–5.8% today',cls:'down blue-t'},
+  {label:'WTI',val:'$87.26',chg:'–5.5% today',cls:'down blue-t'},
+  {label:'US Gas avg',val:'$3.977/gal',chg:'+35% war',cls:'up'},
+  {label:'US Diesel avg',val:'$5.375/gal',chg:'+50% war',cls:'up'},
+  {label:'UK Petrol',val:'149.5p/L',chg:'+18% war',cls:'up'},
+  {label:'UK Diesel',val:'175.6p/L',chg:'+19% war',cls:'up'},
+  {label:'EU Diesel avg',val:'€2.10/L',chg:'+25% war',cls:'up'},
+  {label:'Germany Petrol',val:'€2.16/L',chg:'+18.7% war',cls:'up'},
+  {label:'Spain Diesel',val:'€1.65/L',chg:'+34% (–30c VAT cut)',cls:'up'},
+  {label:'Philippines Diesel',val:'+38.6%',chg:'Highest EM',cls:'up'},
+  {label:'Australia',val:'AU$2.74/L',chg:'+27% war',cls:'up'},
+  {label:'Ceasefire talks',val:'US 15-pt plan',chg:'Iran denies direct talks',cls:'blue-t'},
+  {label:'Day',val:'25',chg:'Feb 28 – Mar 25',cls:'neutral'},
+].map(i=>`<div class="ticker-item"><span class="t-label">${i.label}</span><span class="t-val">${i.val}</span><span class="t-chg ${i.cls}">${i.chg}</span></div>`).join('');
+
+// controls
+document.querySelectorAll('#region-btns .btn').forEach(b=>b.addEventListener('click',()=>{activeRegion=b.dataset.region;document.querySelectorAll('#region-btns .btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');applyFilters();}));
+document.querySelectorAll('#sort-btns .btn').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.sort;if(sortKey===k)sortDir*=-1;else{sortKey=k;sortDir=-1;}document.querySelectorAll('#sort-btns .btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');applyFilters();}));
+document.getElementById('search').addEventListener('input',e=>{searchTerm=e.target.value.toLowerCase();applyFilters();});
+
+applyFilters();
+setTimeout(()=>selectRow(filtered[0]?.id),100);
+</script>
+</body>
+</html>

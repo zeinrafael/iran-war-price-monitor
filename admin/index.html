@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>War Prices — Admin Update</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0a0c0f; --panel:#111318; --panel2:#161a20; --border:#1e2430; --border2:#252c38; --text:#c8d4e0; --text-dim:#6a7a90; --text-bright:#e8f0f8; --accent:#e05a2b; --accent2:#f28c3a; --green:#3ab87a; --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:var(--sans); font-size:14px; min-height:100vh; padding:0 0 60px; }
+  header { border-bottom:1px solid var(--border); padding:14px 32px; background:var(--bg); display:flex; align-items:center; gap:14px; }
+  .badge { background:var(--accent); color:#fff; font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.1em; padding:3px 8px; text-transform:uppercase; }
+  h1 { font-family:var(--mono); font-size:15px; color:var(--text-bright); }
+  .container { max-width:900px; margin:32px auto; padding:0 24px; }
+  .section-title { font-family:var(--mono); font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:.1em; margin-bottom:12px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+  .country-block { background:var(--panel); border:1px solid var(--border2); padding:16px; margin-bottom:12px; }
+  .country-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+  .flag { font-size:20px; }
+  .country-name { font-size:15px; font-weight:600; color:var(--text-bright); }
+  .cadence-tag { font-family:var(--mono); font-size:10px; color:var(--accent2); border:1px solid rgba(242,140,58,.3); padding:2px 6px; }
+  .static-tag { font-family:var(--mono); font-size:10px; color:#888; border:1px solid var(--border2); padding:2px 6px; }
+  .field-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px; }
+  .field-group { display:flex; flex-direction:column; gap:4px; }
+  label { font-family:var(--mono); font-size:10px; color:var(--text-dim); text-transform:uppercase; letter-spacing:.08em; }
+  input[type="number"], input[type="text"] { background:var(--panel2); border:1px solid var(--border2); color:var(--text-bright); font-family:var(--mono); font-size:13px; padding:7px 10px; outline:none; width:100%; }
+  input:focus { border-color:var(--accent2); }
+  .baseline { font-family:var(--mono); font-size:10px; color:var(--text-dim); margin-top:3px; }
+  .btn-save { background:var(--accent); color:#fff; border:none; font-family:var(--mono); font-size:12px; font-weight:600; padding:8px 18px; cursor:pointer; margin-top:12px; letter-spacing:.05em; }
+  .btn-save:hover { background:#c94d22; }
+  .btn-copy { background:var(--panel2); color:var(--accent2); border:1px solid var(--border2); font-family:var(--mono); font-size:11px; padding:6px 14px; cursor:pointer; margin-top:8px; }
+  .btn-copy:hover { border-color:var(--accent2); }
+  .output-box { background:#0d1117; border:1px solid var(--border); padding:14px; font-family:var(--mono); font-size:11px; color:var(--green); white-space:pre-wrap; margin-top:20px; max-height:400px; overflow-y:auto; display:none; }
+  .instructions { background:var(--panel); border:1px solid var(--border2); padding:16px; margin-bottom:24px; border-left:3px solid var(--accent2); }
+  .instructions p { font-family:var(--sans); font-size:13px; color:var(--text-dim); line-height:1.7; margin-bottom:8px; }
+  .instructions code { font-family:var(--mono); font-size:11px; color:var(--accent2); background:var(--panel2); padding:1px 4px; }
+  .tab-bar { display:flex; gap:2px; margin-bottom:20px; }
+  .tab { background:var(--panel); border:1px solid var(--border2); color:var(--text-dim); font-family:var(--mono); font-size:11px; padding:6px 16px; cursor:pointer; }
+  .tab.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .tab-content { display:none; }
+  .tab-content.active { display:block; }
+</style>
+</head>
+<body>
+<header>
+  <div class="badge">⚙ Admin</div>
+  <h1>War Prices — Manual Data Update</h1>
+</header>
+
+<div class="container">
+
+  <div class="instructions">
+    <p><strong style="color:var(--text)">How this works:</strong> This page generates updated JSON patches for countries with static/regulated prices. When an official price announcement drops (e.g. EPRA Kenya, DMRE South Africa, Pertamina Indonesia), enter the new prices below, click Generate, then commit the output to <code>data/fuel.json</code> or <code>data/food.json</code> in your GitHub repo.</p>
+    <p>Countries with <strong style="color:var(--accent2)">auto-update</strong> tags are handled by the scraper automatically. Only manually update the <strong style="color:#888">static</strong> ones here.</p>
+  </div>
+
+  <div class="tab-bar">
+    <div class="tab active" data-tab="fuel">⛽ Fuel</div>
+    <div class="tab" data-tab="food">🥩 Food</div>
+  </div>
+
+  <!-- FUEL TAB -->
+  <div class="tab-content active" id="tab-fuel">
+    <div class="section-title">Static / Regulated Markets — Fuel Prices (USD/L)</div>
+
+    <div id="fuel-static-countries"></div>
+
+    <button class="btn-save" onclick="generateFuelJSON()">Generate JSON Patch</button>
+    <button class="btn-copy" onclick="copyOutput('fuel-output')">Copy JSON</button>
+    <pre class="output-box" id="fuel-output"></pre>
+  </div>
+
+  <!-- FOOD TAB -->
+  <div class="tab-content" id="tab-food">
+    <div class="section-title">Static / Regulated Markets — Food Basket (USD)</div>
+
+    <div id="food-static-countries"></div>
+
+    <button class="btn-save" onclick="generateFoodJSON()">Generate JSON Patch</button>
+    <button class="btn-copy" onclick="copyOutput('food-output')">Copy JSON</button>
+    <pre class="output-box" id="food-output"></pre>
+  </div>
+
+</div>
+
+<script>
+// Static/regulated countries that need manual updates
+const STATIC_FUEL = [
+  { id:"za", flag:"🇿🇦", name:"South Africa", city:"Johannesburg", cadence:"Monthly (DMRE)", source:"https://www.dmr.gov.za/petroleum/fuel-prices",
+    gasoline:1.180, gasoline_base:1.030, diesel:1.140, diesel_base:0.980 },
+  { id:"sn", flag:"🇸🇳", name:"Senegal", city:"Dakar", cadence:"Monthly (ANSD)", source:"https://www.ansd.sn/",
+    gasoline:1.380, gasoline_base:1.380, diesel:1.150, diesel_base:1.150 },
+  { id:"ke", flag:"🇰🇪", name:"Kenya", city:"Nairobi", cadence:"Monthly (EPRA)", source:"https://www.epra.go.ke/services/petroleum/petroleum-prices/",
+    gasoline:1.300, gasoline_base:1.200, diesel:1.160, diesel_base:1.060 },
+  { id:"eg", flag:"🇪🇬", name:"Egypt", city:"Cairo", cadence:"Quarterly (Min. Petroleum)", source:"http://www.petroleum.gov.eg",
+    gasoline:0.540, gasoline_base:0.540, diesel:0.490, diesel_base:0.480 },
+  { id:"id", flag:"🇮🇩", name:"Indonesia", city:"Jakarta", cadence:"Monthly (Pertamina)", source:"https://www.pertamina.com/id/harga-bbm",
+    gasoline:0.880, gasoline_base:0.840, diesel:0.880, diesel_base:0.840 },
+];
+
+const STATIC_FOOD = [
+  { id:"za", flag:"🇿🇦", name:"South Africa", city:"Johannesburg", cadence:"Monthly (Stats SA)",
+    rice:{now:1.32,base:1.18}, flour:{now:0.74,base:0.67}, eggs:{now:2.92,base:2.65}, beef:{now:8.05,base:7.30} },
+  { id:"sn", flag:"🇸🇳", name:"Senegal", city:"Dakar", cadence:"Monthly (ANSD)",
+    rice:{now:0.80,base:0.78}, flour:{now:0.60,base:0.58}, eggs:{now:1.68,base:1.60}, beef:{now:5.30,base:5.05} },
+  { id:"ke", flag:"🇰🇪", name:"Kenya", city:"Nairobi", cadence:"Monthly (KNBS)",
+    rice:{now:1.28,base:1.18}, flour:{now:0.64,base:0.58}, eggs:{now:2.10,base:1.92}, beef:{now:5.92,base:5.45} },
+  { id:"eg", flag:"🇪🇬", name:"Egypt", city:"Cairo", cadence:"Quarterly (CAPMAS)",
+    rice:{now:0.63,base:0.60}, flour:{now:0.32,base:0.32}, eggs:{now:1.88,base:1.78}, beef:{now:9.35,base:8.90} },
+  { id:"id", flag:"🇮🇩", name:"Indonesia", city:"Jakarta", cadence:"Monthly (BPS)",
+    rice:{now:0.90,base:0.84}, flour:{now:0.74,base:0.69}, eggs:{now:1.88,base:1.75}, beef:{now:9.40,base:8.80} },
+];
+
+function buildFuelForms() {
+  const container = document.getElementById("fuel-static-countries");
+  STATIC_FUEL.forEach(c => {
+    container.innerHTML += `
+      <div class="country-block">
+        <div class="country-header">
+          <span class="flag">${c.flag}</span>
+          <span class="country-name">${c.name} — ${c.city}</span>
+          <span class="static-tag">STATIC</span>
+          <span class="cadence-tag">${c.cadence}</span>
+        </div>
+        <div class="field-grid">
+          <div class="field-group">
+            <label>Gasoline (USD/L)</label>
+            <input type="number" step="0.001" id="${c.id}-gasoline" value="${c.gasoline}" placeholder="e.g. 1.180">
+            <div class="baseline">Pre-war baseline: $${c.gasoline_base}</div>
+          </div>
+          <div class="field-group">
+            <label>Diesel (USD/L)</label>
+            <input type="number" step="0.001" id="${c.id}-diesel" value="${c.diesel}" placeholder="e.g. 1.140">
+            <div class="baseline">Pre-war baseline: $${c.diesel_base}</div>
+          </div>
+          <div class="field-group">
+            <label>Source URL</label>
+            <input type="text" id="${c.id}-source" value="${c.source}">
+          </div>
+        </div>
+      </div>`;
+  });
+}
+
+function buildFoodForms() {
+  const container = document.getElementById("food-static-countries");
+  STATIC_FOOD.forEach(c => {
+    const products = ["rice","flour","eggs","beef"];
+    const labels = ["Rice (1kg, USD)","Flour (1kg, USD)","Eggs ×12 (USD)","Beef (1kg, USD)"];
+    container.innerHTML += `
+      <div class="country-block">
+        <div class="country-header">
+          <span class="flag">${c.flag}</span>
+          <span class="country-name">${c.name} — ${c.city}</span>
+          <span class="static-tag">STATIC</span>
+          <span class="cadence-tag">${c.cadence}</span>
+        </div>
+        <div class="field-grid">
+          ${products.map((p,i) => `
+            <div class="field-group">
+              <label>${labels[i]}</label>
+              <input type="number" step="0.01" id="${c.id}-${p}" value="${c[p].now}" placeholder="${c[p].now}">
+              <div class="baseline">Pre-war: $${c[p].base}</div>
+            </div>`).join("")}
+        </div>
+      </div>`;
+  });
+}
+
+function generateFuelJSON() {
+  const now = new Date().toISOString();
+  const patches = STATIC_FUEL.map(c => ({
+    id: c.id,
+    gasoline: parseFloat(document.getElementById(`${c.id}-gasoline`).value),
+    diesel: parseFloat(document.getElementById(`${c.id}-diesel`).value),
+    _updated: now,
+    _note: "Manual update"
+  }));
+
+  const output = document.getElementById("fuel-output");
+  output.style.display = "block";
+  output.textContent = `// Paste these values into data/fuel.json for the matching country IDs.
+// last_updated will be set automatically when you save.
+
+${JSON.stringify(patches, null, 2)}
+
+// GitHub commit command:
+// git add data/fuel.json && git commit -m "manual: update fuel prices ${now.slice(0,10)}" && git push`;
+}
+
+function generateFoodJSON() {
+  const now = new Date().toISOString();
+  const patches = STATIC_FOOD.map(c => ({
+    id: c.id,
+    rice:  { now: parseFloat(document.getElementById(`${c.id}-rice`).value),  base: c.rice.base },
+    flour: { now: parseFloat(document.getElementById(`${c.id}-flour`).value), base: c.flour.base },
+    eggs:  { now: parseFloat(document.getElementById(`${c.id}-eggs`).value),  base: c.eggs.base },
+    beef:  { now: parseFloat(document.getElementById(`${c.id}-beef`).value),  base: c.beef.base },
+    _updated: now
+  }));
+
+  const output = document.getElementById("food-output");
+  output.style.display = "block";
+  output.textContent = `// Paste these values into data/food.json for the matching country IDs.
+
+${JSON.stringify(patches, null, 2)}
+
+// GitHub commit command:
+// git add data/food.json && git commit -m "manual: update food prices ${now.slice(0,10)}" && git push`;
+}
+
+function copyOutput(id) {
+  const el = document.getElementById(id);
+  navigator.clipboard.writeText(el.textContent).then(() => {
+    const btn = el.previousElementSibling;
+    btn.textContent = "Copied!";
+    setTimeout(() => btn.textContent = "Copy JSON", 2000);
+  });
+}
+
+// Tab switching
+document.querySelectorAll(".tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+    tab.classList.add("active");
+    document.getElementById(`tab-${tab.dataset.tab}`).classList.add("active");
+  });
+});
+
+buildFuelForms();
+buildFoodForms();
+</script>
+</body>
+</html>
