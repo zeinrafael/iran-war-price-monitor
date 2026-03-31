@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_updated": "2026-03-25T09:00:00Z",
+    "last_updated": "2026-03-31T20:21:13.481438+00:00",
     "baseline_date": "2026-02-24",
     "war_start": "2026-02-28",
     "lag_warning": "Food prices lag fuel by 4–8 weeks. Fertiliser second wave (urea +30–40%) will hit April–June.",
@@ -8,281 +8,873 @@
   },
   "countries": [
     {
-      "id": "us", "flag": "🇺🇸", "country": "United States", "city": "Washington D.C.", "region": "americas", "reliability": 3,
-      "rice":  { "now": 2.25, "base": 2.10, "shop": "Kroger / Safeway / Walmart" },
-      "flour": { "now": 1.08, "base": 0.98, "shop": "Kroger / Safeway / Walmart" },
-      "eggs":  { "now": 4.90, "base": 5.20, "shop": "Kroger / Safeway / Walmart" },
-      "beef":  { "now": 14.80, "base": 13.30, "shop": "Kroger / Safeway / Walmart" },
-      "auto_update": true, "update_cadence": "monthly",
+      "id": "us",
+      "flag": "🇺🇸",
+      "country": "United States",
+      "city": "Washington D.C.",
+      "region": "americas",
+      "reliability": 3,
+      "rice": {
+        "now": 2.25,
+        "base": 2.1,
+        "shop": "Kroger / Safeway / Walmart"
+      },
+      "flour": {
+        "now": 1.08,
+        "base": 0.98,
+        "shop": "Kroger / Safeway / Walmart"
+      },
+      "eggs": {
+        "now": 4.9,
+        "base": 5.2,
+        "shop": "Kroger / Safeway / Walmart"
+      },
+      "beef": {
+        "now": 14.8,
+        "base": 13.3,
+        "shop": "Kroger / Safeway / Walmart"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
       "note": "USDA ERS monthly. Eggs still declining from HPAI. Fertiliser second wave not yet in retail.",
       "sources": [
-        { "name": "USDA ERS Food Price Outlook", "url": "https://www.ers.usda.gov/data-products/food-price-outlook/" },
-        { "name": "BLS CPI Food Data", "url": "https://www.bls.gov/cpi/" }
+        {
+          "name": "USDA ERS Food Price Outlook",
+          "url": "https://www.ers.usda.gov/data-products/food-price-outlook/"
+        },
+        {
+          "name": "BLS CPI Food Data",
+          "url": "https://www.bls.gov/cpi/"
+        }
       ]
     },
     {
-      "id": "uk", "flag": "🇬🇧", "country": "United Kingdom", "city": "London", "region": "europe", "reliability": 3,
-      "rice":  { "now": 1.92, "base": 1.78, "shop": "Tesco / Sainsbury's / Asda" },
-      "flour": { "now": 1.18, "base": 1.08, "shop": "Tesco / Sainsbury's / Asda" },
-      "eggs":  { "now": 4.78, "base": 4.45, "shop": "Tesco / Sainsbury's / Asda" },
-      "beef":  { "now": 16.10, "base": 14.90, "shop": "Tesco / Sainsbury's / Asda" },
-      "auto_update": true, "update_cadence": "monthly",
+      "id": "uk",
+      "flag": "🇬🇧",
+      "country": "United Kingdom",
+      "city": "London",
+      "region": "europe",
+      "reliability": 3,
+      "rice": {
+        "now": 0.8,
+        "base": 1.78,
+        "shop": "Tesco / Sainsbury's / Asda"
+      },
+      "flour": {
+        "now": 1.18,
+        "base": 1.08,
+        "shop": "Tesco / Sainsbury's / Asda"
+      },
+      "eggs": {
+        "now": 3.7,
+        "base": 4.45,
+        "shop": "Tesco / Sainsbury's / Asda"
+      },
+      "beef": {
+        "now": 6.24,
+        "base": 14.9,
+        "shop": "Tesco / Sainsbury's / Asda"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
       "note": "Numbeo London updated Mar 18. ONS food CPI monthly.",
       "sources": [
-        { "name": "Numbeo London", "url": "https://www.numbeo.com/cost-of-living/in/London" },
-        { "name": "ONS Food CPI", "url": "https://www.ons.gov.uk/economy/inflationandpriceindices" }
+        {
+          "name": "Numbeo London",
+          "url": "https://www.numbeo.com/cost-of-living/in/London"
+        },
+        {
+          "name": "ONS Food CPI",
+          "url": "https://www.ons.gov.uk/economy/inflationandpriceindices"
+        }
       ]
     },
     {
-      "id": "fr", "flag": "🇫🇷", "country": "France", "city": "Paris", "region": "europe", "reliability": 2,
-      "rice":  { "now": 2.08, "base": 1.95, "shop": "Carrefour / Leclerc / Intermarché" },
-      "flour": { "now": 1.00, "base": 0.92, "shop": "Carrefour / Leclerc / Intermarché" },
-      "eggs":  { "now": 3.92, "base": 3.65, "shop": "Carrefour / Leclerc / Intermarché" },
-      "beef":  { "now": 15.50, "base": 14.30, "shop": "Carrefour / Leclerc / Intermarché" },
-      "auto_update": true, "update_cadence": "monthly",
+      "id": "fr",
+      "flag": "🇫🇷",
+      "country": "France",
+      "city": "Paris",
+      "region": "europe",
+      "reliability": 2,
+      "rice": {
+        "now": 1.1,
+        "base": 1.95,
+        "shop": "Carrefour / Leclerc / Intermarché"
+      },
+      "flour": {
+        "now": 1.0,
+        "base": 0.92,
+        "shop": "Carrefour / Leclerc / Intermarché"
+      },
+      "eggs": {
+        "now": 4.42,
+        "base": 3.65,
+        "shop": "Carrefour / Leclerc / Intermarché"
+      },
+      "beef": {
+        "now": 8.36,
+        "base": 14.3,
+        "shop": "Carrefour / Leclerc / Intermarché"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
       "note": "INSEE CPI monthly. TotalEnergies cap moderating transport costs.",
       "sources": [
-        { "name": "INSEE CPI", "url": "https://www.insee.fr/fr/statistiques/serie/001763852" },
-        { "name": "Numbeo Paris", "url": "https://www.numbeo.com/cost-of-living/in/Paris" }
+        {
+          "name": "INSEE CPI",
+          "url": "https://www.insee.fr/fr/statistiques/serie/001763852"
+        },
+        {
+          "name": "Numbeo Paris",
+          "url": "https://www.numbeo.com/cost-of-living/in/Paris"
+        }
       ]
     },
     {
-      "id": "es", "flag": "🇪🇸", "country": "Spain", "city": "Madrid", "region": "europe", "reliability": 2,
-      "rice":  { "now": 1.65, "base": 1.55, "shop": "Mercadona / Carrefour / Lidl" },
-      "flour": { "now": 0.90, "base": 0.83, "shop": "Mercadona / Carrefour / Lidl" },
-      "eggs":  { "now": 3.30, "base": 3.10, "shop": "Mercadona / Carrefour / Lidl" },
-      "beef":  { "now": 13.60, "base": 12.70, "shop": "Mercadona / Carrefour / Lidl" },
-      "auto_update": true, "update_cadence": "monthly",
+      "id": "es",
+      "flag": "🇪🇸",
+      "country": "Spain",
+      "city": "Madrid",
+      "region": "europe",
+      "reliability": 2,
+      "rice": {
+        "now": 0.71,
+        "base": 1.55,
+        "shop": "Mercadona / Carrefour / Lidl"
+      },
+      "flour": {
+        "now": 0.9,
+        "base": 0.83,
+        "shop": "Mercadona / Carrefour / Lidl"
+      },
+      "eggs": {
+        "now": 3.35,
+        "base": 3.1,
+        "shop": "Mercadona / Carrefour / Lidl"
+      },
+      "beef": {
+        "now": 7.19,
+        "base": 12.7,
+        "shop": "Mercadona / Carrefour / Lidl"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
       "note": "INE CPI monthly. VAT cut on food moderates some pass-through.",
       "sources": [
-        { "name": "INE CPI España", "url": "https://www.ine.es" },
-        { "name": "Numbeo Madrid", "url": "https://www.numbeo.com/cost-of-living/in/Madrid" }
+        {
+          "name": "INE CPI España",
+          "url": "https://www.ine.es"
+        },
+        {
+          "name": "Numbeo Madrid",
+          "url": "https://www.numbeo.com/cost-of-living/in/Madrid"
+        }
       ]
     },
     {
-      "id": "de", "flag": "🇩🇪", "country": "Germany", "city": "Berlin", "region": "europe", "reliability": 2,
-      "rice":  { "now": 2.02, "base": 1.88, "shop": "Rewe / Edeka / Lidl" },
-      "flour": { "now": 0.97, "base": 0.90, "shop": "Rewe / Edeka / Lidl" },
-      "eggs":  { "now": 3.88, "base": 3.60, "shop": "Rewe / Edeka / Lidl" },
-      "beef":  { "now": 15.20, "base": 14.10, "shop": "Rewe / Edeka / Lidl" },
-      "auto_update": true, "update_cadence": "monthly",
+      "id": "de",
+      "flag": "🇩🇪",
+      "country": "Germany",
+      "city": "Berlin",
+      "region": "europe",
+      "reliability": 2,
+      "rice": {
+        "now": 1.34,
+        "base": 1.88,
+        "shop": "Rewe / Edeka / Lidl"
+      },
+      "flour": {
+        "now": 0.97,
+        "base": 0.9,
+        "shop": "Rewe / Edeka / Lidl"
+      },
+      "eggs": {
+        "now": 3.35,
+        "base": 3.6,
+        "shop": "Rewe / Edeka / Lidl"
+      },
+      "beef": {
+        "now": 7.1,
+        "base": 14.1,
+        "shop": "Rewe / Edeka / Lidl"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
       "note": "Destatis CPI monthly. Rewe/Edeka posting price alerts.",
       "sources": [
-        { "name": "Destatis", "url": "https://www.destatis.de" },
-        { "name": "Numbeo Berlin", "url": "https://www.numbeo.com/cost-of-living/in/Berlin" }
+        {
+          "name": "Destatis",
+          "url": "https://www.destatis.de"
+        },
+        {
+          "name": "Numbeo Berlin",
+          "url": "https://www.numbeo.com/cost-of-living/in/Berlin"
+        }
       ]
     },
     {
-      "id": "at", "flag": "🇦🇹", "country": "Austria", "city": "Vienna", "region": "europe", "reliability": 2,
-      "rice":  { "now": 2.14, "base": 2.00, "shop": "Spar / Rewe Austria / Hofer" },
-      "flour": { "now": 0.94, "base": 0.88, "shop": "Spar / Rewe Austria / Hofer" },
-      "eggs":  { "now": 4.02, "base": 3.75, "shop": "Spar / Rewe Austria / Hofer" },
-      "beef":  { "now": 16.50, "base": 15.30, "shop": "Spar / Rewe Austria / Hofer" },
-      "auto_update": true, "update_cadence": "monthly",
+      "id": "at",
+      "flag": "🇦🇹",
+      "country": "Austria",
+      "city": "Vienna",
+      "region": "europe",
+      "reliability": 2,
+      "rice": {
+        "now": 1.16,
+        "base": 2.0,
+        "shop": "Spar / Rewe Austria / Hofer"
+      },
+      "flour": {
+        "now": 0.94,
+        "base": 0.88,
+        "shop": "Spar / Rewe Austria / Hofer"
+      },
+      "eggs": {
+        "now": 4.26,
+        "base": 3.75,
+        "shop": "Spar / Rewe Austria / Hofer"
+      },
+      "beef": {
+        "now": 9.64,
+        "base": 15.3,
+        "shop": "Spar / Rewe Austria / Hofer"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
       "note": "Statistik Austria VPI monthly.",
       "sources": [
-        { "name": "Statistik Austria VPI", "url": "https://www.statistik.at" },
-        { "name": "Numbeo Vienna", "url": "https://www.numbeo.com/cost-of-living/in/Vienna" }
+        {
+          "name": "Statistik Austria VPI",
+          "url": "https://www.statistik.at"
+        },
+        {
+          "name": "Numbeo Vienna",
+          "url": "https://www.numbeo.com/cost-of-living/in/Vienna"
+        }
       ]
     },
     {
-      "id": "br", "flag": "🇧🇷", "country": "Brazil", "city": "São Paulo", "region": "americas", "reliability": 2,
-      "rice":  { "now": 1.00, "base": 0.94, "shop": "Carrefour / Grupo Pão de Açúcar / Assaí" },
-      "flour": { "now": 0.74, "base": 0.69, "shop": "Carrefour / Grupo Pão de Açúcar / Assaí" },
-      "eggs":  { "now": 2.14, "base": 2.00, "shop": "Carrefour / Grupo Pão de Açúcar / Assaí" },
-      "beef":  { "now": 8.65, "base": 8.10, "shop": "Carrefour / Grupo Pão de Açúcar / Assaí" },
-      "auto_update": true, "update_cadence": "monthly",
+      "id": "br",
+      "flag": "🇧🇷",
+      "country": "Brazil",
+      "city": "São Paulo",
+      "region": "americas",
+      "reliability": 2,
+      "rice": {
+        "now": 3.23,
+        "base": 0.94,
+        "shop": "Carrefour / Grupo Pão de Açúcar / Assaí"
+      },
+      "flour": {
+        "now": 0.74,
+        "base": 0.69,
+        "shop": "Carrefour / Grupo Pão de Açúcar / Assaí"
+      },
+      "eggs": {
+        "now": 14.61,
+        "base": 2.0,
+        "shop": "Carrefour / Grupo Pão de Açúcar / Assaí"
+      },
+      "beef": {
+        "now": 24.54,
+        "base": 8.1,
+        "shop": "Carrefour / Grupo Pão de Açúcar / Assaí"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
       "note": "IBGE IPCA monthly. Brazil imports 85% of fertiliser — exposed to second wave.",
       "sources": [
-        { "name": "IBGE IPCA", "url": "https://www.ibge.gov.br/explica/inflacao.php" },
-        { "name": "Numbeo São Paulo", "url": "https://www.numbeo.com/cost-of-living/in/Sao-Paulo" }
+        {
+          "name": "IBGE IPCA",
+          "url": "https://www.ibge.gov.br/explica/inflacao.php"
+        },
+        {
+          "name": "Numbeo São Paulo",
+          "url": "https://www.numbeo.com/cost-of-living/in/Sao-Paulo"
+        }
       ]
     },
     {
-      "id": "cl", "flag": "🇨🇱", "country": "Chile", "city": "Santiago", "region": "americas", "reliability": 2,
-      "rice":  { "now": 1.55, "base": 1.41, "shop": "Walmart Chile / Jumbo / Líder" },
-      "flour": { "now": 0.90, "base": 0.82, "shop": "Walmart Chile / Jumbo / Líder" },
-      "eggs":  { "now": 2.90, "base": 2.70, "shop": "Walmart Chile / Jumbo / Líder" },
-      "beef":  { "now": 10.35, "base": 9.65, "shop": "Walmart Chile / Jumbo / Líder" },
-      "auto_update": true, "update_cadence": "monthly",
+      "id": "cl",
+      "flag": "🇨🇱",
+      "country": "Chile",
+      "city": "Santiago",
+      "region": "americas",
+      "reliability": 2,
+      "rice": {
+        "now": 872.98,
+        "base": 1.41,
+        "shop": "Walmart Chile / Jumbo / Líder"
+      },
+      "flour": {
+        "now": 0.9,
+        "base": 0.82,
+        "shop": "Walmart Chile / Jumbo / Líder"
+      },
+      "eggs": {
+        "now": 3974.29,
+        "base": 2.7,
+        "shop": "Walmart Chile / Jumbo / Líder"
+      },
+      "beef": {
+        "now": 4647.18,
+        "base": 9.65,
+        "shop": "Walmart Chile / Jumbo / Líder"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
       "note": "INE Chile IPC monthly.",
       "sources": [
-        { "name": "INE Chile IPC", "url": "https://www.ine.cl" },
-        { "name": "Numbeo Santiago", "url": "https://www.numbeo.com/cost-of-living/in/Santiago" }
+        {
+          "name": "INE Chile IPC",
+          "url": "https://www.ine.cl"
+        },
+        {
+          "name": "Numbeo Santiago",
+          "url": "https://www.numbeo.com/cost-of-living/in/Santiago"
+        }
       ]
     },
     {
-      "id": "za", "flag": "🇿🇦", "country": "South Africa", "city": "Johannesburg", "region": "africa", "reliability": 2,
-      "rice":  { "now": 1.32, "base": 1.18, "shop": "Shoprite / Pick n Pay / Woolworths SA" },
-      "flour": { "now": 0.74, "base": 0.67, "shop": "Shoprite / Pick n Pay / Woolworths SA" },
-      "eggs":  { "now": 2.92, "base": 2.65, "shop": "Shoprite / Pick n Pay / Woolworths SA" },
-      "beef":  { "now": 8.05, "base": 7.30, "shop": "Shoprite / Pick n Pay / Woolworths SA" },
-      "auto_update": false, "update_cadence": "monthly",
+      "id": "za",
+      "flag": "🇿🇦",
+      "country": "South Africa",
+      "city": "Johannesburg",
+      "region": "africa",
+      "reliability": 2,
+      "rice": {
+        "now": 1.32,
+        "base": 1.18,
+        "shop": "Shoprite / Pick n Pay / Woolworths SA"
+      },
+      "flour": {
+        "now": 0.74,
+        "base": 0.67,
+        "shop": "Shoprite / Pick n Pay / Woolworths SA"
+      },
+      "eggs": {
+        "now": 2.92,
+        "base": 2.65,
+        "shop": "Shoprite / Pick n Pay / Woolworths SA"
+      },
+      "beef": {
+        "now": 8.05,
+        "base": 7.3,
+        "shop": "Shoprite / Pick n Pay / Woolworths SA"
+      },
+      "auto_update": false,
+      "update_cadence": "monthly",
       "note": "STATIC until Stats SA CPI monthly release. ZAR -10%.",
       "sources": [
-        { "name": "Stats SA CPI", "url": "https://www.statssa.gov.za" },
-        { "name": "Numbeo Johannesburg", "url": "https://www.numbeo.com/cost-of-living/in/Johannesburg" }
+        {
+          "name": "Stats SA CPI",
+          "url": "https://www.statssa.gov.za"
+        },
+        {
+          "name": "Numbeo Johannesburg",
+          "url": "https://www.numbeo.com/cost-of-living/in/Johannesburg"
+        }
       ]
     },
     {
-      "id": "sn", "flag": "🇸🇳", "country": "Senegal", "city": "Dakar", "region": "africa", "reliability": 1,
-      "rice":  { "now": 0.80, "base": 0.78, "shop": "Auchan Dakar / Casino / Touba Market" },
-      "flour": { "now": 0.60, "base": 0.58, "shop": "Auchan Dakar / Casino / Touba Market" },
-      "eggs":  { "now": 1.68, "base": 1.60, "shop": "Auchan Dakar / Casino / Touba Market" },
-      "beef":  { "now": 5.30, "base": 5.05, "shop": "Auchan Dakar / Casino / Touba Market" },
-      "auto_update": false, "update_cadence": "monthly",
+      "id": "sn",
+      "flag": "🇸🇳",
+      "country": "Senegal",
+      "city": "Dakar",
+      "region": "africa",
+      "reliability": 1,
+      "rice": {
+        "now": 0.8,
+        "base": 0.78,
+        "shop": "Auchan Dakar / Casino / Touba Market"
+      },
+      "flour": {
+        "now": 0.6,
+        "base": 0.58,
+        "shop": "Auchan Dakar / Casino / Touba Market"
+      },
+      "eggs": {
+        "now": 1.68,
+        "base": 1.6,
+        "shop": "Auchan Dakar / Casino / Touba Market"
+      },
+      "beef": {
+        "now": 5.3,
+        "base": 5.05,
+        "shop": "Auchan Dakar / Casino / Touba Market"
+      },
+      "auto_update": false,
+      "update_cadence": "monthly",
       "note": "STATIC — government controlled prices. Update manually when ANSD publishes.",
       "sources": [
-        { "name": "ANSD Sénégal", "url": "https://www.ansd.sn/" }
+        {
+          "name": "ANSD Sénégal",
+          "url": "https://www.ansd.sn/"
+        }
       ]
     },
     {
-      "id": "ke", "flag": "🇰🇪", "country": "Kenya", "city": "Nairobi", "region": "africa", "reliability": 2,
-      "rice":  { "now": 1.28, "base": 1.18, "shop": "Naivas / Carrefour Kenya / Quickmart" },
-      "flour": { "now": 0.64, "base": 0.58, "shop": "Naivas / Carrefour Kenya / Quickmart" },
-      "eggs":  { "now": 2.10, "base": 1.92, "shop": "Naivas / Carrefour Kenya / Quickmart" },
-      "beef":  { "now": 5.92, "base": 5.45, "shop": "Naivas / Carrefour Kenya / Quickmart" },
-      "auto_update": false, "update_cadence": "monthly",
+      "id": "ke",
+      "flag": "🇰🇪",
+      "country": "Kenya",
+      "city": "Nairobi",
+      "region": "africa",
+      "reliability": 2,
+      "rice": {
+        "now": 1.28,
+        "base": 1.18,
+        "shop": "Naivas / Carrefour Kenya / Quickmart"
+      },
+      "flour": {
+        "now": 0.64,
+        "base": 0.58,
+        "shop": "Naivas / Carrefour Kenya / Quickmart"
+      },
+      "eggs": {
+        "now": 2.1,
+        "base": 1.92,
+        "shop": "Naivas / Carrefour Kenya / Quickmart"
+      },
+      "beef": {
+        "now": 5.92,
+        "base": 5.45,
+        "shop": "Naivas / Carrefour Kenya / Quickmart"
+      },
+      "auto_update": false,
+      "update_cadence": "monthly",
       "note": "STATIC until next KNBS CPI release. KES weakening.",
       "sources": [
-        { "name": "KNBS Kenya CPI", "url": "https://www.knbs.or.ke/consumer-price-indices/" }
+        {
+          "name": "KNBS Kenya CPI",
+          "url": "https://www.knbs.or.ke/consumer-price-indices/"
+        }
       ]
     },
     {
-      "id": "ma", "flag": "🇲🇦", "country": "Morocco", "city": "Casablanca", "region": "africa", "reliability": 2,
-      "rice":  { "now": 1.65, "base": 1.52, "shop": "Marjane / Carrefour MA / BIM" },
-      "flour": { "now": 0.70, "base": 0.65, "shop": "Marjane / Carrefour MA / BIM" },
-      "eggs":  { "now": 2.45, "base": 2.28, "shop": "Marjane / Carrefour MA / BIM" },
-      "beef":  { "now": 9.95, "base": 9.30, "shop": "Marjane / Carrefour MA / BIM" },
-      "auto_update": true, "update_cadence": "monthly",
+      "id": "ma",
+      "flag": "🇲🇦",
+      "country": "Morocco",
+      "city": "Casablanca",
+      "region": "africa",
+      "reliability": 2,
+      "rice": {
+        "now": 8.3,
+        "base": 1.52,
+        "shop": "Marjane / Carrefour MA / BIM"
+      },
+      "flour": {
+        "now": 0.7,
+        "base": 0.65,
+        "shop": "Marjane / Carrefour MA / BIM"
+      },
+      "eggs": {
+        "now": 17.88,
+        "base": 2.28,
+        "shop": "Marjane / Carrefour MA / BIM"
+      },
+      "beef": {
+        "now": 49.85,
+        "base": 9.3,
+        "shop": "Marjane / Carrefour MA / BIM"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
       "note": "HCP Maroc IPC monthly. Deregulated fuel → food pass-through.",
       "sources": [
-        { "name": "HCP Maroc IPC", "url": "https://www.hcp.ma" },
-        { "name": "Numbeo Casablanca", "url": "https://www.numbeo.com/cost-of-living/in/Casablanca" }
+        {
+          "name": "HCP Maroc IPC",
+          "url": "https://www.hcp.ma"
+        },
+        {
+          "name": "Numbeo Casablanca",
+          "url": "https://www.numbeo.com/cost-of-living/in/Casablanca"
+        }
       ]
     },
     {
-      "id": "eg", "flag": "🇪🇬", "country": "Egypt", "city": "Cairo", "region": "africa", "reliability": 1,
-      "rice":  { "now": 0.63, "base": 0.60, "shop": "Carrefour Egypt / Spinneys / Hyper One" },
-      "flour": { "now": 0.32, "base": 0.32, "shop": "Carrefour Egypt / Spinneys / Hyper One" },
-      "eggs":  { "now": 1.88, "base": 1.78, "shop": "Carrefour Egypt / Spinneys / Hyper One" },
-      "beef":  { "now": 9.35, "base": 8.90, "shop": "Carrefour Egypt / Spinneys / Hyper One" },
-      "auto_update": false, "update_cadence": "quarterly",
+      "id": "eg",
+      "flag": "🇪🇬",
+      "country": "Egypt",
+      "city": "Cairo",
+      "region": "africa",
+      "reliability": 1,
+      "rice": {
+        "now": 0.63,
+        "base": 0.6,
+        "shop": "Carrefour Egypt / Spinneys / Hyper One"
+      },
+      "flour": {
+        "now": 0.32,
+        "base": 0.32,
+        "shop": "Carrefour Egypt / Spinneys / Hyper One"
+      },
+      "eggs": {
+        "now": 1.88,
+        "base": 1.78,
+        "shop": "Carrefour Egypt / Spinneys / Hyper One"
+      },
+      "beef": {
+        "now": 9.35,
+        "base": 8.9,
+        "shop": "Carrefour Egypt / Spinneys / Hyper One"
+      },
+      "auto_update": false,
+      "update_cadence": "quarterly",
       "note": "STATIC — heavily subsidised. Update manually when CAPMAS publishes.",
       "sources": [
-        { "name": "CAPMAS Egypt CPI", "url": "https://www.capmas.gov.eg" }
+        {
+          "name": "CAPMAS Egypt CPI",
+          "url": "https://www.capmas.gov.eg"
+        }
       ]
     },
     {
-      "id": "lb", "flag": "🇱🇧", "country": "Lebanon", "city": "Beirut", "region": "africa", "reliability": 2,
-      "rice":  { "now": 2.28, "base": 1.75, "shop": "Spinneys / Carrefour LB / TSC" },
-      "flour": { "now": 1.52, "base": 1.18, "shop": "Spinneys / Carrefour LB / TSC" },
-      "eggs":  { "now": 4.40, "base": 3.45, "shop": "Spinneys / Carrefour LB / TSC" },
-      "beef":  { "now": 17.50, "base": 14.20, "shop": "Spinneys / Carrefour LB / TSC" },
-      "auto_update": true, "update_cadence": "weekly",
+      "id": "lb",
+      "flag": "🇱🇧",
+      "country": "Lebanon",
+      "city": "Beirut",
+      "region": "africa",
+      "reliability": 2,
+      "rice": {
+        "now": 1.03,
+        "base": 1.75,
+        "shop": "Spinneys / Carrefour LB / TSC"
+      },
+      "flour": {
+        "now": 1.52,
+        "base": 1.18,
+        "shop": "Spinneys / Carrefour LB / TSC"
+      },
+      "eggs": {
+        "now": 3.7,
+        "base": 3.45,
+        "shop": "Spinneys / Carrefour LB / TSC"
+      },
+      "beef": {
+        "now": 5.22,
+        "base": 14.2,
+        "shop": "Spinneys / Carrefour LB / TSC"
+      },
+      "auto_update": true,
+      "update_cadence": "weekly",
       "note": "CAS Lebanon weekly. 95%+ import dependent. Formal sector only.",
       "sources": [
-        { "name": "CAS Lebanon CPI", "url": "https://www.cas.gov.lb" },
-        { "name": "Numbeo Beirut", "url": "https://www.numbeo.com/cost-of-living/in/Beirut" }
+        {
+          "name": "CAS Lebanon CPI",
+          "url": "https://www.cas.gov.lb"
+        },
+        {
+          "name": "Numbeo Beirut",
+          "url": "https://www.numbeo.com/cost-of-living/in/Beirut"
+        }
       ]
     },
     {
-      "id": "in", "flag": "🇮🇳", "country": "India", "city": "New Delhi", "region": "asia", "reliability": 2,
-      "rice":  { "now": 0.74, "base": 0.69, "shop": "Reliance Fresh / BigBasket / DMart" },
-      "flour": { "now": 0.49, "base": 0.46, "shop": "Reliance Fresh / BigBasket / DMart" },
-      "eggs":  { "now": 1.00, "base": 0.93, "shop": "Reliance Fresh / BigBasket / DMart" },
-      "beef":  { "now": 5.30, "base": 4.95, "shop": "Buffalo meat equivalent" },
-      "auto_update": true, "update_cadence": "monthly",
+      "id": "in",
+      "flag": "🇮🇳",
+      "country": "India",
+      "city": "New Delhi",
+      "region": "asia",
+      "reliability": 2,
+      "rice": {
+        "now": 0.74,
+        "base": 0.69,
+        "shop": "Reliance Fresh / BigBasket / DMart"
+      },
+      "flour": {
+        "now": 0.49,
+        "base": 0.46,
+        "shop": "Reliance Fresh / BigBasket / DMart"
+      },
+      "eggs": {
+        "now": 1.0,
+        "base": 0.93,
+        "shop": "Reliance Fresh / BigBasket / DMart"
+      },
+      "beef": {
+        "now": 5.3,
+        "base": 4.95,
+        "shop": "Buffalo meat equivalent"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
       "note": "MOSPI CPI monthly. Partially buffered by Russian oil. BigBasket.com scraping possible.",
       "sources": [
-        { "name": "MOSPI CPI India", "url": "https://mospi.gov.in" },
-        { "name": "BigBasket.com", "url": "https://www.bigbasket.com" }
+        {
+          "name": "MOSPI CPI India",
+          "url": "https://mospi.gov.in"
+        },
+        {
+          "name": "BigBasket.com",
+          "url": "https://www.bigbasket.com"
+        }
       ]
     },
     {
-      "id": "ph", "flag": "🇵🇭", "country": "Philippines", "city": "Manila", "region": "asia", "reliability": 2,
-      "rice":  { "now": 1.32, "base": 1.12, "shop": "SM Supermarket / Robinsons / Puregold" },
-      "flour": { "now": 1.08, "base": 0.92, "shop": "SM Supermarket / Robinsons / Puregold" },
-      "eggs":  { "now": 2.58, "base": 2.28, "shop": "SM Supermarket / Robinsons / Puregold" },
-      "beef":  { "now": 8.60, "base": 7.65, "shop": "SM Supermarket / Robinsons / Puregold" },
-      "auto_update": true, "update_cadence": "monthly",
+      "id": "ph",
+      "flag": "🇵🇭",
+      "country": "Philippines",
+      "city": "Manila",
+      "region": "asia",
+      "reliability": 2,
+      "rice": {
+        "now": 27.58,
+        "base": 1.12,
+        "shop": "SM Supermarket / Robinsons / Puregold"
+      },
+      "flour": {
+        "now": 1.08,
+        "base": 0.92,
+        "shop": "SM Supermarket / Robinsons / Puregold"
+      },
+      "eggs": {
+        "now": 130.41,
+        "base": 2.28,
+        "shop": "SM Supermarket / Robinsons / Puregold"
+      },
+      "beef": {
+        "now": 195.77,
+        "base": 7.65,
+        "shop": "SM Supermarket / Robinsons / Puregold"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
       "note": "PSA CPI monthly. Diesel +38.6%. PHP at 59.5/USD.",
       "sources": [
-        { "name": "PSA Philippines CPI", "url": "https://psa.gov.ph/price-indices/cpi-ir" }
+        {
+          "name": "PSA Philippines CPI",
+          "url": "https://psa.gov.ph/price-indices/cpi-ir"
+        }
       ]
     },
     {
-      "id": "id", "flag": "🇮🇩", "country": "Indonesia", "city": "Jakarta", "region": "asia", "reliability": 2,
-      "rice":  { "now": 0.90, "base": 0.84, "shop": "Indomaret / Alfamart / Hypermart" },
-      "flour": { "now": 0.74, "base": 0.69, "shop": "Indomaret / Alfamart / Hypermart" },
-      "eggs":  { "now": 1.88, "base": 1.75, "shop": "Indomaret / Alfamart / Hypermart" },
-      "beef":  { "now": 9.40, "base": 8.80, "shop": "Indomaret / Alfamart / Hypermart" },
-      "auto_update": false, "update_cadence": "monthly",
+      "id": "id",
+      "flag": "🇮🇩",
+      "country": "Indonesia",
+      "city": "Jakarta",
+      "region": "asia",
+      "reliability": 2,
+      "rice": {
+        "now": 0.9,
+        "base": 0.84,
+        "shop": "Indomaret / Alfamart / Hypermart"
+      },
+      "flour": {
+        "now": 0.74,
+        "base": 0.69,
+        "shop": "Indomaret / Alfamart / Hypermart"
+      },
+      "eggs": {
+        "now": 1.88,
+        "base": 1.75,
+        "shop": "Indomaret / Alfamart / Hypermart"
+      },
+      "beef": {
+        "now": 9.4,
+        "base": 8.8,
+        "shop": "Indomaret / Alfamart / Hypermart"
+      },
+      "auto_update": false,
+      "update_cadence": "monthly",
       "note": "STATIC — BPS monthly CPI. Update when published.",
       "sources": [
-        { "name": "BPS Indonesia CPI", "url": "https://www.bps.go.id" }
+        {
+          "name": "BPS Indonesia CPI",
+          "url": "https://www.bps.go.id"
+        }
       ]
     },
     {
-      "id": "au", "flag": "🇦🇺", "country": "Australia", "city": "Sydney", "region": "oceania", "reliability": 3,
-      "rice":  { "now": 2.68, "base": 2.40, "shop": "Woolworths / Coles / Aldi AU" },
-      "flour": { "now": 1.38, "base": 1.22, "shop": "Woolworths / Coles / Aldi AU" },
-      "eggs":  { "now": 6.05, "base": 5.35, "shop": "Woolworths / Coles / Aldi AU" },
-      "beef":  { "now": 18.10, "base": 16.50, "shop": "Woolworths / Coles / Aldi AU" },
-      "auto_update": true, "update_cadence": "quarterly",
+      "id": "au",
+      "flag": "🇦🇺",
+      "country": "Australia",
+      "city": "Sydney",
+      "region": "oceania",
+      "reliability": 3,
+      "rice": {
+        "now": 1.46,
+        "base": 2.4,
+        "shop": "Woolworths / Coles / Aldi AU"
+      },
+      "flour": {
+        "now": 1.38,
+        "base": 1.22,
+        "shop": "Woolworths / Coles / Aldi AU"
+      },
+      "eggs": {
+        "now": 8.11,
+        "base": 5.35,
+        "shop": "Woolworths / Coles / Aldi AU"
+      },
+      "beef": {
+        "now": 10.97,
+        "base": 16.5,
+        "shop": "Woolworths / Coles / Aldi AU"
+      },
+      "auto_update": true,
+      "update_cadence": "quarterly",
       "note": "ABS CPI quarterly. Woolworths/Coles prices scrapeable.",
       "sources": [
-        { "name": "ABS Consumer Price Index", "url": "https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia" },
-        { "name": "Woolworths Online", "url": "https://www.woolworths.com.au" }
+        {
+          "name": "ABS Consumer Price Index",
+          "url": "https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia"
+        },
+        {
+          "name": "Woolworths Online",
+          "url": "https://www.woolworths.com.au"
+        }
       ]
     },
     {
-      "id": "nz", "flag": "🇳🇿", "country": "New Zealand", "city": "Wellington", "region": "oceania", "reliability": 2,
-      "rice":  { "now": 2.52, "base": 2.28, "shop": "Countdown / Pak'nSave / New World" },
-      "flour": { "now": 1.45, "base": 1.30, "shop": "Countdown / Pak'nSave / New World" },
-      "eggs":  { "now": 6.22, "base": 5.60, "shop": "Countdown / Pak'nSave / New World" },
-      "beef":  { "now": 19.50, "base": 17.80, "shop": "Countdown / Pak'nSave / New World" },
-      "auto_update": true, "update_cadence": "quarterly",
+      "id": "nz",
+      "flag": "🇳🇿",
+      "country": "New Zealand",
+      "city": "Wellington",
+      "region": "oceania",
+      "reliability": 2,
+      "rice": {
+        "now": 1.42,
+        "base": 2.28,
+        "shop": "Countdown / Pak'nSave / New World"
+      },
+      "flour": {
+        "now": 1.45,
+        "base": 1.3,
+        "shop": "Countdown / Pak'nSave / New World"
+      },
+      "eggs": {
+        "now": 12.02,
+        "base": 5.6,
+        "shop": "Countdown / Pak'nSave / New World"
+      },
+      "beef": {
+        "now": 11.19,
+        "base": 17.8,
+        "shop": "Countdown / Pak'nSave / New World"
+      },
+      "auto_update": true,
+      "update_cadence": "quarterly",
       "note": "Stats NZ CPI quarterly. Countdown NZ scrapeable.",
       "sources": [
-        { "name": "Stats NZ CPI", "url": "https://www.stats.govt.nz/topics/consumers-price-index" },
-        { "name": "Countdown NZ", "url": "https://www.countdown.co.nz" }
+        {
+          "name": "Stats NZ CPI",
+          "url": "https://www.stats.govt.nz/topics/consumers-price-index"
+        },
+        {
+          "name": "Countdown NZ",
+          "url": "https://www.countdown.co.nz"
+        }
       ]
     },
     {
-      "id": "cn", "flag": "🇨🇳", "country": "China", "city": "Beijing", "region": "asia", "reliability": 2,
-      "rice":  { "now": 1.14, "base": 1.08, "shop": "JD Fresh / Hema (Alibaba) / Walmart CN" },
-      "flour": { "now": 0.84, "base": 0.78, "shop": "JD Fresh / Hema (Alibaba) / Walmart CN" },
-      "eggs":  { "now": 2.24, "base": 2.10, "shop": "JD Fresh / Hema (Alibaba) / Walmart CN" },
-      "beef":  { "now": 13.00, "base": 12.20, "shop": "JD Fresh / Hema (Alibaba) / Walmart CN" },
-      "auto_update": true, "update_cadence": "monthly",
+      "id": "cn",
+      "flag": "🇨🇳",
+      "country": "China",
+      "city": "Beijing",
+      "region": "asia",
+      "reliability": 2,
+      "rice": {
+        "now": 3.95,
+        "base": 1.08,
+        "shop": "JD Fresh / Hema (Alibaba) / Walmart CN"
+      },
+      "flour": {
+        "now": 0.84,
+        "base": 0.78,
+        "shop": "JD Fresh / Hema (Alibaba) / Walmart CN"
+      },
+      "eggs": {
+        "now": 14.82,
+        "base": 2.1,
+        "shop": "JD Fresh / Hema (Alibaba) / Walmart CN"
+      },
+      "beef": {
+        "now": 35.73,
+        "base": 12.2,
+        "shop": "JD Fresh / Hema (Alibaba) / Walmart CN"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
       "note": "NBS China CPI monthly.",
       "sources": [
-        { "name": "NBS China CPI", "url": "https://www.stats.gov.cn/english/" }
+        {
+          "name": "NBS China CPI",
+          "url": "https://www.stats.gov.cn/english/"
+        }
       ]
     },
     {
-      "id": "kr", "flag": "🇰🇷", "country": "South Korea", "city": "Seoul", "region": "asia", "reliability": 2,
-      "rice":  { "now": 5.05, "base": 4.10, "shop": "Emart / Lotte Mart / Homeplus" },
-      "flour": { "now": 1.68, "base": 1.52, "shop": "Emart / Lotte Mart / Homeplus" },
-      "eggs":  { "now": 4.92, "base": 4.48, "shop": "Emart / Lotte Mart / Homeplus" },
-      "beef":  { "now": 29.20, "base": 25.80, "shop": "Emart / Lotte Mart / Homeplus" },
-      "auto_update": true, "update_cadence": "monthly",
+      "id": "kr",
+      "flag": "🇰🇷",
+      "country": "South Korea",
+      "city": "Seoul",
+      "region": "asia",
+      "reliability": 2,
+      "rice": {
+        "now": 2079.83,
+        "base": 4.1,
+        "shop": "Emart / Lotte Mart / Homeplus"
+      },
+      "flour": {
+        "now": 1.68,
+        "base": 1.52,
+        "shop": "Emart / Lotte Mart / Homeplus"
+      },
+      "eggs": {
+        "now": 4337.6,
+        "base": 4.48,
+        "shop": "Emart / Lotte Mart / Homeplus"
+      },
+      "beef": {
+        "now": 19007.62,
+        "base": 25.8,
+        "shop": "Emart / Lotte Mart / Homeplus"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
       "note": "Statistics Korea CPI monthly. Rice already +18.3% YoY pre-war.",
       "sources": [
-        { "name": "Statistics Korea CPI", "url": "https://kostat.go.kr" }
+        {
+          "name": "Statistics Korea CPI",
+          "url": "https://kostat.go.kr"
+        }
       ]
     },
     {
-      "id": "jp", "flag": "🇯🇵", "country": "Japan", "city": "Tokyo", "region": "asia", "reliability": 2,
-      "rice":  { "now": 6.80, "base": 5.75, "shop": "Aeon / Ito-Yokado / Life Supermarket" },
-      "flour": { "now": 1.88, "base": 1.72, "shop": "Aeon / Ito-Yokado / Life Supermarket" },
-      "eggs":  { "now": 4.28, "base": 3.95, "shop": "Aeon / Ito-Yokado / Life Supermarket" },
-      "beef":  { "now": 22.90, "base": 20.80, "shop": "Aeon / Ito-Yokado / Life Supermarket" },
-      "auto_update": true, "update_cadence": "monthly",
+      "id": "jp",
+      "flag": "🇯🇵",
+      "country": "Japan",
+      "city": "Tokyo",
+      "region": "asia",
+      "reliability": 2,
+      "rice": {
+        "now": 416.74,
+        "base": 5.75,
+        "shop": "Aeon / Ito-Yokado / Life Supermarket"
+      },
+      "flour": {
+        "now": 1.88,
+        "base": 1.72,
+        "shop": "Aeon / Ito-Yokado / Life Supermarket"
+      },
+      "eggs": {
+        "now": 353.03,
+        "base": 3.95,
+        "shop": "Aeon / Ito-Yokado / Life Supermarket"
+      },
+      "beef": {
+        "now": 1520.33,
+        "base": 20.8,
+        "shop": "Aeon / Ito-Yokado / Life Supermarket"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
       "note": "Japan Statistics Bureau CPI monthly. Rice +27.9% YoY pre-war.",
       "sources": [
-        { "name": "Japan Statistics Bureau", "url": "https://www.stat.go.jp/english/data/cpi/index.html" }
+        {
+          "name": "Japan Statistics Bureau",
+          "url": "https://www.stat.go.jp/english/data/cpi/index.html"
+        }
       ]
     }
   ]
