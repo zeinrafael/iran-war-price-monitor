@@ -444,6 +444,83 @@ const countries = [
       {name:'GlobalPetrolPrices Japan',url:'https://www.globalpetrolprices.com/Japan/gasoline_prices/',freq:'Weekly'},
     ]
   },
+  {
+    id:'jo', flag:'🇯🇴', country:'Jordan', city:'Amman', region:'africa',
+    gasoline:1.42, gasolineBase:1.25, diesel:1.28, dieselBase:1.12, oilExposure:95,
+    policy:'Regulated. Government monitoring closely — Jordan adjacent to conflict zone.',
+    note:'Jordan imports ~95% of oil. Heavily exposed to Gulf disruption. Near-war-zone location amplifies economic pressure.',
+    sources:[{name:'Numbeo Amman',url:'https://www.numbeo.com/cost-of-living/in/Amman',freq:'Continuous'}]
+  },
+  {
+    id:'tn', flag:'🇹🇳', country:'Tunisia', city:'Tunis', region:'africa',
+    gasoline:1.38, gasolineBase:1.32, diesel:1.18, dieselBase:1.12, oilExposure:85,
+    policy:'STIR regulated pricing. Government subsidises partially.',
+    note:'Tunisia imports most oil. Some domestic production. STIR (state oil company) controls prices. Monthly updates.',
+    sources:[{name:'GlobalPetrolPrices Tunisia',url:'https://www.globalpetrolprices.com/Tunisia/gasoline_prices/',freq:'Monthly'}]
+  },
+  {
+    id:'hu', flag:'🇭🇺', country:'Hungary', city:'Budapest', region:'europe',
+    gasoline:1.82, gasolineBase:1.58, diesel:1.75, dieselBase:1.52, oilExposure:65,
+    policy:'Temporarily reduced excise duties (IRU Mar 26 confirmed).',
+    note:'EU Oil Bulletin weekly. Hungary dependent on Mol refinery. Excise cut moderating some impact.',
+    sources:[{name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'}]
+  },
+  {
+    id:'nl', flag:'🇳🇱', country:'Netherlands', city:'Amsterdam', region:'europe',
+    gasoline:2.45, gasolineBase:2.10, diesel:2.18, dieselBase:1.88, oilExposure:40,
+    policy:'No direct intervention. Rotterdam hub — EU largest refinery complex.',
+    note:'EU Oil Bulletin. Diesel >€2/L confirmed IRU Mar 20. High tax base means % change lower despite high absolute price.',
+    sources:[{name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'},{name:'ANWB',url:'https://www.anwb.nl/auto/brandstof-en-milieu/brandstofprijzen',freq:'Daily'}]
+  },
+  {
+    id:'it', flag:'🇮🇹', country:'Italy', city:'Rome', region:'europe',
+    gasoline:2.08, gasolineBase:1.78, diesel:2.05, dieselBase:1.75, oilExposure:45,
+    policy:'€100M industry support package. Excise duty reduction.',
+    note:'EU Oil Bulletin. Italy diesel >€2/L confirmed IRU. €100M transport industry support (IRU Mar 26).',
+    sources:[{name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'}]
+  },
+  {
+    id:'bg', flag:'🇧🇬', country:'Bulgaria', city:'Sofia', region:'europe',
+    gasoline:1.62, gasolineBase:1.38, diesel:1.55, dieselBase:1.32, oilExposure:55,
+    policy:'No major intervention. Lower income EU member — proportionally higher burden.',
+    note:'EU Oil Bulletin. Lukoil Neftochim refinery. Lower wages mean fuel shock hits harder as % of income.',
+    sources:[{name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'}]
+  },
+  {
+    id:'pl', flag:'🇵🇱', country:'Poland', city:'Warsaw', region:'europe',
+    gasoline:1.68, gasolineBase:1.44, diesel:1.62, dieselBase:1.38, oilExposure:35,
+    policy:'No major intervention. AdBlue supply disruption risk flagged.',
+    note:'EU Oil Bulletin. Orlen domestic refining limits exposure. AdBlue supply warning for Euro 6 trucks (IRU Mar 26).',
+    sources:[{name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'},{name:'e-petrol.pl',url:'https://www.e-petrol.pl',freq:'Daily'}]
+  },
+  {
+    id:'ng', flag:'🇳🇬', country:'Nigeria', city:'Lagos', region:'africa',
+    gasoline:1.016, gasolineBase:0.617, diesel:1.219, dieselBase:0.799, oilExposure:20,
+    policy:'NO subsidy (removed 2023). Government refusing price intervention.',
+    note:'Nigeria +64.5% gasoline — hardest hit DESPITE being oil producer. No strategic reserve. Dangote importing crude at global prices. 1,400 NGN/L = $1.02 (Times Live Mar 30).',
+    sources:[{name:'GlobalPetrolPrices Nigeria',url:'https://www.globalpetrolprices.com/Nigeria/gasoline_prices/',freq:'Weekly'},{name:'Vanguard Nigeria',url:'https://www.vanguardngr.com',freq:'Daily'}]
+  },
+  {
+    id:'mz', flag:'🇲🇿', country:'Mozambique', city:'Maputo', region:'africa',
+    gasoline:1.18, gasolineBase:1.05, diesel:1.12, dieselBase:0.98, oilExposure:90,
+    policy:'ANPG regulated monthly pricing. No emergency measures.',
+    note:'STATIC until ANPG monthly announcement. One of Africa's poorest nations, 90%+ oil import dependent.',
+    sources:[{name:'ANPG Mozambique',url:'https://www.anpg.gov.mz',freq:'Monthly'}]
+  },
+  {
+    id:'co', flag:'🇨🇴', country:'Colombia', city:'Bogotá', region:'americas',
+    gasoline:1.15, gasolineBase:1.05, diesel:0.98, dieselBase:0.88, oilExposure:25,
+    policy:'SICOM/CREG price controls. FEPC stabilisation fund active.',
+    note:'Ecopetrol domestic production limits exposure. FEPC fuel stabilisation fund absorbing some shock. +9.5% gasoline.',
+    sources:[{name:'SICOM Colombia',url:'https://www.sicom.gov.co',freq:'Monthly'}]
+  },
+  {
+    id:'mx', flag:'🇲🇽', country:'Mexico', city:'Mexico City', region:'americas',
+    gasoline:1.35, gasolineBase:1.10, diesel:1.45, dieselBase:1.15, oilExposure:30,
+    policy:'Presidential price CAP <24 MXN/L (~$1.35). Sheinbaum voluntary pact with 96% of stations (Mar 11).',
+    note:'Without cap market price ~$1.54 (GlobalPetrolPrices Mar 23). Pemex domestic production + imports. +22.7% gasoline (capped).',
+    sources:[{name:'CRE Mexico',url:'https://www.gob.mx/cre',freq:'Weekly'},{name:'GlobalPetrolPrices Mexico',url:'https://www.globalpetrolprices.com/Mexico/gasoline_prices/',freq:'Weekly'}]
+  }
 ];
 
 countries.forEach(d => {
@@ -542,4 +619,81 @@ applyFilters();
 setTimeout(()=>selectRow(filtered[0]?.id),100);
 </script>
 </body>
-</html>
+</html,
+  {
+    id:'jo', flag:'🇯🇴', country:'Jordan', city:'Amman', region:'africa',
+    gas:1.42, gas_base:1.25, diesel:1.28, diesel_base:1.12, exposure:95,
+    policy:'Regulated. Government monitoring closely — Jordan adjacent to conflict zone.',
+    note:'Jordan imports ~95% of oil. Heavily exposed to Gulf disruption. Near-war-zone location amplifies economic pressure. Numbeo Amman Mar 2026.',
+    sources:[{name:'Numbeo Amman',url:'https://www.numbeo.com/cost-of-living/in/Amman',freq:'Continuous'},{name:'Jordan Ministry of Energy',url:'https://www.memr.gov.jo',freq:'Monthly'}]
+  },
+  {
+    id:'tn', flag:'🇹🇳', country:'Tunisia', city:'Tunis', region:'africa',
+    gas:1.38, gas_base:1.32, diesel:1.18, diesel_base:1.12, exposure:85,
+    policy:'STIR regulated pricing. Government subsidises partially.',
+    note:'Tunisia imports most oil. Some domestic production. STIR controls prices. Monthly updates.',
+    sources:[{name:'GlobalPetrolPrices Tunisia',url:'https://www.globalpetrolprices.com/Tunisia/gasoline_prices/',freq:'Monthly'}]
+  },
+  {
+    id:'hu', flag:'🇭🇺', country:'Hungary', city:'Budapest', region:'europe',
+    gas:1.82, gas_base:1.58, diesel:1.75, diesel_base:1.52, exposure:65,
+    policy:'Temporarily reduced excise duties (IRU Mar 26 confirmed).',
+    note:'EU Oil Bulletin weekly. Hungary dependent on Mol refinery. Excise cut moderating some impact.',
+    sources:[{name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'}]
+  },
+  {
+    id:'nl', flag:'🇳🇱', country:'Netherlands', city:'Amsterdam', region:'europe',
+    gas:2.45, gas_base:2.10, diesel:2.18, diesel_base:1.88, exposure:40,
+    policy:'No direct intervention. Rotterdam hub — EU largest refinery complex.',
+    note:'EU Oil Bulletin. Diesel >€2/L confirmed IRU Mar 20. High tax base means % change lower despite high absolute price.',
+    sources:[{name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'},{name:'ANWB',url:'https://www.anwb.nl/auto/brandstof-en-milieu/brandstofprijzen',freq:'Daily'}]
+  },
+  {
+    id:'it', flag:'🇮🇹', country:'Italy', city:'Rome', region:'europe',
+    gas:2.08, gas_base:1.78, diesel:2.05, diesel_base:1.75, exposure:45,
+    policy:'€100M industry support package. Excise duty reduction.',
+    note:'EU Oil Bulletin. Italy diesel >€2/L confirmed IRU. €100M transport industry support (IRU Mar 26).',
+    sources:[{name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'}]
+  },
+  {
+    id:'bg', flag:'🇧🇬', country:'Bulgaria', city:'Sofia', region:'europe',
+    gas:1.62, gas_base:1.38, diesel:1.55, diesel_base:1.32, exposure:55,
+    policy:'No major intervention. Lower income EU member — proportionally higher burden.',
+    note:'EU Oil Bulletin. Lukoil Neftochim refinery. Lower wages mean fuel shock hits harder as % of income.',
+    sources:[{name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'},{name:'GlobalPetrolPrices Bulgaria',url:'https://www.globalpetrolprices.com/Bulgaria/gasoline_prices/',freq:'Weekly'}]
+  },
+  {
+    id:'pl', flag:'🇵🇱', country:'Poland', city:'Warsaw', region:'europe',
+    gas:1.68, gas_base:1.44, diesel:1.62, diesel_base:1.38, exposure:35,
+    policy:'No major intervention. AdBlue supply disruption risk flagged.',
+    note:'EU Oil Bulletin. Orlen domestic refining limits exposure. AdBlue supply warning for Euro 6 trucks (IRU Mar 26).',
+    sources:[{name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'},{name:'e-petrol.pl',url:'https://www.e-petrol.pl',freq:'Daily'}]
+  },
+  {
+    id:'ng', flag:'🇳🇬', country:'Nigeria', city:'Lagos', region:'africa',
+    gas:1.016, gas_base:0.617, diesel:1.219, diesel_base:0.799, exposure:20,
+    policy:'NO subsidy (removed 2023). Government refusing price intervention. Oyo State transport allowance.',
+    note:'Nigeria +64.5% gasoline — hardest hit DESPITE being oil producer. No strategic reserve. Dangote importing crude at global prices. 1,400 NGN/L = $1.02 (Times Live Mar 30).',
+    sources:[{name:'GlobalPetrolPrices Nigeria',url:'https://www.globalpetrolprices.com/Nigeria/gasoline_prices/',freq:'Weekly'},{name:'Vanguard Nigeria',url:'https://www.vanguardngr.com',freq:'Daily'}]
+  },
+  {
+    id:'mz', flag:'🇲🇿', country:'Mozambique', city:'Maputo', region:'africa',
+    gas:1.18, gas_base:1.05, diesel:1.12, diesel_base:0.98, exposure:90,
+    policy:'ANPG regulated monthly pricing. No emergency measures.',
+    note:'STATIC until ANPG monthly announcement. One of Africa's poorest nations, 90%+ oil import dependent.',
+    sources:[{name:'ANPG Mozambique',url:'https://www.anpg.gov.mz',freq:'Monthly'}]
+  },
+  {
+    id:'co', flag:'🇨🇴', country:'Colombia', city:'Bogotá', region:'americas',
+    gas:1.15, gas_base:1.05, diesel:0.98, diesel_base:0.88, exposure:25,
+    policy:'SICOM/CREG price controls. FEPC stabilisation fund active.',
+    note:'Ecopetrol domestic production limits exposure. FEPC fuel stabilisation fund absorbing some shock. +9.5% gasoline.',
+    sources:[{name:'SICOM Colombia',url:'https://www.sicom.gov.co',freq:'Monthly'},{name:'GlobalPetrolPrices Colombia',url:'https://www.globalpetrolprices.com/Colombia/gasoline_prices/',freq:'Monthly'}]
+  },
+  {
+    id:'mx', flag:'🇲🇽', country:'Mexico', city:'Mexico City', region:'americas',
+    gas:1.35, gas_base:1.10, diesel:1.45, diesel_base:1.15, exposure:30,
+    policy:'Presidential price CAP <24 MXN/L (~$1.35). Sheinbaum voluntary pact with 96% of stations (Mar 11).',
+    note:'Without cap market price ~$1.54 (GlobalPetrolPrices Mar 23). Pemex domestic production + imports. +22.7% gasoline (capped).',
+    sources:[{name:'CRE Mexico',url:'https://www.gob.mx/cre',freq:'Weekly'},{name:'GlobalPetrolPrices Mexico',url:'https://www.globalpetrolprices.com/Mexico/gasoline_prices/',freq:'Weekly'}]
+  }>
