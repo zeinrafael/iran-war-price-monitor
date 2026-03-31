@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_updated": "2026-03-31T20:25:09.837758+00:00",
+    "last_updated": "2026-03-31T20:00:00Z",
     "baseline_date": "2026-02-24",
     "war_start": "2026-02-28",
     "lag_warning": "Food prices lag fuel by 4–8 weeks. Fertiliser second wave (urea +30–40%) will hit April–June.",
@@ -56,7 +56,7 @@
       "region": "europe",
       "reliability": 3,
       "rice": {
-        "now": 0.8,
+        "now": 1.92,
         "base": 1.78,
         "shop": "Tesco / Sainsbury's / Asda"
       },
@@ -66,12 +66,12 @@
         "shop": "Tesco / Sainsbury's / Asda"
       },
       "eggs": {
-        "now": 3.7,
+        "now": 4.78,
         "base": 4.45,
         "shop": "Tesco / Sainsbury's / Asda"
       },
       "beef": {
-        "now": 6.24,
+        "now": 16.1,
         "base": 14.9,
         "shop": "Tesco / Sainsbury's / Asda"
       },
@@ -97,7 +97,7 @@
       "region": "europe",
       "reliability": 2,
       "rice": {
-        "now": 1.1,
+        "now": 2.08,
         "base": 1.95,
         "shop": "Carrefour / Leclerc / Intermarché"
       },
@@ -107,12 +107,12 @@
         "shop": "Carrefour / Leclerc / Intermarché"
       },
       "eggs": {
-        "now": 4.42,
+        "now": 3.92,
         "base": 3.65,
         "shop": "Carrefour / Leclerc / Intermarché"
       },
       "beef": {
-        "now": 8.36,
+        "now": 15.5,
         "base": 14.3,
         "shop": "Carrefour / Leclerc / Intermarché"
       },
@@ -138,7 +138,7 @@
       "region": "europe",
       "reliability": 2,
       "rice": {
-        "now": 0.71,
+        "now": 1.65,
         "base": 1.55,
         "shop": "Mercadona / Carrefour / Lidl"
       },
@@ -148,12 +148,12 @@
         "shop": "Mercadona / Carrefour / Lidl"
       },
       "eggs": {
-        "now": 3.35,
+        "now": 3.3,
         "base": 3.1,
         "shop": "Mercadona / Carrefour / Lidl"
       },
       "beef": {
-        "now": 7.19,
+        "now": 13.6,
         "base": 12.7,
         "shop": "Mercadona / Carrefour / Lidl"
       },
@@ -179,7 +179,7 @@
       "region": "europe",
       "reliability": 2,
       "rice": {
-        "now": 1.34,
+        "now": 2.02,
         "base": 1.88,
         "shop": "Rewe / Edeka / Lidl"
       },
@@ -189,12 +189,12 @@
         "shop": "Rewe / Edeka / Lidl"
       },
       "eggs": {
-        "now": 3.35,
+        "now": 3.88,
         "base": 3.6,
         "shop": "Rewe / Edeka / Lidl"
       },
       "beef": {
-        "now": 7.1,
+        "now": 15.2,
         "base": 14.1,
         "shop": "Rewe / Edeka / Lidl"
       },
@@ -220,7 +220,7 @@
       "region": "europe",
       "reliability": 2,
       "rice": {
-        "now": 1.16,
+        "now": 2.14,
         "base": 2.0,
         "shop": "Spar / Rewe Austria / Hofer"
       },
@@ -230,12 +230,12 @@
         "shop": "Spar / Rewe Austria / Hofer"
       },
       "eggs": {
-        "now": 4.26,
+        "now": 4.02,
         "base": 3.75,
         "shop": "Spar / Rewe Austria / Hofer"
       },
       "beef": {
-        "now": 9.64,
+        "now": 16.5,
         "base": 15.3,
         "shop": "Spar / Rewe Austria / Hofer"
       },
@@ -261,7 +261,7 @@
       "region": "americas",
       "reliability": 2,
       "rice": {
-        "now": 3.23,
+        "now": 1.0,
         "base": 0.94,
         "shop": "Carrefour / Grupo Pão de Açúcar / Assaí"
       },
@@ -271,12 +271,12 @@
         "shop": "Carrefour / Grupo Pão de Açúcar / Assaí"
       },
       "eggs": {
-        "now": 14.61,
+        "now": 2.14,
         "base": 2.0,
         "shop": "Carrefour / Grupo Pão de Açúcar / Assaí"
       },
       "beef": {
-        "now": 24.54,
+        "now": 8.65,
         "base": 8.1,
         "shop": "Carrefour / Grupo Pão de Açúcar / Assaí"
       },
@@ -302,7 +302,7 @@
       "region": "americas",
       "reliability": 2,
       "rice": {
-        "now": 872.98,
+        "now": 1.55,
         "base": 1.41,
         "shop": "Walmart Chile / Jumbo / Líder"
       },
@@ -312,12 +312,12 @@
         "shop": "Walmart Chile / Jumbo / Líder"
       },
       "eggs": {
-        "now": 3974.29,
+        "now": 2.9,
         "base": 2.7,
         "shop": "Walmart Chile / Jumbo / Líder"
       },
       "beef": {
-        "now": 4647.18,
+        "now": 10.35,
         "base": 9.65,
         "shop": "Walmart Chile / Jumbo / Líder"
       },
@@ -458,7 +458,7 @@
       "region": "africa",
       "reliability": 2,
       "rice": {
-        "now": 8.3,
+        "now": 1.65,
         "base": 1.52,
         "shop": "Marjane / Carrefour MA / BIM"
       },
@@ -468,12 +468,12 @@
         "shop": "Marjane / Carrefour MA / BIM"
       },
       "eggs": {
-        "now": 17.88,
+        "now": 2.45,
         "base": 2.28,
         "shop": "Marjane / Carrefour MA / BIM"
       },
       "beef": {
-        "now": 49.85,
+        "now": 9.95,
         "base": 9.3,
         "shop": "Marjane / Carrefour MA / BIM"
       },
@@ -536,7 +536,7 @@
       "region": "africa",
       "reliability": 2,
       "rice": {
-        "now": 1.03,
+        "now": 2.28,
         "base": 1.75,
         "shop": "Spinneys / Carrefour LB / TSC"
       },
@@ -546,12 +546,12 @@
         "shop": "Spinneys / Carrefour LB / TSC"
       },
       "eggs": {
-        "now": 3.7,
+        "now": 4.4,
         "base": 3.45,
         "shop": "Spinneys / Carrefour LB / TSC"
       },
       "beef": {
-        "now": 5.22,
+        "now": 17.5,
         "base": 14.2,
         "shop": "Spinneys / Carrefour LB / TSC"
       },
@@ -618,7 +618,7 @@
       "region": "asia",
       "reliability": 2,
       "rice": {
-        "now": 27.58,
+        "now": 1.32,
         "base": 1.12,
         "shop": "SM Supermarket / Robinsons / Puregold"
       },
@@ -628,12 +628,12 @@
         "shop": "SM Supermarket / Robinsons / Puregold"
       },
       "eggs": {
-        "now": 130.41,
+        "now": 2.58,
         "base": 2.28,
         "shop": "SM Supermarket / Robinsons / Puregold"
       },
       "beef": {
-        "now": 195.77,
+        "now": 8.6,
         "base": 7.65,
         "shop": "SM Supermarket / Robinsons / Puregold"
       },
@@ -692,7 +692,7 @@
       "region": "oceania",
       "reliability": 3,
       "rice": {
-        "now": 1.46,
+        "now": 2.68,
         "base": 2.4,
         "shop": "Woolworths / Coles / Aldi AU"
       },
@@ -702,12 +702,12 @@
         "shop": "Woolworths / Coles / Aldi AU"
       },
       "eggs": {
-        "now": 8.11,
+        "now": 6.05,
         "base": 5.35,
         "shop": "Woolworths / Coles / Aldi AU"
       },
       "beef": {
-        "now": 10.97,
+        "now": 18.1,
         "base": 16.5,
         "shop": "Woolworths / Coles / Aldi AU"
       },
@@ -733,7 +733,7 @@
       "region": "oceania",
       "reliability": 2,
       "rice": {
-        "now": 1.42,
+        "now": 2.52,
         "base": 2.28,
         "shop": "Countdown / Pak'nSave / New World"
       },
@@ -743,12 +743,12 @@
         "shop": "Countdown / Pak'nSave / New World"
       },
       "eggs": {
-        "now": 12.02,
+        "now": 6.22,
         "base": 5.6,
         "shop": "Countdown / Pak'nSave / New World"
       },
       "beef": {
-        "now": 11.19,
+        "now": 19.5,
         "base": 17.8,
         "shop": "Countdown / Pak'nSave / New World"
       },
@@ -774,7 +774,7 @@
       "region": "asia",
       "reliability": 2,
       "rice": {
-        "now": 3.95,
+        "now": 1.14,
         "base": 1.08,
         "shop": "JD Fresh / Hema (Alibaba) / Walmart CN"
       },
@@ -784,12 +784,12 @@
         "shop": "JD Fresh / Hema (Alibaba) / Walmart CN"
       },
       "eggs": {
-        "now": 14.82,
+        "now": 2.24,
         "base": 2.1,
         "shop": "JD Fresh / Hema (Alibaba) / Walmart CN"
       },
       "beef": {
-        "now": 35.73,
+        "now": 13.0,
         "base": 12.2,
         "shop": "JD Fresh / Hema (Alibaba) / Walmart CN"
       },
@@ -811,7 +811,7 @@
       "region": "asia",
       "reliability": 2,
       "rice": {
-        "now": 2079.83,
+        "now": 5.05,
         "base": 4.1,
         "shop": "Emart / Lotte Mart / Homeplus"
       },
@@ -821,12 +821,12 @@
         "shop": "Emart / Lotte Mart / Homeplus"
       },
       "eggs": {
-        "now": 4337.6,
+        "now": 4.92,
         "base": 4.48,
         "shop": "Emart / Lotte Mart / Homeplus"
       },
       "beef": {
-        "now": 19007.62,
+        "now": 29.2,
         "base": 25.8,
         "shop": "Emart / Lotte Mart / Homeplus"
       },
@@ -848,7 +848,7 @@
       "region": "asia",
       "reliability": 2,
       "rice": {
-        "now": 416.74,
+        "now": 6.8,
         "base": 5.75,
         "shop": "Aeon / Ito-Yokado / Life Supermarket"
       },
@@ -858,12 +858,12 @@
         "shop": "Aeon / Ito-Yokado / Life Supermarket"
       },
       "eggs": {
-        "now": 353.03,
+        "now": 4.28,
         "base": 3.95,
         "shop": "Aeon / Ito-Yokado / Life Supermarket"
       },
       "beef": {
-        "now": 1520.33,
+        "now": 22.9,
         "base": 20.8,
         "shop": "Aeon / Ito-Yokado / Life Supermarket"
       },
@@ -874,6 +874,465 @@
         {
           "name": "Japan Statistics Bureau",
           "url": "https://www.stat.go.jp/english/data/cpi/index.html"
+        }
+      ]
+    },
+    {
+      "id": "jo",
+      "flag": "🇯🇴",
+      "country": "Jordan",
+      "city": "Amman",
+      "region": "africa",
+      "reliability": 2,
+      "rice": {
+        "now": 1.75,
+        "base": 1.62,
+        "shop": "Carrefour Jordan / Cozmo / Safeway JO"
+      },
+      "flour": {
+        "now": 0.85,
+        "base": 0.8,
+        "shop": "Carrefour Jordan / Cozmo / Safeway JO"
+      },
+      "eggs": {
+        "now": 2.33,
+        "base": 2.2,
+        "shop": "Carrefour Jordan / Cozmo / Safeway JO"
+      },
+      "beef": {
+        "now": 11.55,
+        "base": 10.8,
+        "shop": "Carrefour Jordan / Cozmo / Safeway JO"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
+      "note": "Nomadlio/Numbeo Amman Mar 2026. Jordan 95% oil import dependent. Food prices rising as transport and cold-chain costs surge. Very close to conflict zone — regional instability amplifying cost of living.",
+      "sources": [
+        {
+          "name": "Numbeo Amman",
+          "url": "https://www.numbeo.com/cost-of-living/in/Amman"
+        },
+        {
+          "name": "Jordan DOS CPI",
+          "url": "https://www.dos.gov.jo"
+        }
+      ]
+    },
+    {
+      "id": "tn",
+      "flag": "🇹🇳",
+      "country": "Tunisia",
+      "city": "Tunis",
+      "region": "africa",
+      "reliability": 2,
+      "rice": {
+        "now": 1.42,
+        "base": 1.35,
+        "shop": "Carrefour Tunisia / Monoprix TN / Géant"
+      },
+      "flour": {
+        "now": 0.68,
+        "base": 0.65,
+        "shop": "Carrefour Tunisia / Monoprix TN / Géant"
+      },
+      "eggs": {
+        "now": 2.05,
+        "base": 1.95,
+        "shop": "Carrefour Tunisia / Monoprix TN / Géant"
+      },
+      "beef": {
+        "now": 8.2,
+        "base": 7.85,
+        "shop": "Carrefour Tunisia / Monoprix TN / Géant"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
+      "note": "INS Tunisia CPI. Bread and flour heavily subsidised — official prices understate real impact. Tunisia imports most wheat via sea — shipping cost surge feeding through.",
+      "sources": [
+        {
+          "name": "INS Tunisia CPI",
+          "url": "https://www.ins.tn"
+        },
+        {
+          "name": "Numbeo Tunis",
+          "url": "https://www.numbeo.com/cost-of-living/in/Tunis"
+        }
+      ]
+    },
+    {
+      "id": "hu",
+      "flag": "🇭🇺",
+      "country": "Hungary",
+      "city": "Budapest",
+      "region": "europe",
+      "reliability": 2,
+      "rice": {
+        "now": 1.92,
+        "base": 1.82,
+        "shop": "Tesco HU / Lidl HU / Auchan HU"
+      },
+      "flour": {
+        "now": 0.88,
+        "base": 0.84,
+        "shop": "Tesco HU / Lidl HU / Auchan HU"
+      },
+      "eggs": {
+        "now": 3.45,
+        "base": 3.28,
+        "shop": "Tesco HU / Lidl HU / Auchan HU"
+      },
+      "beef": {
+        "now": 12.8,
+        "base": 12.2,
+        "shop": "Tesco HU / Lidl HU / Auchan HU"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
+      "note": "KSH Hungary CPI. Tesco is #1 grocery chain. Numbeo Budapest cost index 50.4 (moderate EU). Food inflation compounding pre-existing HUF weakness.",
+      "sources": [
+        {
+          "name": "KSH Hungary CPI",
+          "url": "https://www.ksh.hu/stadat_files/ara/en/ara0001.html"
+        },
+        {
+          "name": "Numbeo Budapest",
+          "url": "https://www.numbeo.com/cost-of-living/in/Budapest"
+        }
+      ]
+    },
+    {
+      "id": "nl",
+      "flag": "🇳🇱",
+      "country": "Netherlands",
+      "city": "Amsterdam",
+      "region": "europe",
+      "reliability": 2,
+      "rice": {
+        "now": 2.15,
+        "base": 2.02,
+        "shop": "Albert Heijn / Jumbo NL / Lidl NL"
+      },
+      "flour": {
+        "now": 1.05,
+        "base": 0.99,
+        "shop": "Albert Heijn / Jumbo NL / Lidl NL"
+      },
+      "eggs": {
+        "now": 4.1,
+        "base": 3.88,
+        "shop": "Albert Heijn / Jumbo NL / Lidl NL"
+      },
+      "beef": {
+        "now": 16.5,
+        "base": 15.6,
+        "shop": "Albert Heijn / Jumbo NL / Lidl NL"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
+      "note": "CBS Netherlands CPI. Albert Heijn (#1, ~35% share) and Jumbo prices scrapeable. Amsterdam 62.8% more expensive than Budapest. High food quality standards add to baseline costs.",
+      "sources": [
+        {
+          "name": "CBS Netherlands CPI",
+          "url": "https://www.cbs.nl/en-gb/figures/detail/70936ENG"
+        },
+        {
+          "name": "Numbeo Amsterdam",
+          "url": "https://www.numbeo.com/cost-of-living/in/Amsterdam"
+        },
+        {
+          "name": "Albert Heijn Online",
+          "url": "https://www.ah.nl"
+        }
+      ]
+    },
+    {
+      "id": "it",
+      "flag": "🇮🇹",
+      "country": "Italy",
+      "city": "Rome",
+      "region": "europe",
+      "reliability": 2,
+      "rice": {
+        "now": 2.05,
+        "base": 1.94,
+        "shop": "Conad / Esselunga / Carrefour IT"
+      },
+      "flour": {
+        "now": 0.95,
+        "base": 0.9,
+        "shop": "Conad / Esselunga / Carrefour IT"
+      },
+      "eggs": {
+        "now": 3.85,
+        "base": 3.65,
+        "shop": "Conad / Esselunga / Carrefour IT"
+      },
+      "beef": {
+        "now": 15.2,
+        "base": 14.4,
+        "shop": "Conad / Esselunga / Carrefour IT"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
+      "note": "ISTAT Italy CPI monthly. Conad is Italy's largest grocery chain by market share. Italy has strong domestic food production (pasta, olive oil, rice in Po Valley) moderating some impact.",
+      "sources": [
+        {
+          "name": "ISTAT CPI Italy",
+          "url": "https://www.istat.it/it/prezzi/prezzi-al-consumo"
+        },
+        {
+          "name": "Numbeo Rome",
+          "url": "https://www.numbeo.com/cost-of-living/in/Rome"
+        }
+      ]
+    },
+    {
+      "id": "bg",
+      "flag": "🇧🇬",
+      "country": "Bulgaria",
+      "city": "Sofia",
+      "region": "europe",
+      "reliability": 2,
+      "rice": {
+        "now": 1.72,
+        "base": 1.62,
+        "shop": "Lidl BG / Billa BG / Kaufland BG"
+      },
+      "flour": {
+        "now": 0.78,
+        "base": 0.74,
+        "shop": "Lidl BG / Billa BG / Kaufland BG"
+      },
+      "eggs": {
+        "now": 2.85,
+        "base": 2.7,
+        "shop": "Lidl BG / Billa BG / Kaufland BG"
+      },
+      "beef": {
+        "now": 10.4,
+        "base": 9.85,
+        "shop": "Lidl BG / Billa BG / Kaufland BG"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
+      "note": "NSI Bulgaria CPI. One of EU's lowest income countries — oil/food shock hits proportionally harder. Lidl, Billa and Kaufland dominate grocery sector.",
+      "sources": [
+        {
+          "name": "NSI Bulgaria CPI",
+          "url": "https://www.nsi.bg/en/content/2415/consumer-price-indices"
+        },
+        {
+          "name": "Numbeo Sofia",
+          "url": "https://www.numbeo.com/cost-of-living/in/Sofia"
+        }
+      ]
+    },
+    {
+      "id": "pl",
+      "flag": "🇵🇱",
+      "country": "Poland",
+      "city": "Warsaw",
+      "region": "europe",
+      "reliability": 2,
+      "rice": {
+        "now": 1.65,
+        "base": 1.56,
+        "shop": "Biedronka / Lidl PL / Carrefour PL"
+      },
+      "flour": {
+        "now": 0.75,
+        "base": 0.72,
+        "shop": "Biedronka / Lidl PL / Carrefour PL"
+      },
+      "eggs": {
+        "now": 3.15,
+        "base": 2.99,
+        "shop": "Biedronka / Lidl PL / Carrefour PL"
+      },
+      "beef": {
+        "now": 11.8,
+        "base": 11.2,
+        "shop": "Biedronka / Lidl PL / Carrefour PL"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
+      "note": "GUS Poland CPI. Biedronka (Jeronimo Martins) is Poland's #1 grocery chain. Poland has strong domestic agriculture (grain, pork) moderating food impact.",
+      "sources": [
+        {
+          "name": "GUS Poland CPI",
+          "url": "https://stat.gov.pl/en/topics/prices-trade/"
+        },
+        {
+          "name": "Numbeo Warsaw",
+          "url": "https://www.numbeo.com/cost-of-living/in/Warsaw"
+        }
+      ]
+    },
+    {
+      "id": "ng",
+      "flag": "🇳🇬",
+      "country": "Nigeria",
+      "city": "Lagos",
+      "region": "africa",
+      "reliability": 2,
+      "rice": {
+        "now": 0.92,
+        "base": 0.8,
+        "shop": "Shoprite NG / Market Square / Spar NG"
+      },
+      "flour": {
+        "now": 0.62,
+        "base": 0.55,
+        "shop": "Shoprite NG / Market Square / Spar NG"
+      },
+      "eggs": {
+        "now": 1.45,
+        "base": 1.28,
+        "shop": "Shoprite NG / Market Square / Spar NG"
+      },
+      "beef": {
+        "now": 4.85,
+        "base": 4.4,
+        "shop": "Shoprite NG / Market Square / Spar NG"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
+      "note": "NBS Nigeria CPI. Despite being oil producer, Nigeria has no strategic food or fuel reserve. Food prices rising sharply as transport costs (+64% fuel) pass through. Naira at 1,378/USD.",
+      "sources": [
+        {
+          "name": "NBS Nigeria CPI",
+          "url": "https://nigerianstat.gov.ng/elibrary/read/1241346"
+        },
+        {
+          "name": "Numbeo Lagos",
+          "url": "https://www.numbeo.com/cost-of-living/in/Lagos"
+        }
+      ]
+    },
+    {
+      "id": "mz",
+      "flag": "🇲🇿",
+      "country": "Mozambique",
+      "city": "Maputo",
+      "region": "africa",
+      "reliability": 1,
+      "rice": {
+        "now": 0.78,
+        "base": 0.72,
+        "shop": "Game / Shoprite MZ / local markets"
+      },
+      "flour": {
+        "now": 0.58,
+        "base": 0.54,
+        "shop": "Game / Shoprite MZ / local markets"
+      },
+      "eggs": {
+        "now": 1.35,
+        "base": 1.25,
+        "shop": "Game / Shoprite MZ / local markets"
+      },
+      "beef": {
+        "now": 4.2,
+        "base": 3.9,
+        "shop": "Game / Shoprite MZ / local markets"
+      },
+      "auto_update": false,
+      "update_cadence": "monthly",
+      "note": "STATIC — INE Mozambique monthly CPI. One of Africa's poorest nations, 90% oil import dependent. Food/fuel = very high share of household income. Gas subsidy removal in recent years means full pass-through.",
+      "sources": [
+        {
+          "name": "INE Mozambique CPI",
+          "url": "https://www.ine.gov.mz"
+        },
+        {
+          "name": "GlobalPetrolPrices Mozambique",
+          "url": "https://www.globalpetrolprices.com/Mozambique/gasoline_prices/"
+        }
+      ]
+    },
+    {
+      "id": "co",
+      "flag": "🇨🇴",
+      "country": "Colombia",
+      "city": "Bogotá",
+      "region": "americas",
+      "reliability": 2,
+      "rice": {
+        "now": 1.05,
+        "base": 1.0,
+        "shop": "Éxito / Jumbo CO / D1"
+      },
+      "flour": {
+        "now": 0.82,
+        "base": 0.78,
+        "shop": "Éxito / Jumbo CO / D1"
+      },
+      "eggs": {
+        "now": 2.15,
+        "base": 2.05,
+        "shop": "Éxito / Jumbo CO / D1"
+      },
+      "beef": {
+        "now": 7.8,
+        "base": 7.45,
+        "shop": "Éxito / Jumbo CO / D1"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
+      "note": "DANE Colombia CPI. Grupo Éxito (Carrefour-owned) is market leader. Colombia has domestic oil production (Ecopetrol) buffering some shock. FEPC stabilisation fund active.",
+      "sources": [
+        {
+          "name": "DANE Colombia CPI",
+          "url": "https://www.dane.gov.co/index.php/estadisticas-por-tema/precios-y-costos/indice-de-precios-al-consumidor-ipc"
+        },
+        {
+          "name": "Numbeo Bogota",
+          "url": "https://www.numbeo.com/cost-of-living/in/Bogota"
+        }
+      ]
+    },
+    {
+      "id": "mx",
+      "flag": "🇲🇽",
+      "country": "Mexico",
+      "city": "Mexico City",
+      "region": "americas",
+      "reliability": 2,
+      "rice": {
+        "now": 1.22,
+        "base": 1.15,
+        "shop": "Walmart MX / Soriana / Chedraui"
+      },
+      "flour": {
+        "now": 0.75,
+        "base": 0.72,
+        "shop": "Walmart MX / Soriana / Chedraui"
+      },
+      "eggs": {
+        "now": 2.45,
+        "base": 2.33,
+        "shop": "Walmart MX / Soriana / Chedraui"
+      },
+      "beef": {
+        "now": 8.6,
+        "base": 8.2,
+        "shop": "Walmart MX / Soriana / Chedraui"
+      },
+      "auto_update": true,
+      "update_cadence": "monthly",
+      "note": "INEGI Mexico CPI. Walmart Mexico (#1 grocery) and Soriana prices scrapeable. Government fuel price cap limiting pass-through to food transport. Pemex domestic production provides some buffer.",
+      "sources": [
+        {
+          "name": "INEGI Mexico CPI",
+          "url": "https://www.inegi.org.mx/temas/inpc/"
+        },
+        {
+          "name": "Numbeo Mexico City",
+          "url": "https://www.numbeo.com/cost-of-living/in/Mexico-City"
+        },
+        {
+          "name": "Walmart Mexico",
+          "url": "https://www.walmart.com.mx"
         }
       ]
     }

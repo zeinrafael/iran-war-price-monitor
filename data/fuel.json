@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_updated": "2026-03-31T20:25:36.890348+00:00",
+    "last_updated": "2026-03-31T20:00:00Z",
     "baseline_date": "2026-02-24",
     "war_start": "2026-02-28",
     "brent_now": 98.41,
@@ -533,6 +533,324 @@
           "name": "METI Petroleum Data",
           "url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/",
           "freq": "Weekly"
+        }
+      ]
+    },
+    {
+      "id": "jo",
+      "flag": "🇯🇴",
+      "country": "Jordan",
+      "city": "Amman",
+      "region": "africa",
+      "gasoline": 1.42,
+      "gasoline_base": 1.25,
+      "diesel": 1.28,
+      "diesel_base": 1.12,
+      "oil_exposure": 95,
+      "update_cadence": "monthly",
+      "auto_update": false,
+      "policy": "Regulated. Government monitoring closely — Jordan adjacent to conflict zone.",
+      "note": "Jordan imports ~95% of oil. Heavily exposed to Gulf disruption. Near-war-zone location amplifies economic pressure. Numbeo Amman Mar 2026.",
+      "sources": [
+        {
+          "name": "Numbeo Amman",
+          "url": "https://www.numbeo.com/cost-of-living/in/Amman",
+          "freq": "Continuous"
+        },
+        {
+          "name": "Jordan Ministry of Energy",
+          "url": "https://www.memr.gov.jo",
+          "freq": "Monthly"
+        }
+      ]
+    },
+    {
+      "id": "tn",
+      "flag": "🇹🇳",
+      "country": "Tunisia",
+      "city": "Tunis",
+      "region": "africa",
+      "gasoline": 1.38,
+      "gasoline_base": 1.32,
+      "diesel": 1.18,
+      "diesel_base": 1.12,
+      "oil_exposure": 85,
+      "update_cadence": "monthly",
+      "auto_update": false,
+      "policy": "STIR regulated pricing. Government subsidises partially.",
+      "note": "Tunisia imports most oil. Some domestic production. STIR (state oil company) controls prices. Monthly updates.",
+      "sources": [
+        {
+          "name": "GlobalPetrolPrices Tunisia",
+          "url": "https://www.globalpetrolprices.com/Tunisia/gasoline_prices/",
+          "freq": "Monthly"
+        },
+        {
+          "name": "STIR Tunisia",
+          "url": "https://www.stir.com.tn",
+          "freq": "Monthly"
+        }
+      ]
+    },
+    {
+      "id": "hu",
+      "flag": "🇭🇺",
+      "country": "Hungary",
+      "city": "Budapest",
+      "region": "europe",
+      "gasoline": 1.82,
+      "gasoline_base": 1.58,
+      "diesel": 1.75,
+      "diesel_base": 1.52,
+      "oil_exposure": 65,
+      "update_cadence": "weekly",
+      "auto_update": true,
+      "policy": "Temporarily reduced excise duties (IRU Mar 26 confirmed).",
+      "note": "EU Oil Bulletin weekly. Hungary dependent on Mol refinery (mixed Russian+other crude). Excise cut moderating some impact. IRU confirmed excise reduction.",
+      "sources": [
+        {
+          "name": "EU Weekly Oil Bulletin",
+          "url": "https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf",
+          "freq": "Weekly Mon"
+        },
+        {
+          "name": "IRU Fuel Monitor",
+          "url": "https://www.iru.org/intelligence/fuel-prices",
+          "freq": "Weekly"
+        }
+      ]
+    },
+    {
+      "id": "nl",
+      "flag": "🇳🇱",
+      "country": "Netherlands",
+      "city": "Amsterdam",
+      "region": "europe",
+      "gasoline": 2.45,
+      "gasoline_base": 2.1,
+      "diesel": 2.18,
+      "diesel_base": 1.88,
+      "oil_exposure": 40,
+      "update_cadence": "weekly",
+      "auto_update": true,
+      "policy": "No direct intervention. Rotterdam hub — EU largest refinery complex.",
+      "note": "EU Oil Bulletin. Netherlands = Rotterdam, Europe's largest refining hub. Diesel >€2/L confirmed IRU Mar 20. High tax base means % change lower despite high absolute price.",
+      "sources": [
+        {
+          "name": "EU Weekly Oil Bulletin",
+          "url": "https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf",
+          "freq": "Weekly Mon"
+        },
+        {
+          "name": "ANWB Brandstofprijzen",
+          "url": "https://www.anwb.nl/auto/brandstof-en-milieu/brandstofprijzen",
+          "freq": "Daily"
+        }
+      ]
+    },
+    {
+      "id": "it",
+      "flag": "🇮🇹",
+      "country": "Italy",
+      "city": "Rome",
+      "region": "europe",
+      "gasoline": 2.08,
+      "gasoline_base": 1.78,
+      "diesel": 2.05,
+      "diesel_base": 1.75,
+      "oil_exposure": 45,
+      "update_cadence": "weekly",
+      "auto_update": true,
+      "policy": "€100M industry support package. Excise duty reduction.",
+      "note": "EU Oil Bulletin. Italy diesel >€2/L confirmed IRU. €100M transport industry support (IRU Mar 26). Mixed oil supply — Libya + North Sea + Middle East.",
+      "sources": [
+        {
+          "name": "EU Weekly Oil Bulletin",
+          "url": "https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf",
+          "freq": "Weekly Mon"
+        },
+        {
+          "name": "Mise.gov.it Carburanti",
+          "url": "https://www.mise.gov.it/index.php/it/energia/petrolio-e-carburanti",
+          "freq": "Weekly"
+        }
+      ]
+    },
+    {
+      "id": "bg",
+      "flag": "🇧🇬",
+      "country": "Bulgaria",
+      "city": "Sofia",
+      "region": "europe",
+      "gasoline": 1.62,
+      "gasoline_base": 1.38,
+      "diesel": 1.55,
+      "diesel_base": 1.32,
+      "oil_exposure": 55,
+      "update_cadence": "weekly",
+      "auto_update": true,
+      "policy": "No major intervention. Lower income EU member — proportionally higher burden.",
+      "note": "EU Oil Bulletin. Bulgaria's Lukoil Neftochim refinery (Burgas) processes mix of crude. Lower wages mean fuel shock hits harder as % of income.",
+      "sources": [
+        {
+          "name": "EU Weekly Oil Bulletin",
+          "url": "https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf",
+          "freq": "Weekly Mon"
+        },
+        {
+          "name": "GlobalPetrolPrices Bulgaria",
+          "url": "https://www.globalpetrolprices.com/Bulgaria/gasoline_prices/",
+          "freq": "Weekly"
+        }
+      ]
+    },
+    {
+      "id": "pl",
+      "flag": "🇵🇱",
+      "country": "Poland",
+      "city": "Warsaw",
+      "region": "europe",
+      "gasoline": 1.68,
+      "gasoline_base": 1.44,
+      "diesel": 1.62,
+      "diesel_base": 1.38,
+      "oil_exposure": 35,
+      "update_cadence": "weekly",
+      "auto_update": true,
+      "policy": "No major intervention. AdBlue supply disruption risk flagged.",
+      "note": "EU Oil Bulletin. Orlen (PKN) domestic refining limits exposure. AdBlue supply warning — key for Euro 6 trucks (IRU Mar 26). Poland one of more insulated EU economies.",
+      "sources": [
+        {
+          "name": "EU Weekly Oil Bulletin",
+          "url": "https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf",
+          "freq": "Weekly Mon"
+        },
+        {
+          "name": "e-petrol.pl",
+          "url": "https://www.e-petrol.pl",
+          "freq": "Daily"
+        }
+      ]
+    },
+    {
+      "id": "ng",
+      "flag": "🇳🇬",
+      "country": "Nigeria",
+      "city": "Lagos",
+      "region": "africa",
+      "gasoline": 1.016,
+      "gasoline_base": 0.617,
+      "diesel": 1.219,
+      "diesel_base": 0.799,
+      "oil_exposure": 20,
+      "update_cadence": "weekly",
+      "auto_update": true,
+      "policy": "NO subsidy (removed 2023). Government refusing price intervention. Oyo State transport allowance.",
+      "note": "Nigeria +64.5% gasoline — one of world's hardest hit DESPITE being oil producer. No strategic reserve. Dangote refinery importing crude at global prices. 1,400 NGN/L = $1.02 (Times Live Mar 30). Pre-war ~850 NGN ($0.62).",
+      "sources": [
+        {
+          "name": "GlobalPetrolPrices Nigeria",
+          "url": "https://www.globalpetrolprices.com/Nigeria/gasoline_prices/",
+          "freq": "Weekly"
+        },
+        {
+          "name": "Vanguard Nigeria",
+          "url": "https://www.vanguardngr.com",
+          "freq": "Daily"
+        },
+        {
+          "name": "Dangote Refinery prices",
+          "url": "https://guardian.ng/energy/",
+          "freq": "Weekly"
+        }
+      ]
+    },
+    {
+      "id": "mz",
+      "flag": "🇲🇿",
+      "country": "Mozambique",
+      "city": "Maputo",
+      "region": "africa",
+      "gasoline": 1.18,
+      "gasoline_base": 1.05,
+      "diesel": 1.12,
+      "diesel_base": 0.98,
+      "oil_exposure": 90,
+      "update_cadence": "monthly",
+      "auto_update": false,
+      "policy": "ANPG regulated monthly pricing. No emergency measures.",
+      "note": "STATIC until ANPG monthly announcement. One of Africa's poorest nations, 90%+ oil import dependent. Food/fuel = high share of household budget.",
+      "sources": [
+        {
+          "name": "ANPG Mozambique",
+          "url": "https://www.anpg.gov.mz",
+          "freq": "Monthly"
+        },
+        {
+          "name": "GlobalPetrolPrices Mozambique",
+          "url": "https://www.globalpetrolprices.com/Mozambique/gasoline_prices/",
+          "freq": "Monthly"
+        }
+      ]
+    },
+    {
+      "id": "co",
+      "flag": "🇨🇴",
+      "country": "Colombia",
+      "city": "Bogotá",
+      "region": "americas",
+      "gasoline": 1.15,
+      "gasoline_base": 1.05,
+      "diesel": 0.98,
+      "diesel_base": 0.88,
+      "oil_exposure": 25,
+      "update_cadence": "monthly",
+      "auto_update": true,
+      "policy": "SICOM/CREG price controls. FEPC stabilisation fund active.",
+      "note": "Ecopetrol domestic production limits exposure. FEPC fuel stabilisation fund absorbing some shock. GlobalPetrolPrices monthly. +9.5% gasoline.",
+      "sources": [
+        {
+          "name": "SICOM Colombia",
+          "url": "https://www.sicom.gov.co",
+          "freq": "Monthly"
+        },
+        {
+          "name": "GlobalPetrolPrices Colombia",
+          "url": "https://www.globalpetrolprices.com/Colombia/gasoline_prices/",
+          "freq": "Monthly"
+        }
+      ]
+    },
+    {
+      "id": "mx",
+      "flag": "🇲🇽",
+      "country": "Mexico",
+      "city": "Mexico City",
+      "region": "americas",
+      "gasoline": 1.35,
+      "gasoline_base": 1.1,
+      "diesel": 1.45,
+      "diesel_base": 1.15,
+      "oil_exposure": 30,
+      "update_cadence": "weekly",
+      "auto_update": true,
+      "policy": "Presidential price CAP <24 MXN/L (~$1.35) for regular gasoline. Sheinbaum voluntary pact with 96% of stations (Mar 11).",
+      "note": "Mexico News Daily Mar 11: Sheinbaum capped regular gasoline <24 MXN/L. Without cap market price would be ~27 MXN ($1.54) per GlobalPetrolPrices Mar 23. Pemex domestic production + imports. +22.7% gasoline (capped).",
+      "sources": [
+        {
+          "name": "CRE Mexico",
+          "url": "https://www.gob.mx/cre",
+          "freq": "Weekly"
+        },
+        {
+          "name": "GlobalPetrolPrices Mexico",
+          "url": "https://www.globalpetrolprices.com/Mexico/gasoline_prices/",
+          "freq": "Weekly"
+        },
+        {
+          "name": "Mexico News Daily",
+          "url": "https://mexiconewsdaily.com",
+          "freq": "Daily"
         }
       ]
     }

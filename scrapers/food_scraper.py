@@ -37,6 +37,10 @@ NUMBEO_CITIES = {
     "za": "Johannesburg", "ke": "Nairobi", "ma": "Casablanca", "eg": "Cairo",
     "lb": "Beirut", "in": "New-Delhi", "ph": "Manila", "id": "Jakarta",
     "au": "Sydney", "nz": "Wellington", "cn": "Beijing", "kr": "Seoul", "jp": "Tokyo",
+    # New countries added March 2026
+    "jo": "Amman", "tn": "Tunis", "hu": "Budapest", "nl": "Amsterdam",
+    "it": "Rome", "bg": "Sofia", "pl": "Warsaw", "ng": "Lagos",
+    "mz": "Maputo", "co": "Bogota", "mx": "Mexico-City",
 }
 
 def load_data():

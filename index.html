@@ -3,56 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>War Price Monitor — Iran Conflict 2026</title>
-<meta name="description" content="Real-time consumer price monitoring across 22 countries tracking the economic impact of the Iran war. Fuel, food, energy and transport prices.">
+<title>Trumpflation — War Price Monitor</title>
+<meta name="description" content="Real-time tracking of fuel, food, and commodity prices across 22 countries — measuring the economic impact of the Iran war on consumers worldwide.">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#0a0c0f; --panel:#111318; --panel2:#161a20; --border:#1e2430; --border2:#252c38; --text:#c8d4e0; --text-dim:#6a7a90; --text-bright:#e8f0f8; --accent:#e05a2b; --accent2:#f28c3a; --green:#3ab87a; --blue:#4a90d9; --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif; }
+  :root {
+    --bg:#0a0c0f; --panel:#111318; --panel2:#161a20;
+    --border:#1e2430; --border2:#252c38;
+    --text:#c8d4e0; --text-dim:#6a7a90; --text-bright:#e8f0f8;
+    --accent:#e05a2b; --accent2:#f28c3a;
+    --green:#3ab87a; --red:#e05a2b; --yellow:#e8b84a; --blue:#4a90d9;
+    --purple:#9b6fd4;
+    --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif;
+  }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font-family:var(--sans); min-height:100vh; display:flex; flex-direction:column; }
 
-  nav { border-bottom:1px solid var(--border); padding:12px 32px; display:flex; align-items:center; gap:16px; background:var(--bg); }
-  .nav-badge { background:var(--accent); color:#fff; font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.1em; padding:3px 8px; }
+  nav { border-bottom:1px solid var(--border); padding:12px 32px; display:flex; align-items:center; gap:16px; background:var(--bg); flex-wrap:wrap; }
+  .nav-badge { background:var(--accent); color:#fff; font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.1em; padding:3px 8px; text-transform:uppercase; }
   .nav-title { font-family:var(--mono); font-size:13px; color:var(--text-bright); font-weight:500; }
   .nav-day { font-family:var(--mono); font-size:11px; color:var(--accent2); margin-left:auto; }
 
-  .hero { padding:56px 40px 40px; max-width:900px; margin:0 auto; width:100%; }
-  .war-label { font-family:var(--mono); font-size:11px; color:var(--accent); text-transform:uppercase; letter-spacing:.15em; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
-  .pulse-dot { width:7px; height:7px; border-radius:50%; background:var(--accent); animation:pulse 1.5s infinite; }
+  /* HERO */
+  .hero { padding:48px 40px 32px; max-width:960px; margin:0 auto; width:100%; }
+  .war-label { font-family:var(--mono); font-size:11px; color:var(--accent); text-transform:uppercase; letter-spacing:.15em; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+  .pulse { width:7px; height:7px; border-radius:50%; background:var(--accent); animation:pulse 1.5s infinite; }
   @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
-  h1 { font-family:var(--mono); font-size:clamp(22px,3.5vw,36px); font-weight:500; color:var(--text-bright); line-height:1.25; margin-bottom:14px; }
+  h1 { font-family:var(--mono); font-size:clamp(20px,3vw,34px); font-weight:500; color:var(--text-bright); line-height:1.25; margin-bottom:12px; }
   h1 em { color:var(--accent); font-style:normal; }
-  .hero-sub { font-family:var(--sans); font-size:15px; color:var(--text-dim); line-height:1.7; max-width:560px; }
+  .hero-sub { font-family:var(--sans); font-size:15px; color:var(--text-dim); line-height:1.7; max-width:580px; }
 
-  .stats-row { display:flex; gap:24px; padding:24px 40px; border-top:1px solid var(--border); border-bottom:1px solid var(--border); max-width:900px; margin:0 auto; width:100%; flex-wrap:wrap; }
-  .stat-item { display:flex; flex-direction:column; gap:3px; }
-  .stat-label { font-family:var(--mono); font-size:9px; color:var(--text-dim); text-transform:uppercase; letter-spacing:.1em; }
-  .stat-val { font-family:var(--mono); font-size:17px; font-weight:600; }
-  .stat-chg { font-family:var(--mono); font-size:11px; }
-  .red { color:var(--accent); }
+  /* STATS */
+  .stats-row { display:flex; gap:0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); max-width:960px; margin:0 auto; width:100%; overflow-x:auto; scrollbar-width:none; }
+  .stats-row::-webkit-scrollbar { display:none; }
+  .stat-item { padding:14px 24px; border-right:1px solid var(--border); flex-shrink:0; }
+  .stat-label { font-family:var(--mono); font-size:9px; color:var(--text-dim); text-transform:uppercase; letter-spacing:.1em; margin-bottom:4px; }
+  .stat-val { font-family:var(--mono); font-size:16px; font-weight:600; }
+  .stat-chg { font-family:var(--mono); font-size:10px; margin-top:2px; }
+  .red { color:var(--red); }
   .orange { color:var(--accent2); }
   .blue { color:var(--blue); }
+  .purple { color:var(--purple); }
+  .green { color:var(--green); }
 
-  .panels-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; padding:32px 40px; max-width:900px; margin:0 auto; width:100%; }
+  /* PANELS GRID */
+  .panels-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:28px 40px; max-width:960px; margin:0 auto; width:100%; }
   @media(max-width:640px) { .panels-grid { grid-template-columns:1fr; } }
 
-  .panel-card { background:var(--panel); border:1px solid var(--border2); padding:24px; text-decoration:none; display:flex; flex-direction:column; gap:12px; transition:border-color .2s, transform .15s; }
+  .panel-card { background:var(--panel); border:1px solid var(--border2); padding:22px; text-decoration:none; display:flex; flex-direction:column; gap:10px; transition:border-color .2s, transform .15s; position:relative; overflow:hidden; }
   .panel-card:hover { border-color:var(--accent2); transform:translateY(-2px); }
-  .panel-icon { font-size:28px; }
-  .panel-title { font-family:var(--mono); font-size:14px; color:var(--text-bright); font-weight:500; }
+  .panel-card.new-card::before { content:'NEW'; position:absolute; top:12px; right:12px; background:var(--blue); color:#fff; font-family:var(--mono); font-size:9px; font-weight:600; letter-spacing:.1em; padding:2px 6px; }
+
+  .panel-icon { font-size:26px; }
+  .panel-title { font-family:var(--mono); font-size:13px; color:var(--text-bright); font-weight:500; }
   .panel-desc { font-family:var(--sans); font-size:12px; color:var(--text-dim); line-height:1.6; }
-  .panel-stats { display:flex; gap:10px; flex-wrap:wrap; }
-  .panel-stat { font-family:var(--mono); font-size:10px; color:var(--text-dim); background:var(--panel2); border:1px solid var(--border); padding:3px 8px; }
+  .panel-tags { display:flex; gap:6px; flex-wrap:wrap; }
+  .panel-tag { font-family:var(--mono); font-size:10px; color:var(--text-dim); background:var(--panel2); border:1px solid var(--border); padding:2px 7px; }
   .panel-cta { font-family:var(--mono); font-size:11px; color:var(--accent2); margin-top:auto; }
 
-  .update-row { padding:16px 40px; max-width:900px; margin:0 auto; width:100%; }
-  .update-info { font-family:var(--mono); font-size:11px; color:var(--text-dim); display:flex; gap:24px; flex-wrap:wrap; }
-  .update-info span { display:flex; align-items:center; gap:6px; }
-  .dot-auto { width:7px; height:7px; border-radius:50%; background:var(--green); display:inline-block; }
-  .dot-manual { width:7px; height:7px; border-radius:50%; background:var(--accent2); display:inline-block; }
-  .dot-static { width:7px; height:7px; border-radius:50%; background:var(--text-dim); display:inline-block; }
+  /* UPDATE INFO */
+  .update-row { padding:14px 40px; max-width:960px; margin:0 auto; width:100%; border-top:1px solid var(--border); }
+  .update-info { font-family:var(--mono); font-size:10px; color:var(--text-dim); display:flex; gap:20px; flex-wrap:wrap; }
+  .dot { width:6px; height:6px; border-radius:50%; display:inline-block; margin-right:4px; }
 
-  footer { margin-top:auto; padding:16px 40px; border-top:1px solid var(--border); font-family:var(--mono); font-size:10px; color:var(--text-dim); display:flex; gap:20px; flex-wrap:wrap; }
+  footer { margin-top:auto; padding:14px 40px; border-top:1px solid var(--border); font-family:var(--mono); font-size:10px; color:var(--text-dim); display:flex; gap:20px; flex-wrap:wrap; align-items:center; }
   footer a { color:var(--accent2); text-decoration:none; }
 </style>
 </head>
@@ -60,22 +74,46 @@
 
 <nav>
   <div class="nav-badge">⚡ Live</div>
-  <div class="nav-title">War Price Monitor</div>
+  <div class="nav-title">Trumpflation — War Price Monitor</div>
   <div class="nav-day" id="nav-day">—</div>
 </nav>
 
 <div class="hero">
-  <div class="war-label"><div class="pulse-dot"></div> US-Israel War on Iran · Ongoing</div>
+  <div class="war-label"><div class="pulse"></div> US-Israel War on Iran · Ongoing</div>
   <h1>How much are consumers<br>paying for the <em>war</em>?</h1>
-  <p class="hero-sub">Real-time tracking of fuel, food, energy and transport prices across 22 countries — comparing today's prices to the pre-war baseline of February 24, 2026.</p>
+  <p class="hero-sub">Real-time tracking of fuel, food, and commodity prices across 22 countries and global futures markets — measuring the economic impact of the Iran conflict against the pre-war baseline of February 24, 2026.</p>
 </div>
 
-<div class="stats-row" id="stats-row">
-  <!-- Populated from JSON -->
+<div class="stats-row">
   <div class="stat-item">
     <div class="stat-label">Brent Crude</div>
-    <div class="stat-val red" id="stat-brent">—</div>
-    <div class="stat-chg red" id="stat-brent-chg">—</div>
+    <div class="stat-val red" id="stat-brent">$99.0</div>
+    <div class="stat-chg red">+41% vs pre-war</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-label">TTF Gas (Europe)</div>
+    <div class="stat-val red">€62.5/MWh</div>
+    <div class="stat-chg red">+85% vs pre-war</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-label">Urea Fertiliser</div>
+    <div class="stat-val purple">$665/t</div>
+    <div class="stat-chg purple">+37% vs pre-war</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-label">US Gasoline</div>
+    <div class="stat-val red" id="stat-us-gas">$3.98/gal</div>
+    <div class="stat-chg red">+35% vs pre-war</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-label">UK Petrol</div>
+    <div class="stat-val red">149.5p/L</div>
+    <div class="stat-chg red">+18% vs pre-war</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-label">Wheat (CBOT)</div>
+    <div class="stat-val orange">$6.07/bu</div>
+    <div class="stat-chg orange">+4.7% vs pre-war</div>
   </div>
   <div class="stat-item">
     <div class="stat-label">War Day</div>
@@ -83,18 +121,8 @@
     <div class="stat-chg" style="color:var(--text-dim)">Since Feb 28</div>
   </div>
   <div class="stat-item">
-    <div class="stat-label">US Gasoline</div>
-    <div class="stat-val red" id="stat-us-gas">—</div>
-    <div class="stat-chg red" id="stat-us-gas-chg">—</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-label">UK Petrol</div>
-    <div class="stat-val red" id="stat-uk-gas">—</div>
-    <div class="stat-chg red" id="stat-uk-gas-chg">—</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-label">Data Updated</div>
-    <div class="stat-val blue" id="stat-updated" style="font-size:13px">—</div>
+    <div class="stat-label">Last Updated</div>
+    <div class="stat-val blue" id="stat-updated" style="font-size:12px">—</div>
     <div class="stat-chg" style="color:var(--text-dim)">UTC</div>
   </div>
 </div>
@@ -103,11 +131,11 @@
   <a href="panels/fuel.html" class="panel-card">
     <div class="panel-icon">⛽</div>
     <div class="panel-title">Fuel Price Panel</div>
-    <div class="panel-desc">Gasoline and diesel pump prices vs pre-war baseline. Covers 22 countries with daily updates for deregulated markets and policy response tracking.</div>
-    <div class="panel-stats">
-      <div class="panel-stat">22 countries</div>
-      <div class="panel-stat">USD/litre</div>
-      <div class="panel-stat">Daily auto-update</div>
+    <div class="panel-desc">Gasoline and diesel pump prices vs pre-war baseline across 22 countries, with policy response tracking and oil exposure ratings.</div>
+    <div class="panel-tags">
+      <div class="panel-tag">22 countries</div>
+      <div class="panel-tag">USD/litre</div>
+      <div class="panel-tag">Daily auto-update</div>
     </div>
     <div class="panel-cta">Open fuel panel →</div>
   </a>
@@ -115,84 +143,79 @@
   <a href="panels/food.html" class="panel-card">
     <div class="panel-icon">🥩</div>
     <div class="panel-title">Food Basket Panel</div>
-    <div class="panel-desc">Rice, wheat flour, eggs and beef prices vs pre-war baseline across 22 cities. Includes second-wave fertiliser shock tracking and supermarket sources.</div>
-    <div class="panel-stats">
-      <div class="panel-stat">22 cities</div>
-      <div class="panel-stat">4 staples</div>
-      <div class="panel-stat">Weekly update</div>
+    <div class="panel-desc">Rice, wheat flour, eggs and beef at the shelf across 22 cities vs pre-war baseline. Includes fertiliser second-wave alert.</div>
+    <div class="panel-tags">
+      <div class="panel-tag">22 cities</div>
+      <div class="panel-tag">4 staples</div>
+      <div class="panel-tag">Weekly update</div>
     </div>
     <div class="panel-cta">Open food panel →</div>
+  </a>
+
+  <a href="panels/commodities.html" class="panel-card new-card">
+    <div class="panel-icon">📈</div>
+    <div class="panel-title">Commodities & Futures Panel</div>
+    <div class="panel-desc">CBOT/NYMEX futures for oil, gas, corn, soybeans, wheat, soybean oil and fertiliser — with price history charts and war-impact analysis.</div>
+    <div class="panel-tags">
+      <div class="panel-tag">Energy futures</div>
+      <div class="panel-tag">Grains/CBOT</div>
+      <div class="panel-tag">Fertiliser</div>
+      <div class="panel-tag">Charts</div>
+    </div>
+    <div class="panel-cta">Open commodities panel →</div>
+  </a>
+
+  <a href="admin/" class="panel-card" style="border-style:dashed;opacity:.7">
+    <div class="panel-icon">⚙️</div>
+    <div class="panel-title">Admin — Manual Updates</div>
+    <div class="panel-desc">Update static/regulated markets (Egypt, Senegal, Indonesia, South Africa, Kenya) when official price announcements drop.</div>
+    <div class="panel-tags">
+      <div class="panel-tag">Regulated markets</div>
+      <div class="panel-tag">Manual entry</div>
+    </div>
+    <div class="panel-cta">Open admin →</div>
   </a>
 </div>
 
 <div class="update-row">
   <div class="update-info">
-    <span><div class="dot-auto"></div> Auto-updated (scraper): US, UK, France, Spain, Germany, Austria, Australia, India, South Korea, Japan, Brazil, Chile, Morocco</span>
-    <span><div class="dot-manual"></div> Manual update (admin): South Africa, Kenya, Lebanon, Philippines, New Zealand, China</span>
-    <span><div class="dot-static"></div> Static until official announcement: Egypt, Senegal, Indonesia</span>
+    <span><span class="dot" style="background:var(--green)"></span>Auto-updated daily: US, UK, France, Spain, Germany, Austria, Australia, India, South Korea, Japan, Brazil, Chile, Morocco</span>
+    <span><span class="dot" style="background:var(--accent2)"></span>Manual: South Africa, Kenya, Lebanon, Philippines, New Zealand, China</span>
+    <span><span class="dot" style="background:var(--text-dim)"></span>Static until announcement: Egypt, Senegal, Indonesia</span>
   </div>
 </div>
 
 <footer>
-  <span>Sources: <a href="https://gasprices.aaa.com" target="_blank">AAA</a> · <a href="https://www.eia.gov/petroleum/gasdiesel/" target="_blank">EIA</a> · <a href="https://www.fuel-finder.uk" target="_blank">Fuel Finder UK</a> · <a href="https://www.globalpetrolprices.com" target="_blank">GlobalPetrolPrices</a> · <a href="https://www.numbeo.com" target="_blank">Numbeo</a> · <a href="https://www.fao.org" target="_blank">FAO</a></span>
-  <span>· Pre-war baseline: Feb 24, 2026 · All prices USD</span>
-  <a href="admin/" style="margin-left:auto">Admin ⚙</a>
+  <span>Sources: <a href="https://gasprices.aaa.com" target="_blank">AAA</a> · <a href="https://www.eia.gov" target="_blank">EIA</a> · <a href="https://www.fuel-finder.uk" target="_blank">Fuel Finder UK</a> · <a href="https://www.globalpetrolprices.com" target="_blank">GlobalPetrolPrices</a> · <a href="https://www.numbeo.com" target="_blank">Numbeo</a> · <a href="https://www.cmegroup.com" target="_blank">CME/CBOT</a> · <a href="https://www.fao.org" target="_blank">FAO</a></span>
+  <span style="margin-left:auto">Pre-war baseline: Feb 24, 2026</span>
 </footer>
 
 <script>
-// Load stats from the live JSON files
-async function loadStats() {
-  try {
-    const [fuelRes] = await Promise.all([
-      fetch("data/fuel.json?" + Date.now())
-    ]);
-    const fuel = await fuelRes.json();
+document.getElementById('nav-day').textContent =
+  new Date().toLocaleDateString('en-GB', {weekday:'short',day:'numeric',month:'short',year:'numeric'}).toUpperCase();
 
-    const meta = fuel.meta;
-    const us = fuel.countries.find(c => c.id === "us");
-    const uk = fuel.countries.find(c => c.id === "uk");
+const warStart = new Date('2026-02-28');
+const day = Math.floor((new Date() - warStart) / 86400000);
+document.getElementById('stat-day').textContent = 'Day ' + day;
+document.getElementById('stat-updated').textContent = new Date().toUTCString().slice(0,16);
 
-    // Brent
-    const brentChg = ((meta.brent_now - meta.brent_base) / meta.brent_base * 100);
-    document.getElementById("stat-brent").textContent = `$${meta.brent_now.toFixed(1)}/bbl`;
-    document.getElementById("stat-brent-chg").textContent = `${brentChg > 0 ? "+" : ""}${brentChg.toFixed(1)}% vs pre-war`;
-
-    // War day
-    const warStart = new Date("2026-02-28");
-    const today = new Date();
-    const day = Math.floor((today - warStart) / 86400000);
-    document.getElementById("stat-day").textContent = `Day ${day}`;
-
-    // US gas (convert to $/gal for display)
+// Try loading live data from fuel.json
+fetch('data/fuel.json?' + Date.now())
+  .then(r => r.json())
+  .then(fuel => {
+    const us = fuel.countries.find(c => c.id === 'us');
     if (us) {
       const gal = (us.gasoline * 3.785).toFixed(2);
-      const chg = ((us.gasoline - us.gasoline_base) / us.gasoline_base * 100).toFixed(1);
-      document.getElementById("stat-us-gas").textContent = `$${gal}/gal`;
-      document.getElementById("stat-us-gas-chg").textContent = `+${chg}% vs pre-war`;
+      document.getElementById('stat-us-gas').textContent = '$' + gal + '/gal';
     }
-
-    // UK petrol (convert to pence)
-    if (uk) {
-      const ppl = Math.round(uk.gasoline / 1.26 * 100);
-      const chg = ((uk.gasoline - uk.gasoline_base) / uk.gasoline_base * 100).toFixed(1);
-      document.getElementById("stat-uk-gas").textContent = `${ppl}p/L`;
-      document.getElementById("stat-uk-gas-chg").textContent = `+${chg}% vs pre-war`;
+    if (fuel.meta?.brent_now) {
+      document.getElementById('stat-brent').textContent = '$' + fuel.meta.brent_now.toFixed(1);
     }
-
-    // Updated
-    const upd = new Date(meta.last_updated);
-    document.getElementById("stat-updated").textContent = upd.toUTCString().slice(0, 22);
-
-  } catch (e) {
-    console.warn("Stats load failed:", e);
-  }
-}
-
-// Nav date
-document.getElementById("nav-day").textContent =
-  new Date().toLocaleDateString("en-GB", { weekday:"short", day:"numeric", month:"short", year:"numeric" }).toUpperCase();
-
-loadStats();
+    if (fuel.meta?.last_updated) {
+      document.getElementById('stat-updated').textContent = new Date(fuel.meta.last_updated).toUTCString().slice(0,16);
+    }
+  })
+  .catch(() => {}); // fail silently — static fallbacks already shown
 </script>
 </body>
 </html>

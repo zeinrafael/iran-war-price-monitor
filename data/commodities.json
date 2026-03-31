@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "last_updated": "2026-03-31T12:00:00Z",
+    "baseline_date": "2026-02-24",
+    "war_start": "2026-02-28",
+    "notes": "Futures prices from CBOT/NYMEX via Brownfield Ag News (Mar 30 close) and live sources. Pre-war baselines: Feb 24, 2026."
+  },
+  "energy": [
+    {
+      "id": "brent", "name": "Brent Crude", "unit": "USD/bbl", "category": "energy",
+      "now": 98.99, "base": 70.10, "peak": 120.00, "peak_date": "2026-03-03",
+      "front_month": "May 2026",
+      "source": "Reuters/CNBC",
+      "source_url": "https://www.cnbc.com/2026/03/25/oil-price-wti-brent-gas-lng-trump-iran-talks-hormuz.html",
+      "note": "Down ~5% today on US ceasefire proposal to Iran. Was $120 peak Mar 3. Still +41% vs pre-war.",
+      "history": [
+        {"date": "2026-02-24", "price": 70.10},
+        {"date": "2026-02-28", "price": 78.50},
+        {"date": "2026-03-03", "price": 120.00},
+        {"date": "2026-03-10", "price": 108.00},
+        {"date": "2026-03-17", "price": 103.00},
+        {"date": "2026-03-24", "price": 104.49},
+        {"date": "2026-03-31", "price": 98.99}
+      ]
+    },
+    {
+      "id": "wti", "name": "WTI Crude", "unit": "USD/bbl", "category": "energy",
+      "now": 87.26, "base": 67.00, "peak": 119.50, "peak_date": "2026-03-03",
+      "front_month": "May 2026",
+      "source": "EIA / Reuters",
+      "source_url": "https://www.eia.gov/petroleum/gasdiesel/",
+      "note": "US domestic benchmark. +30% vs pre-war. Henry Hub-TTF LNG arbitrage creating $15/MMBtu spread.",
+      "history": [
+        {"date": "2026-02-24", "price": 67.00},
+        {"date": "2026-02-28", "price": 74.00},
+        {"date": "2026-03-03", "price": 119.50},
+        {"date": "2026-03-10", "price": 95.00},
+        {"date": "2026-03-17", "price": 90.00},
+        {"date": "2026-03-24", "price": 92.35},
+        {"date": "2026-03-31", "price": 87.26}
+      ]
+    },
+    {
+      "id": "henry_hub", "name": "Natural Gas (Henry Hub)", "unit": "USD/MMBtu", "category": "energy",
+      "now": 3.06, "base": 3.10, "peak": 4.88, "peak_date": "2026-01-21",
+      "front_month": "Apr 2026",
+      "source": "EIA / NYMEX",
+      "source_url": "https://www.eia.gov/naturalgas/weekly/",
+      "note": "US domestic gas relatively stable. Contrast with TTF Europe +85%. Major arbitrage opportunity for US LNG exporters.",
+      "history": [
+        {"date": "2026-02-24", "price": 3.10},
+        {"date": "2026-02-28", "price": 3.15},
+        {"date": "2026-03-03", "price": 3.25},
+        {"date": "2026-03-10", "price": 3.18},
+        {"date": "2026-03-17", "price": 3.12},
+        {"date": "2026-03-24", "price": 3.05},
+        {"date": "2026-03-31", "price": 3.06}
+      ]
+    },
+    {
+      "id": "ttf", "name": "Natural Gas (TTF Europe)", "unit": "EUR/MWh", "category": "energy",
+      "now": 62.50, "base": 32.00, "peak": 68.00, "peak_date": "2026-03-05",
+      "front_month": "Apr 2026",
+      "source": "ICE / Bloomberg",
+      "source_url": "https://www.tradingnews.com/news/natrual-gas-futures-price-forecast-henry-hub-climbs-to-3-06-usd-qatar-lng",
+      "note": "+85% since war. Qatar LNG force majeure + Hormuz closure = dual supply shock. Japan, Korea, Taiwan critically exposed.",
+      "history": [
+        {"date": "2026-02-24", "price": 32.00},
+        {"date": "2026-02-28", "price": 38.00},
+        {"date": "2026-03-03", "price": 65.00},
+        {"date": "2026-03-10", "price": 68.00},
+        {"date": "2026-03-17", "price": 64.00},
+        {"date": "2026-03-24", "price": 63.00},
+        {"date": "2026-03-31", "price": 62.50}
+      ]
+    }
+  ],
+  "agriculture": [
+    {
+      "id": "corn", "name": "Corn / Maize", "unit": "USD/bushel", "category": "grains",
+      "now": 4.558, "base": 4.300, "peak": 4.85, "peak_date": "2026-03-09",
+      "front_month": "May 2026",
+      "source": "CBOT via Brownfield Ag News",
+      "source_url": "https://www.brownfieldagnews.com/market-news/closing-grain-and-livestock-futures-march-30-2026/",
+      "note": "Mar 30 close: $4.55¾. Record US harvest (432M tonnes) capping upside despite war. Farmers switching from corn to soybeans (less nitrogen needed). Corn acreage down ~6M acres.",
+      "history": [
+        {"date": "2026-02-24", "price": 4.300},
+        {"date": "2026-02-28", "price": 4.380},
+        {"date": "2026-03-03", "price": 4.650},
+        {"date": "2026-03-10", "price": 4.850},
+        {"date": "2026-03-17", "price": 4.720},
+        {"date": "2026-03-24", "price": 4.620},
+        {"date": "2026-03-31", "price": 4.558}
+      ]
+    },
+    {
+      "id": "soybeans", "name": "Soybeans", "unit": "USD/bushel", "category": "grains",
+      "now": 11.598, "base": 10.200, "peak": 12.40, "peak_date": "2026-03-07",
+      "front_month": "May 2026",
+      "source": "CBOT via Brownfield Ag News",
+      "source_url": "https://www.brownfieldagnews.com/market-news/closing-grain-and-livestock-futures-march-30-2026/",
+      "note": "Mar 30 close: $11.59¾. Benefiting from 'Soybean Pivot' as farmers shift from corn. Brazil record harvest (184.7MMT) moderating upside. RVO biofuel mandate boosting crush demand.",
+      "history": [
+        {"date": "2026-02-24", "price": 10.200},
+        {"date": "2026-02-28", "price": 10.450},
+        {"date": "2026-03-03", "price": 11.800},
+        {"date": "2026-03-10", "price": 12.400},
+        {"date": "2026-03-17", "price": 12.100},
+        {"date": "2026-03-24", "price": 11.750},
+        {"date": "2026-03-31", "price": 11.598}
+      ]
+    },
+    {
+      "id": "wheat", "name": "Wheat (Chicago SRW)", "unit": "USD/bushel", "category": "grains",
+      "now": 6.073, "base": 5.800, "peak": 6.418, "peak_date": "2026-03-09",
+      "front_month": "May 2026",
+      "source": "CBOT via Brownfield Ag News",
+      "source_url": "https://www.brownfieldagnews.com/market-news/closing-grain-and-livestock-futures-march-30-2026/",
+      "note": "Mar 30 close: $6.07. 9-month high $6.42 on Mar 9. Plains drought risk + war premium. Fertiliser disruption threatening 2026/27 yields.",
+      "history": [
+        {"date": "2026-02-24", "price": 5.800},
+        {"date": "2026-02-28", "price": 5.920},
+        {"date": "2026-03-03", "price": 6.250},
+        {"date": "2026-03-10", "price": 6.418},
+        {"date": "2026-03-17", "price": 6.200},
+        {"date": "2026-03-24", "price": 6.050},
+        {"date": "2026-03-31", "price": 6.073}
+      ]
+    },
+    {
+      "id": "soy_oil", "name": "Soybean Oil", "unit": "cents/lb", "category": "grains",
+      "now": 68.47, "base": 48.50, "peak": 74.20, "peak_date": "2026-03-06",
+      "front_month": "May 2026",
+      "source": "CBOT via Brownfield Ag News",
+      "source_url": "https://www.brownfieldagnews.com/market-news/closing-grain-and-livestock-futures-march-30-2026/",
+      "note": "Mar 30 close: 68.47c/lb. +41% vs pre-war. Biofuel RVO mandate and cooking oil demand driving premium.",
+      "history": [
+        {"date": "2026-02-24", "price": 48.50},
+        {"date": "2026-02-28", "price": 52.00},
+        {"date": "2026-03-03", "price": 68.00},
+        {"date": "2026-03-10", "price": 74.20},
+        {"date": "2026-03-17", "price": 71.00},
+        {"date": "2026-03-24", "price": 69.50},
+        {"date": "2026-03-31", "price": 68.47}
+      ]
+    }
+  ],
+  "fertiliser": [
+    {
+      "id": "urea", "name": "Urea (Granular FOB Middle East)", "unit": "USD/tonne", "category": "fertiliser",
+      "now": 665, "base": 485, "peak": 665, "peak_date": "2026-03-31",
+      "front_month": "Spot",
+      "source": "FinancialContent / FAO",
+      "source_url": "https://markets.financialcontent.com/stocks/article/marketminute-2026-3-31-the-nitrogen-trap-natural-gas-spikes-send-urea-prices-soaring-to-665-threatening-global-food-security",
+      "note": "+37% since war. TTF gas +85% → fertiliser production costs surge. CF Industries (US) benefiting; Yara (Europe) cutting 25% production. Spring planting season at risk. No 'strategic nitrogen reserve' exists.",
+      "history": [
+        {"date": "2026-02-24", "price": 485},
+        {"date": "2026-02-28", "price": 510},
+        {"date": "2026-03-05", "price": 590},
+        {"date": "2026-03-10", "price": 620},
+        {"date": "2026-03-17", "price": 645},
+        {"date": "2026-03-24", "price": 655},
+        {"date": "2026-03-31", "price": 665}
+      ]
+    },
+    {
+      "id": "urea_us", "name": "Urea (NOLA, US Gulf)", "unit": "USD/tonne", "category": "fertiliser",
+      "now": 590, "base": 490, "peak": 590, "peak_date": "2026-03-31",
+      "front_month": "Spot",
+      "source": "FinancialContent / Green Markets",
+      "source_url": "https://markets.financialcontent.com/stocks/article/marketminute-2026-3-31-the-nitrogen-trap-natural-gas-spikes-send-urea-prices-soaring-to-665-threatening-global-food-security",
+      "note": "+20% in two weeks. Illinois retail: ~$823/tonne (+42%). CF Industries at 97% capacity utilisation, stock up 30% in March.",
+      "history": [
+        {"date": "2026-02-24", "price": 490},
+        {"date": "2026-02-28", "price": 500},
+        {"date": "2026-03-05", "price": 530},
+        {"date": "2026-03-10", "price": 555},
+        {"date": "2026-03-17", "price": 570},
+        {"date": "2026-03-24", "price": 580},
+        {"date": "2026-03-31", "price": 590}
+      ]
+    }
+  ]
+}
