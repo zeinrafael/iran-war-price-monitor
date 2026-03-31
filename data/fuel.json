@@ -1,303 +1,539 @@
 {
   "meta": {
-    "last_updated": "2026-03-25T09:00:00Z",
+    "last_updated": "2026-03-31T20:00:43.316890+00:00",
     "baseline_date": "2026-02-24",
     "war_start": "2026-02-28",
     "brent_now": 98.41,
-    "brent_base": 70.10,
+    "brent_base": 70.1,
     "wti_now": 87.26,
-    "wti_base": 67.00,
+    "wti_base": 67.0,
     "notes": "Brent down ~5.8% today on US 15-point ceasefire proposal to Iran. Pump prices have NOT yet reflected today's crude drop — retail lags wholesale 1–2 weeks."
   },
   "countries": [
     {
-      "id": "us", "flag": "🇺🇸", "country": "United States", "city": "Washington D.C.", "region": "americas",
-      "gasoline": 1.047, "gasoline_base": 0.777,
-      "diesel": 1.419, "diesel_base": 0.949,
+      "id": "us",
+      "flag": "🇺🇸",
+      "country": "United States",
+      "city": "Washington D.C.",
+      "region": "americas",
+      "gasoline": 1.047,
+      "gasoline_base": 0.777,
+      "diesel": 1.419,
+      "diesel_base": 0.949,
       "oil_exposure": 15,
       "update_cadence": "daily",
       "auto_update": true,
       "policy": "IEA SPR release (172M bbl). No pump tax cut.",
       "note": "EIA Mar 24: gas $3.961/gal, diesel $5.375/gal. AAA: $3.977/gal. West Coast diesel tops $6/gal.",
       "sources": [
-        { "name": "AAA GasPrices", "url": "https://gasprices.aaa.com", "freq": "Daily" },
-        { "name": "EIA Petroleum Update", "url": "https://www.eia.gov/petroleum/gasdiesel/", "freq": "Weekly Mon" }
+        {
+          "name": "AAA GasPrices",
+          "url": "https://gasprices.aaa.com",
+          "freq": "Daily"
+        },
+        {
+          "name": "EIA Petroleum Update",
+          "url": "https://www.eia.gov/petroleum/gasdiesel/",
+          "freq": "Weekly Mon"
+        }
       ]
     },
     {
-      "id": "uk", "flag": "🇬🇧", "country": "United Kingdom", "city": "London", "region": "europe",
-      "gasoline": 1.887, "gasoline_base": 1.600,
-      "diesel": 2.215, "diesel_base": 1.864,
+      "id": "uk",
+      "flag": "🇬🇧",
+      "country": "United Kingdom",
+      "city": "London",
+      "region": "europe",
+      "gasoline": 1.887,
+      "gasoline_base": 1.6,
+      "diesel": 2.215,
+      "diesel_base": 1.864,
       "oil_exposure": 35,
       "update_cadence": "daily",
       "auto_update": true,
       "policy": "No pump tax cut. Fuel Finder Scheme launched Feb 9.",
       "note": "Fuel Finder UK live (Mar 25): 149.5p/L petrol, 175.6p/L diesel.",
       "sources": [
-        { "name": "Fuel Finder UK", "url": "https://www.fuel-finder.uk/uk-fuel-price-index", "freq": "Every 5 min" },
-        { "name": "GOV.UK Weekly Fuel Prices", "url": "https://www.gov.uk/government/statistics/weekly-road-fuel-prices", "freq": "Weekly Mon" }
+        {
+          "name": "Fuel Finder UK",
+          "url": "https://www.fuel-finder.uk/uk-fuel-price-index",
+          "freq": "Every 5 min"
+        },
+        {
+          "name": "GOV.UK Weekly Fuel Prices",
+          "url": "https://www.gov.uk/government/statistics/weekly-road-fuel-prices",
+          "freq": "Weekly Mon"
+        }
       ]
     },
     {
-      "id": "fr", "flag": "🇫🇷", "country": "France", "city": "Paris", "region": "europe",
-      "gasoline": 1.920, "gasoline_base": 1.720,
-      "diesel": 2.080, "diesel_base": 1.800,
+      "id": "fr",
+      "flag": "🇫🇷",
+      "country": "France",
+      "city": "Paris",
+      "region": "europe",
+      "gasoline": 1.92,
+      "gasoline_base": 1.72,
+      "diesel": 2.08,
+      "diesel_base": 1.8,
       "oil_exposure": 42,
       "update_cadence": "daily",
       "auto_update": true,
       "policy": "TotalEnergies price cap until end of March. No state tax cut.",
       "note": "Prix-carburants.gouv.fr updated daily. EU Oil Bulletin Mondays.",
       "sources": [
-        { "name": "Prix Carburants (official)", "url": "https://www.prix-carburants.gouv.fr", "freq": "Daily" }
+        {
+          "name": "Prix Carburants (official)",
+          "url": "https://www.prix-carburants.gouv.fr",
+          "freq": "Daily"
+        }
       ]
     },
     {
-      "id": "es", "flag": "🇪🇸", "country": "Spain", "city": "Madrid", "region": "europe",
-      "gasoline": 1.550, "gasoline_base": 1.380,
-      "diesel": 1.650, "diesel_base": 1.220,
+      "id": "es",
+      "flag": "🇪🇸",
+      "country": "Spain",
+      "city": "Madrid",
+      "region": "europe",
+      "gasoline": 1.55,
+      "gasoline_base": 1.38,
+      "diesel": 1.65,
+      "diesel_base": 1.22,
       "oil_exposure": 38,
       "update_cadence": "daily",
       "auto_update": true,
       "policy": "€5B crisis plan: VAT on fuel cut 21%→10%, ~30 cents/L cheaper at pump.",
       "note": "Geoportal Gasolineras updated daily. Post-VAT cut prices in panel.",
       "sources": [
-        { "name": "Geoportal Gasolineras", "url": "https://geoportalgasolineras.es", "freq": "Daily" }
+        {
+          "name": "Geoportal Gasolineras",
+          "url": "https://geoportalgasolineras.es",
+          "freq": "Daily"
+        }
       ]
     },
     {
-      "id": "de", "flag": "🇩🇪", "country": "Germany", "city": "Berlin", "region": "europe",
-      "gasoline": 2.350, "gasoline_base": 1.990,
-      "diesel": 2.180, "diesel_base": 1.840,
+      "id": "de",
+      "flag": "🇩🇪",
+      "country": "Germany",
+      "city": "Berlin",
+      "region": "europe",
+      "gasoline": 2.35,
+      "gasoline_base": 1.99,
+      "diesel": 2.18,
+      "diesel_base": 1.84,
       "oil_exposure": 30,
       "update_cadence": "daily",
       "auto_update": true,
       "policy": "Price-once-daily regulation proposed (pending). No direct subsidy.",
       "note": "ADAC updated daily. Petrol soared €1.82→€2.16/L (+18.7%).",
       "sources": [
-        { "name": "ADAC Kraftstoffpreise", "url": "https://www.adac.de/verkehr/tanken-kraftstoff-und-antrieb/kraftstoff/kraftstoffpreisentwicklung/", "freq": "Daily" }
+        {
+          "name": "ADAC Kraftstoffpreise",
+          "url": "https://www.adac.de/verkehr/tanken-kraftstoff-und-antrieb/kraftstoff/kraftstoffpreisentwicklung/",
+          "freq": "Daily"
+        }
       ]
     },
     {
-      "id": "at", "flag": "🇦🇹", "country": "Austria", "city": "Vienna", "region": "europe",
-      "gasoline": 2.120, "gasoline_base": 1.870,
-      "diesel": 2.020, "diesel_base": 1.780,
+      "id": "at",
+      "flag": "🇦🇹",
+      "country": "Austria",
+      "city": "Vienna",
+      "region": "europe",
+      "gasoline": 2.12,
+      "gasoline_base": 1.87,
+      "diesel": 2.02,
+      "diesel_base": 1.78,
       "oil_exposure": 33,
       "update_cadence": "daily",
       "auto_update": true,
       "policy": "Stricter price regulation than Germany.",
       "note": "ÖAMTC Spritpreismonitor tracks daily. Austria +13% petrol.",
       "sources": [
-        { "name": "ÖAMTC Spritpreismonitor", "url": "https://www.oeamtc.at/thema/tanken/spritpreis", "freq": "Daily" }
+        {
+          "name": "ÖAMTC Spritpreismonitor",
+          "url": "https://www.oeamtc.at/thema/tanken/spritpreis",
+          "freq": "Daily"
+        }
       ]
     },
     {
-      "id": "br", "flag": "🇧🇷", "country": "Brazil", "city": "São Paulo", "region": "americas",
-      "gasoline": 1.280, "gasoline_base": 1.180,
-      "diesel": 1.220, "diesel_base": 1.080,
+      "id": "br",
+      "flag": "🇧🇷",
+      "country": "Brazil",
+      "city": "São Paulo",
+      "region": "americas",
+      "gasoline": 1.28,
+      "gasoline_base": 1.18,
+      "diesel": 1.22,
+      "diesel_base": 1.08,
       "oil_exposure": 12,
       "update_cadence": "weekly",
       "auto_update": true,
       "policy": "No intervention. Petrobras domestic buffer.",
       "note": "ANP weekly data. Diesel +13% total since war. BRL mild depreciation.",
       "sources": [
-        { "name": "ANP Preços Combustíveis", "url": "https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/", "freq": "Weekly" }
+        {
+          "name": "ANP Preços Combustíveis",
+          "url": "https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/",
+          "freq": "Weekly"
+        }
       ]
     },
     {
-      "id": "cl", "flag": "🇨🇱", "country": "Chile", "city": "Santiago", "region": "americas",
-      "gasoline": 1.380, "gasoline_base": 1.240,
-      "diesel": 1.320, "diesel_base": 1.170,
+      "id": "cl",
+      "flag": "🇨🇱",
+      "country": "Chile",
+      "city": "Santiago",
+      "region": "americas",
+      "gasoline": 1.38,
+      "gasoline_base": 1.24,
+      "diesel": 1.32,
+      "diesel_base": 1.17,
       "oil_exposure": 55,
       "update_cadence": "weekly",
       "auto_update": true,
       "policy": "MEPCO stabilisation fund partially absorbing shock.",
       "note": "CNE/ENAP weekly pricing.",
       "sources": [
-        { "name": "ENAP Bencina en Línea", "url": "https://www.bencinaenlinea.cl", "freq": "Daily" },
-        { "name": "CNE Precios Combustibles", "url": "https://www.cne.cl/estadisticas/petroleo/", "freq": "Weekly" }
+        {
+          "name": "ENAP Bencina en Línea",
+          "url": "https://www.bencinaenlinea.cl",
+          "freq": "Daily"
+        },
+        {
+          "name": "CNE Precios Combustibles",
+          "url": "https://www.cne.cl/estadisticas/petroleo/",
+          "freq": "Weekly"
+        }
       ]
     },
     {
-      "id": "za", "flag": "🇿🇦", "country": "South Africa", "city": "Johannesburg", "region": "africa",
-      "gasoline": 1.180, "gasoline_base": 1.030,
-      "diesel": 1.140, "diesel_base": 0.980,
+      "id": "za",
+      "flag": "🇿🇦",
+      "country": "South Africa",
+      "city": "Johannesburg",
+      "region": "africa",
+      "gasoline": 1.18,
+      "gasoline_base": 1.03,
+      "diesel": 1.14,
+      "diesel_base": 0.98,
       "oil_exposure": 68,
       "update_cadence": "monthly",
       "auto_update": false,
       "policy": "DMRE monthly regulated pricing.",
       "note": "STATIC until next DMRE monthly announcement. ZAR weakened ~10%.",
       "sources": [
-        { "name": "DMRE Fuel Price (SA)", "url": "https://www.dmr.gov.za/petroleum/fuel-prices", "freq": "Monthly" }
+        {
+          "name": "DMRE Fuel Price (SA)",
+          "url": "https://www.dmr.gov.za/petroleum/fuel-prices",
+          "freq": "Monthly"
+        }
       ]
     },
     {
-      "id": "sn", "flag": "🇸🇳", "country": "Senegal", "city": "Dakar", "region": "africa",
-      "gasoline": 1.380, "gasoline_base": 1.380,
-      "diesel": 1.150, "diesel_base": 1.150,
+      "id": "sn",
+      "flag": "🇸🇳",
+      "country": "Senegal",
+      "city": "Dakar",
+      "region": "africa",
+      "gasoline": 1.38,
+      "gasoline_base": 1.38,
+      "diesel": 1.15,
+      "diesel_base": 1.15,
       "oil_exposure": 72,
       "update_cadence": "monthly",
       "auto_update": false,
       "policy": "Government price freeze on regulated fuels.",
       "note": "STATIC — government controlled price. Update manually when ANSD publishes.",
       "sources": [
-        { "name": "ANSD Sénégal", "url": "https://www.ansd.sn/", "freq": "Monthly" }
+        {
+          "name": "ANSD Sénégal",
+          "url": "https://www.ansd.sn/",
+          "freq": "Monthly"
+        }
       ]
     },
     {
-      "id": "ke", "flag": "🇰🇪", "country": "Kenya", "city": "Nairobi", "region": "africa",
-      "gasoline": 1.300, "gasoline_base": 1.200,
-      "diesel": 1.160, "diesel_base": 1.060,
+      "id": "ke",
+      "flag": "🇰🇪",
+      "country": "Kenya",
+      "city": "Nairobi",
+      "region": "africa",
+      "gasoline": 1.3,
+      "gasoline_base": 1.2,
+      "diesel": 1.16,
+      "diesel_base": 1.06,
       "oil_exposure": 80,
       "update_cadence": "monthly",
       "auto_update": false,
       "policy": "EPRA monthly regulated pricing.",
       "note": "STATIC until next EPRA monthly pricing review (early April).",
       "sources": [
-        { "name": "EPRA Maximum Prices", "url": "https://www.epra.go.ke/services/petroleum/petroleum-prices/", "freq": "Monthly" }
+        {
+          "name": "EPRA Maximum Prices",
+          "url": "https://www.epra.go.ke/services/petroleum/petroleum-prices/",
+          "freq": "Monthly"
+        }
       ]
     },
     {
-      "id": "ma", "flag": "🇲🇦", "country": "Morocco", "city": "Casablanca", "region": "africa",
-      "gasoline": 1.450, "gasoline_base": 1.360,
-      "diesel": 1.320, "diesel_base": 1.220,
+      "id": "ma",
+      "flag": "🇲🇦",
+      "country": "Morocco",
+      "city": "Casablanca",
+      "region": "africa",
+      "gasoline": 1.45,
+      "gasoline_base": 1.36,
+      "diesel": 1.32,
+      "diesel_base": 1.22,
       "oil_exposure": 90,
       "update_cadence": "weekly",
       "auto_update": true,
       "policy": "No intervention. Deregulated market since 2015.",
       "note": "GlobalPetrolPrices weekly. Nearly 100% oil import dependent.",
       "sources": [
-        { "name": "GlobalPetrolPrices Morocco", "url": "https://www.globalpetrolprices.com/Morocco/gasoline_prices/", "freq": "Weekly" }
+        {
+          "name": "GlobalPetrolPrices Morocco",
+          "url": "https://www.globalpetrolprices.com/Morocco/gasoline_prices/",
+          "freq": "Weekly"
+        }
       ]
     },
     {
-      "id": "eg", "flag": "🇪🇬", "country": "Egypt", "city": "Cairo", "region": "africa",
-      "gasoline": 0.540, "gasoline_base": 0.540,
-      "diesel": 0.490, "diesel_base": 0.480,
+      "id": "eg",
+      "flag": "🇪🇬",
+      "country": "Egypt",
+      "city": "Cairo",
+      "region": "africa",
+      "gasoline": 0.54,
+      "gasoline_base": 0.54,
+      "diesel": 0.49,
+      "diesel_base": 0.48,
       "oil_exposure": 40,
       "update_cadence": "quarterly",
       "auto_update": false,
       "policy": "Heavily subsidised. State of near-emergency declared.",
       "note": "STATIC — government subsidised. Update manually when Ministry of Petroleum announces.",
       "sources": [
-        { "name": "Egyptian Petroleum Ministry", "url": "http://www.petroleum.gov.eg", "freq": "Quarterly" }
+        {
+          "name": "Egyptian Petroleum Ministry",
+          "url": "http://www.petroleum.gov.eg",
+          "freq": "Quarterly"
+        }
       ]
     },
     {
-      "id": "lb", "flag": "🇱🇧", "country": "Lebanon", "city": "Beirut", "region": "africa",
-      "gasoline": 1.620, "gasoline_base": 1.330,
-      "diesel": 1.480, "diesel_base": 1.210,
+      "id": "lb",
+      "flag": "🇱🇧",
+      "country": "Lebanon",
+      "city": "Beirut",
+      "region": "africa",
+      "gasoline": 1.62,
+      "gasoline_base": 1.33,
+      "diesel": 1.48,
+      "diesel_base": 1.21,
       "oil_exposure": 95,
       "update_cadence": "weekly",
       "auto_update": true,
       "policy": "No capacity for intervention.",
       "note": "Ministry of Energy Lebanon weekly. 95%+ import dependent.",
       "sources": [
-        { "name": "Ministry of Energy Lebanon", "url": "https://www.energy.gov.lb", "freq": "Weekly" }
+        {
+          "name": "Ministry of Energy Lebanon",
+          "url": "https://www.energy.gov.lb",
+          "freq": "Weekly"
+        }
       ]
     },
     {
-      "id": "in", "flag": "🇮🇳", "country": "India", "city": "New Delhi", "region": "asia",
-      "gasoline": 1.340, "gasoline_base": 1.270,
-      "diesel": 1.200, "diesel_base": 1.140,
+      "id": "in",
+      "flag": "🇮🇳",
+      "country": "India",
+      "city": "New Delhi",
+      "region": "asia",
+      "gasoline": 1.34,
+      "gasoline_base": 1.27,
+      "diesel": 1.2,
+      "diesel_base": 1.14,
       "oil_exposure": 62,
       "update_cadence": "daily",
       "auto_update": true,
       "policy": "Russian oil exemption. Gas priority emergency order issued.",
       "note": "PPAC updated daily. Partially buffered by Russian crude.",
       "sources": [
-        { "name": "PPAC India Fuel Prices", "url": "https://ppac.gov.in/consumer-info/fuel-prices", "freq": "Daily" }
+        {
+          "name": "PPAC India Fuel Prices",
+          "url": "https://ppac.gov.in/consumer-info/fuel-prices",
+          "freq": "Daily"
+        }
       ]
     },
     {
-      "id": "ph", "flag": "🇵🇭", "country": "Philippines", "city": "Manila", "region": "asia",
-      "gasoline": 1.480, "gasoline_base": 1.160,
-      "diesel": 1.420, "diesel_base": 1.020,
+      "id": "ph",
+      "flag": "🇵🇭",
+      "country": "Philippines",
+      "city": "Manila",
+      "region": "asia",
+      "gasoline": 1.48,
+      "gasoline_base": 1.16,
+      "diesel": 1.42,
+      "diesel_base": 1.02,
       "oil_exposure": 88,
       "update_cadence": "weekly",
       "auto_update": true,
       "policy": "4-day work week for government.",
       "note": "DOE weekly monitor. Diesel +38.6% confirmed. PHP at 59.5/USD.",
       "sources": [
-        { "name": "DOE Price Monitor PH", "url": "https://www.doe.gov.ph/price-monitoring", "freq": "Weekly" }
+        {
+          "name": "DOE Price Monitor PH",
+          "url": "https://www.doe.gov.ph/price-monitoring",
+          "freq": "Weekly"
+        }
       ]
     },
     {
-      "id": "id", "flag": "🇮🇩", "country": "Indonesia", "city": "Jakarta", "region": "asia",
-      "gasoline": 0.880, "gasoline_base": 0.840,
-      "diesel": 0.880, "diesel_base": 0.840,
+      "id": "id",
+      "flag": "🇮🇩",
+      "country": "Indonesia",
+      "city": "Jakarta",
+      "region": "asia",
+      "gasoline": 0.88,
+      "gasoline_base": 0.84,
+      "diesel": 0.88,
+      "diesel_base": 0.84,
       "oil_exposure": 58,
       "update_cadence": "monthly",
       "auto_update": false,
       "policy": "Pertamina absorbing shock. Fiscal pressure building.",
       "note": "STATIC — Pertamina subsidised. Update manually when Pertamina announces price change.",
       "sources": [
-        { "name": "Pertamina Harga BBM", "url": "https://www.pertamina.com/id/harga-bbm", "freq": "Monthly" }
+        {
+          "name": "Pertamina Harga BBM",
+          "url": "https://www.pertamina.com/id/harga-bbm",
+          "freq": "Monthly"
+        }
       ]
     },
     {
-      "id": "au", "flag": "🇦🇺", "country": "Australia", "city": "Sydney", "region": "oceania",
-      "gasoline": 1.740, "gasoline_base": 1.370,
-      "diesel": 1.902, "diesel_base": 1.524,
+      "id": "au",
+      "flag": "🇦🇺",
+      "country": "Australia",
+      "city": "Sydney",
+      "region": "oceania",
+      "gasoline": 1.74,
+      "gasoline_base": 1.37,
+      "diesel": 1.902,
+      "diesel_base": 1.524,
       "oil_exposure": 45,
       "update_cadence": "weekly",
       "auto_update": true,
       "policy": "No direct intervention. ACCC monitoring margins.",
       "note": "FuelCheck NSW near-real-time. Sydney ~AU$2.74/L = $1.740.",
       "sources": [
-        { "name": "ACCC Petrol Prices", "url": "https://www.accc.gov.au/consumers/petrol-pricing", "freq": "Weekly" },
-        { "name": "FuelCheck NSW", "url": "https://www.fuelcheck.nsw.gov.au", "freq": "Near-real-time" }
+        {
+          "name": "ACCC Petrol Prices",
+          "url": "https://www.accc.gov.au/consumers/petrol-pricing",
+          "freq": "Weekly"
+        },
+        {
+          "name": "FuelCheck NSW",
+          "url": "https://www.fuelcheck.nsw.gov.au",
+          "freq": "Near-real-time"
+        }
       ]
     },
     {
-      "id": "nz", "flag": "🇳🇿", "country": "New Zealand", "city": "Wellington", "region": "oceania",
-      "gasoline": 1.893, "gasoline_base": 1.577,
-      "diesel": 1.784, "diesel_base": 1.486,
+      "id": "nz",
+      "flag": "🇳🇿",
+      "country": "New Zealand",
+      "city": "Wellington",
+      "region": "oceania",
+      "gasoline": 1.893,
+      "gasoline_base": 1.577,
+      "diesel": 1.784,
+      "diesel_base": 1.486,
       "oil_exposure": 48,
       "update_cadence": "weekly",
       "auto_update": true,
       "policy": "No intervention. MBIE monitoring.",
       "note": "Pricewatch NZ near-real-time. NZD$2.98/L petrol = $1.893.",
       "sources": [
-        { "name": "Pricewatch NZ", "url": "https://pricewatch.co.nz", "freq": "Near-real-time" }
+        {
+          "name": "Pricewatch NZ",
+          "url": "https://pricewatch.co.nz",
+          "freq": "Near-real-time"
+        }
       ]
     },
     {
-      "id": "cn", "flag": "🇨🇳", "country": "China", "city": "Beijing", "region": "asia",
-      "gasoline": 1.100, "gasoline_base": 1.020,
-      "diesel": 1.070, "diesel_base": 1.000,
+      "id": "cn",
+      "flag": "🇨🇳",
+      "country": "China",
+      "city": "Beijing",
+      "region": "asia",
+      "gasoline": 1.1,
+      "gasoline_base": 1.02,
+      "diesel": 1.07,
+      "diesel_base": 1.0,
       "oil_exposure": 52,
       "update_cadence": "10_day",
       "auto_update": true,
       "policy": "NDRC 10-day pricing. Strategic reserves deployed.",
       "note": "NDRC pricing cycle every 10 days. Strategic reserves deployed.",
       "sources": [
-        { "name": "NDRC Oil Price", "url": "https://www.ndrc.gov.cn/fzggw/jgsj/jjjg/", "freq": "Every 10 days" }
+        {
+          "name": "NDRC Oil Price",
+          "url": "https://www.ndrc.gov.cn/fzggw/jgsj/jjjg/",
+          "freq": "Every 10 days"
+        }
       ]
     },
     {
-      "id": "kr", "flag": "🇰🇷", "country": "South Korea", "city": "Seoul", "region": "asia",
-      "gasoline": 1.230, "gasoline_base": 1.064,
-      "diesel": 1.195, "diesel_base": 1.023,
+      "id": "kr",
+      "flag": "🇰🇷",
+      "country": "South Korea",
+      "city": "Seoul",
+      "region": "asia",
+      "gasoline": 1.23,
+      "gasoline_base": 1.064,
+      "diesel": 1.195,
+      "diesel_base": 1.023,
       "oil_exposure": 70,
       "update_cadence": "daily",
       "auto_update": true,
       "policy": "Pump price cap (first time in 30 years, since Mar 9).",
       "note": "Opinet daily. ~1,800 KRW/L capped = $1.23/L.",
       "sources": [
-        { "name": "Opinet Korea NPC", "url": "https://www.opinet.co.kr/user/main/mainView.do", "freq": "Daily" }
+        {
+          "name": "Opinet Korea NPC",
+          "url": "https://www.opinet.co.kr/user/main/mainView.do",
+          "freq": "Daily"
+        }
       ]
     },
     {
-      "id": "jp", "flag": "🇯🇵", "country": "Japan", "city": "Tokyo", "region": "asia",
-      "gasoline": 1.242, "gasoline_base": 1.107,
-      "diesel": 1.162, "diesel_base": 1.028,
+      "id": "jp",
+      "flag": "🇯🇵",
+      "country": "Japan",
+      "city": "Tokyo",
+      "region": "asia",
+      "gasoline": 1.242,
+      "gasoline_base": 1.107,
+      "diesel": 1.162,
+      "diesel_base": 1.028,
       "oil_exposure": 95,
       "update_cadence": "weekly",
       "auto_update": true,
       "policy": "Strategic reserve release (Mar 8). METI monitoring.",
       "note": "METI weekly survey. ~¥185/L = $1.242 at ¥149/$.",
       "sources": [
-        { "name": "METI Petroleum Data", "url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/", "freq": "Weekly" }
+        {
+          "name": "METI Petroleum Data",
+          "url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/",
+          "freq": "Weekly"
+        }
       ]
     }
   ]
