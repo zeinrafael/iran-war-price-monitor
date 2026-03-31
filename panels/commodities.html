@@ -447,7 +447,10 @@ function buildCards(items, containerId) {
         plugins:{ legend:{display:false}, tooltip:{enabled:true} },
         scales:{
           x:{ display:false },
-          y:{ display:false }
+          y:{ display:false, 
+              suggestedMin: d.history[0] * 0.85,
+              suggestedMax: d.history.reduce((a,b)=>Math.max(a,b),0) * 1.05
+          }
         },
         animation:false
       }
