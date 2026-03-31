@@ -36,3 +36,32 @@ jobs:
           git add data/fuel.json
           git diff --staged --quiet || git commit -m "auto-update fuel prices $(date -u '+%Y-%m-%d')"
           git push
+  
+  update-food:
+    name: Update Food Prices
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.schedule, '0 8 * * 1')
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 lxml
+
+      - name: Run food scraper
+        run: python scrapers/food_scraper.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/food.json
+          git diff --staged --quiet || git commit -m "auto-update food prices $(date -u '+%Y-%m-%d')"
+          git push
