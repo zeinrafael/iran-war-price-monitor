@@ -444,15 +444,16 @@ function buildCards(items, containerId) {
       },
       options: {
         responsive:true, maintainAspectRatio:false,
-        plugins:{ legend:{display:false}, tooltip:{enabled:true} },
+        plugins:{ legend:{display:false}, tooltip:{enabled:false} },
         scales:{
           x:{ display:false },
-          y:{ display:false, 
-              suggestedMin: d.history[0] * 0.85,
-              suggestedMax: d.history.reduce((a,b)=>Math.max(a,b),0) * 1.05
+          y:{ display:false,
+              min: Math.min(...d.history) * 0.90,
+              max: Math.max(...d.history) * 1.05
           }
         },
-        animation:false
+        animation:false,
+        elements:{ line:{ borderWidth:2 }, point:{ radius:0 } }
       }
     });
   });
@@ -513,7 +514,7 @@ new Chart(document.getElementById('energy-chart'), {
   options: { ...chartOpts(),
     scales: {
       x:{ grid:{color:'#1e2430'} },
-      y:{ grid:{color:'#1e2430'}, ticks:{callback:v=>v} }
+      y:{ grid:{color:'#1e2430'}, ticks:{callback:v=>v}, min:60, suggestedMax:140 }
     }
   }
 });
@@ -533,7 +534,8 @@ new Chart(document.getElementById('grains-chart'), {
   options: { ...chartOpts(),
     scales: {
       x:{grid:{color:'#1e2430'}},
-      y:{grid:{color:'#1e2430'}, title:{display:true,text:'Index (Feb 24 = 100)',color:'#6a7a90'}}
+      y:{grid:{color:'#1e2430'}, min:90, suggestedMax:145,
+         title:{display:true,text:'Index (Feb 24 = 100)',color:'#6a7a90'}}
     }
   }
 });
