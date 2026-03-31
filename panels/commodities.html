@@ -471,7 +471,7 @@ document.getElementById('summary-tbody').innerHTML = ALL_ITEMS.map(d => {
     <td style="color:var(--red)">${d.peak} <span style="font-size:10px;color:var(--text-dim)">${d.peak_date}</span></td>
     <td style="color:var(--text-bright);font-weight:600">${d.now}</td>
     <td>${pill(pctNow)}</td>
-    <td><span style="color:${pctFromPeak < -10 ? 'var(--green)' : 'var(--text-dim)';font-size:11px}">${pctFromPeak.toFixed(1)}%</span></td>
+    <td><span style="color:${pctFromPeak < -10 ? 'var(--green)' : 'var(--text-dim)'};font-size:11px">${pctFromPeak.toFixed(1)}%</span></td>
     <td><a href="${d.source_url}" target="_blank" class="source-link">${d.source}</a></td>
   </tr>`;
 }).join('');
