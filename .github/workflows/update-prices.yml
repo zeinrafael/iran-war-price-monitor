@@ -35,6 +35,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/fuel.json
           git diff --staged --quiet || git commit -m "auto-update fuel prices $(date -u '+%Y-%m-%d')"
+          git pull --rebase origin main
           git push
   
   update-food:
