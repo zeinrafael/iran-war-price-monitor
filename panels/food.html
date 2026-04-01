@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Food Basket Price Panel — War Impact — March 25, 2026</title>
+<title>Food Basket Price Panel — War Impact</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -91,7 +91,7 @@
   <div class="badge">🥩 Food Basket</div>
   <div class="badge-warn">⚠ Wave 2 Incoming</div>
   <div class="header-title">Food Price Panel — Iran War Impact · Day 25</div>
-  <div class="header-date">March 25, 2026</div>
+  <div class="header-date"><span id="live-date">March 25, 2026</span></div>
 </header>
 
 <div class="info-bar">
@@ -203,6 +203,16 @@
 // All USD. rice/flour/eggs/beef: now = Mar 25, base = Feb 24.
 // Updated from Mar 19 panel: additional ~1 week of pass-through applied.
 // Fertiliser second-wave not yet in retail prices — estimates marked accordingly.
+// Dynamic date
+(function() {
+  const warStart = new Date('2026-02-28');
+  const now = new Date();
+  const day = Math.floor((now - warStart) / 86400000);
+  const dateStr = now.toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+  const el = document.getElementById('live-date');
+  if (el) el.textContent = dateStr;
+})();
+
 const data = [
   {
     id:'us',flag:'🇺🇸',country:'United States',city:'Washington D.C.',region:'americas',reliability:3,
