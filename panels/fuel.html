@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>War Consumer Price Panel — Fuel — March 25, 2026</title>
+<title>War Consumer Price Panel — Fuel</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -109,8 +109,8 @@
 <header>
   <div class="badge">⛽ Fuel Panel</div>
   <div class="badge-talk">🕊 Ceasefire Talks</div>
-  <div class="header-title">War Consumer Price Panel — Fuel · Day 25</div>
-  <div class="header-date">March 25, 2026</div>
+  <div class="header-title">War Consumer Price Panel — Fuel · <span id="war-day-title">Day 25</span></div>
+  <div class="header-date"><span id="live-date">March 25, 2026</span></div>
 </header>
 
 <div class="breaking">
@@ -527,6 +527,18 @@ countries.forEach(d => {
   d.gasolineChg = (d.gasoline - d.gasolineBase) / d.gasolineBase * 100;
   d.dieselChg = (d.diesel - d.dieselBase) / d.dieselBase * 100;
 });
+
+// Dynamic date update
+(function() {
+  const warStart = new Date('2026-02-28');
+  const now = new Date();
+  const day = Math.floor((now - warStart) / 86400000);
+  const dateStr = now.toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+  const el = document.getElementById('live-date');
+  if (el) el.textContent = dateStr;
+  const dayEl = document.getElementById('war-day-title');
+  if (dayEl) dayEl.textContent = 'Day ' + day;
+})();
 
 let filtered = [...countries];
 let sortKey = 'gasolineChg', sortDir = -1;
