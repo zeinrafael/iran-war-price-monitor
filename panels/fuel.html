@@ -220,308 +220,28 @@
 </div>
 
 <script>
-// Prices in USD/L. gasolineBase/dieselBase = Feb 24 pre-war.
-// All current prices as of March 24–25, 2026.
-const countries = [
-  {
-    id:'us', flag:'🇺🇸', country:'United States', city:'Washington D.C.', region:'americas',
-    gasoline:1.047, gasolineBase:0.777, diesel:1.419, dieselBase:0.949, oilExposure:15,
-    policy:'IEA SPR release (172M bbl). No pump tax cut.',
-    note:'EIA Mar 24: gas $3.961/gal, diesel $5.375/gal. AAA: $3.977/gal gas. West Coast diesel tops $6/gal ($1.585/L). +35% gas / +50% diesel vs pre-war. US retail prices still climbing even as crude eases today.',
-    sources:[
-      {name:'AAA GasPrices (daily)',url:'https://gasprices.aaa.com',freq:'Daily'},
-      {name:'EIA Petroleum Update',url:'https://www.eia.gov/petroleum/gasdiesel/',freq:'Weekly Mon'},
-      {name:'GasBuddy',url:'https://www.gasbuddy.com',freq:'Near-real-time'},
-    ]
-  },
-  {
-    id:'uk', flag:'🇬🇧', country:'United Kingdom', city:'London', region:'europe',
-    gasoline:1.887, gasolineBase:1.600, diesel:2.215, dieselBase:1.864, oilExposure:35,
-    policy:'No pump tax cut. Fuel Finder Scheme launched Feb 9.',
-    note:'Fuel Finder UK live (Mar 25): 149.5p/L petrol, 175.6p/L diesel. Gov.uk weekly fuel data published Mar 24. +18% petrol / +19% diesel. Chelsea London peak: 238.7p petrol, 264.9p diesel.',
-    sources:[
-      {name:'Fuel Finder UK (live)',url:'https://www.fuel-finder.uk/uk-fuel-price-index',freq:'Every 5 min'},
-      {name:'GOV.UK Weekly Fuel Prices',url:'https://www.gov.uk/government/statistics/weekly-road-fuel-prices',freq:'Weekly Mon'},
-      {name:'RAC Fuel Watch',url:'https://www.rac.co.uk/drive/advice/fuel-watch/',freq:'Daily'},
-    ]
-  },
-  {
-    id:'fr', flag:'🇫🇷', country:'France', city:'Paris', region:'europe',
-    gasoline:1.92, gasolineBase:1.72, diesel:2.08, dieselBase:1.80, oilExposure:42,
-    policy:'TotalEnergies price cap until end of March. No state tax cut.',
-    note:'TotalEnergies capped petrol/diesel nationally. France ~+12% petrol. EU weighted avg diesel EUR 2.10/L. IRU data Mar 20. Macron focused on diplomacy, no direct subsidy.',
-    sources:[
-      {name:'Prix Carburants (official)',url:'https://www.prix-carburants.gouv.fr',freq:'Daily'},
-      {name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'},
-    ]
-  },
-  {
-    id:'es', flag:'🇪🇸', country:'Spain', city:'Madrid', region:'europe',
-    gasoline:1.55, gasolineBase:1.38, diesel:1.65, dieselBase:1.22, oilExposure:38,
-    policy:'€5B crisis plan: VAT on fuel cut 21%→10%, ~30 cents/L cheaper at pump.',
-    note:'Spain had highest EU diesel increase (+34%) but €5B anti-crisis decree (from Mar 22) cuts ~30c/L. Net pump price moderates vs other EU countries. IRU data confirms Spain +27% diesel before VAT cut. Prices in panel reflect post-measure estimates.',
-    sources:[
-      {name:'Geoportal Gasolineras (ES)',url:'https://geoportalgasolineras.es',freq:'Daily'},
-      {name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'},
-    ]
-  },
-  {
-    id:'de', flag:'🇩🇪', country:'Germany', city:'Berlin', region:'europe',
-    gasoline:2.35, gasolineBase:1.99, diesel:2.18, dieselBase:1.84, oilExposure:30,
-    policy:'Price-once-daily regulation proposed (pending). No direct subsidy.',
-    note:'Euronews Mar 22: petrol soared €1.82→€2.16/L (+18.7%). Diesel >€2/L. 9 EU countries above €2 diesel incl. Germany. Economy minister proposed stations may only raise prices at 12:00 daily. Berlin Brent sensitivity high.',
-    sources:[
-      {name:'ADAC Kraftstoffpreise',url:'https://www.adac.de/verkehr/tanken-kraftstoff-und-antrieb/kraftstoff/kraftstoffpreisentwicklung/',freq:'Daily'},
-      {name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'},
-    ]
-  },
-  {
-    id:'at', flag:'🇦🇹', country:'Austria', city:'Vienna', region:'europe',
-    gasoline:2.12, gasolineBase:1.87, diesel:2.02, dieselBase:1.78, oilExposure:33,
-    policy:'Price regulation beyond Germany. Euronews: Austria "went further than Germany."',
-    note:'Austria +13% petrol (Euronews Mar 22). Has introduced stricter price regulation than Germany. ÖAMTC Spritpreismonitor tracks daily. Diesel now above €2/L.',
-    sources:[
-      {name:'ÖAMTC Spritpreismonitor',url:'https://www.oeamtc.at/thema/tanken/spritpreis',freq:'Daily'},
-      {name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'},
-    ]
-  },
-  {
-    id:'br', flag:'🇧🇷', country:'Brazil', city:'São Paulo', region:'americas',
-    gasoline:1.28, gasolineBase:1.18, diesel:1.22, dieselBase:1.08, oilExposure:12,
-    policy:'No intervention. Petrobras domestic buffer.',
-    note:'IRU: Brazil diesel +13% total since war. Gasoline estimate ~+8%. Petrobras domestic production provides buffer. BRL mild depreciation adds slight pressure on imports.',
-    sources:[
-      {name:'ANP Preços Combustíveis',url:'https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/',freq:'Weekly'},
-      {name:'GlobalPetrolPrices Brazil',url:'https://www.globalpetrolprices.com/Brazil/gasoline_prices/',freq:'Weekly'},
-    ]
-  },
-  {
-    id:'cl', flag:'🇨🇱', country:'Chile', city:'Santiago', region:'americas',
-    gasoline:1.38, gasolineBase:1.24, diesel:1.32, dieselBase:1.17, oilExposure:55,
-    policy:'MEPCO stabilisation fund partially absorbing shock.',
-    note:'ENAP/CNE weekly pricing. Chile +11% gasoline, +13% diesel. MEPCO fund cushioning some of impact. Peso mild depreciation. Spring planting season adds fertiliser pressure.',
-    sources:[
-      {name:'ENAP Bencina en Línea',url:'https://www.bencinaenlinea.cl',freq:'Daily'},
-      {name:'CNE Precios Combustibles',url:'https://www.cne.cl/estadisticas/petroleo/',freq:'Weekly'},
-    ]
-  },
-  {
-    id:'za', flag:'🇿🇦', country:'South Africa', city:'Johannesburg', region:'africa',
-    gasoline:1.18, gasolineBase:1.03, diesel:1.14, dieselBase:0.98, oilExposure:68,
-    policy:'No emergency measures. DMRE monthly regulated pricing.',
-    note:'DMRE monthly price announcement pending. ZAR weakened ~10% since war, amplifying oil shock. +14–16% estimated. Gulf exposure ~68%. Shoprite absorbing some via pricing strategy.',
-    sources:[
-      {name:'DMRE Fuel Price (SA)',url:'https://www.dmr.gov.za/petroleum/fuel-prices',freq:'Monthly'},
-      {name:'AA South Africa',url:'https://www.aa.co.za/fuel-price',freq:'Monthly'},
-    ]
-  },
-  {
-    id:'sn', flag:'🇸🇳', country:'Senegal', city:'Dakar', region:'africa',
-    gasoline:1.38, gasolineBase:1.38, diesel:1.15, dieselBase:1.15, oilExposure:72,
-    policy:'Government price freeze on regulated fuels.',
-    note:'Senegal has government-controlled fuel prices. No official change posted yet for March. Real market pressure building. ANSD update expected end of month.',
-    sources:[
-      {name:'ANSD Sénégal',url:'https://www.ansd.sn/',freq:'Monthly'},
-      {name:'GlobalPetrolPrices Senegal',url:'https://www.globalpetrolprices.com/Senegal/gasoline_prices/',freq:'Monthly'},
-    ]
-  },
-  {
-    id:'ke', flag:'🇰🇪', country:'Kenya', city:'Nairobi', region:'africa',
-    gasoline:1.30, gasolineBase:1.20, diesel:1.16, dieselBase:1.06, oilExposure:80,
-    policy:'EPRA monthly regulated pricing. No emergency freeze.',
-    note:'EPRA next monthly pricing review due early April. KES has weakened. ~+8% gasoline, +9% diesel est. Very high Gulf exposure (80%). Naivas supermarket trucking costs rising visibly.',
-    sources:[
-      {name:'EPRA Maximum Prices',url:'https://www.epra.go.ke/services/petroleum/petroleum-prices/',freq:'Monthly'},
-      {name:'GlobalPetrolPrices Kenya',url:'https://www.globalpetrolprices.com/Kenya/gasoline_prices/',freq:'Monthly'},
-    ]
-  },
-  {
-    id:'ma', flag:'🇲🇦', country:'Morocco', city:'Casablanca', region:'africa',
-    gasoline:1.45, gasolineBase:1.36, diesel:1.32, dieselBase:1.22, oilExposure:90,
-    policy:'No intervention. Deregulated market since 2015.',
-    note:'Morocco deregulated in 2015 so pump prices track Brent closely (+7 days lag). Nearly 100% oil import dependent. Weekly updates from ONHYM/petrol station chains.',
-    sources:[
-      {name:'GlobalPetrolPrices Morocco',url:'https://www.globalpetrolprices.com/Morocco/gasoline_prices/',freq:'Weekly'},
-    ]
-  },
-  {
-    id:'eg', flag:'🇪🇬', country:'Egypt', city:'Cairo', region:'africa',
-    gasoline:0.54, gasolineBase:0.54, diesel:0.49, dieselBase:0.48, oilExposure:40,
-    policy:'Heavily subsidised. No change. State of near-emergency declared.',
-    note:'Egypt subsidises fuel heavily. Official prices unchanged. But economy under severe pressure: Suez Canal revenue down, EGP falling, inflation accelerating. Real market shock deferred, not avoided.',
-    sources:[
-      {name:'Egyptian Petroleum Ministry',url:'http://www.petroleum.gov.eg',freq:'Quarterly'},
-      {name:'GlobalPetrolPrices Egypt',url:'https://www.globalpetrolprices.com/Egypt/gasoline_prices/',freq:'Monthly'},
-    ]
-  },
-  {
-    id:'lb', flag:'🇱🇧', country:'Lebanon', city:'Beirut', region:'africa',
-    gasoline:1.62, gasolineBase:1.33, diesel:1.48, dieselBase:1.21, oilExposure:95,
-    policy:'No capacity for intervention. Economy near collapse.',
-    note:'Lebanon acutely exposed: 95%+ oil import dependent, no strategic reserves, ongoing currency crisis. +22% gasoline, +22% diesel. Formal sector prices understate reality.',
-    sources:[
-      {name:'Ministry of Energy Lebanon',url:'https://www.energy.gov.lb',freq:'Weekly'},
-      {name:'GlobalPetrolPrices Lebanon',url:'https://www.globalpetrolprices.com/Lebanon/gasoline_prices/',freq:'Weekly'},
-    ]
-  },
-  {
-    id:'in', flag:'🇮🇳', country:'India', city:'New Delhi', region:'asia',
-    gasoline:1.34, gasolineBase:1.27, diesel:1.20, dieselBase:1.14, oilExposure:62,
-    policy:'Russian oil exemption. Gas priority emergency order.',
-    note:'India partially buffered by Russian crude. PPAC daily prices. Emergency gas rationing order issued (Natural Gas Supply Regulation Order 2026). Indian OMC stocks +3.4% today on ceasefire reports (Business Standard).',
-    sources:[
-      {name:'PPAC India Fuel Prices',url:'https://ppac.gov.in/consumer-info/fuel-prices',freq:'Daily'},
-      {name:'GlobalPetrolPrices India',url:'https://www.globalpetrolprices.com/India/gasoline_prices/',freq:'Weekly'},
-    ]
-  },
-  {
-    id:'ph', flag:'🇵🇭', country:'Philippines', city:'Manila', region:'asia',
-    gasoline:1.48, gasolineBase:1.16, diesel:1.42, dieselBase:1.02, oilExposure:88,
-    policy:'4-day work week for government. Electricity price rise expected.',
-    note:'Diesel +38.6% confirmed (PSA). Gasoline est. +27%. PHP fell to 59.5/USD. DOE weekly price monitor. SM Supermarket cold-chain costs rising rapidly. 4-day work week enacted to save fuel.',
-    sources:[
-      {name:'DOE Price Monitor PH',url:'https://www.doe.gov.ph/price-monitoring',freq:'Weekly'},
-      {name:'GlobalPetrolPrices Philippines',url:'https://www.globalpetrolprices.com/Philippines/gasoline_prices/',freq:'Weekly'},
-    ]
-  },
-  {
-    id:'id', flag:'🇮🇩', country:'Indonesia', city:'Jakarta', region:'asia',
-    gasoline:0.88, gasolineBase:0.84, diesel:0.88, dieselBase:0.84, oilExposure:58,
-    policy:'Pertamina absorbing shock. Fiscal pressure building.',
-    note:'Pertamina subsidising heavily. Official prices barely changed but government fiscal cost surging. BPS CPI expected to spike in April. Very limited official pump price change (+4-5%) masking true market pressure.',
-    sources:[
-      {name:'Pertamina Harga BBM',url:'https://www.pertamina.com/id/harga-bbm',freq:'Monthly'},
-      {name:'BPS Indonesia CPI',url:'https://www.bps.go.id',freq:'Monthly'},
-    ]
-  },
-  {
-    id:'au', flag:'🇦🇺', country:'Australia', city:'Sydney', region:'oceania',
-    gasoline:1.740, gasolineBase:1.370, diesel:1.902, dieselBase:1.524, oilExposure:45,
-    policy:'No direct intervention. ACCC monitoring margins.',
-    note:'FuelCheck NSW and ACCC data. Sydney avg ~AU$2.74/L = $1.740/L (+27%). Diesel AU$2.99/L. Australia has very limited domestic refining. ACCC monitoring for margin gouging.',
-    sources:[
-      {name:'ACCC Petrol Prices',url:'https://www.accc.gov.au/consumers/petrol-pricing',freq:'Weekly'},
-      {name:'FuelCheck NSW',url:'https://www.fuelcheck.nsw.gov.au',freq:'Near-real-time'},
-    ]
-  },
-  {
-    id:'nz', flag:'🇳🇿', country:'New Zealand', city:'Wellington', region:'oceania',
-    gasoline:1.893, gasolineBase:1.577, diesel:1.784, dieselBase:1.486, oilExposure:48,
-    policy:'No intervention. MBIE monitoring.',
-    note:'NZ imports all refined fuel. Pricewatch NZ: ~NZD$2.98/L petrol = $1.893/L at 0.635 NZD/USD. +20% petrol. Strong pass-through from Singapore refinery margin.',
-    sources:[
-      {name:'MBIE Fuel Price Watch',url:'https://www.mbie.govt.nz/building-and-energy/energy-and-natural-resources/energy-statistics-and-modelling/energy-statistics/oil-statistics/',freq:'Weekly'},
-      {name:'Pricewatch NZ',url:'https://pricewatch.co.nz',freq:'Near-real-time'},
-    ]
-  },
-  {
-    id:'cn', flag:'🇨🇳', country:'China', city:'Beijing', region:'asia',
-    gasoline:1.10, gasolineBase:1.02, diesel:1.07, dieselBase:1.00, oilExposure:52,
-    policy:'NDRC 10-day pricing. Strategic reserves deployed.',
-    note:'NDRC 10-day pricing cycle. China deploying strategic reserves. +8% gasoline. JD Fresh / Hema online grocery cold-chain transport costs rising. Kospi +2.7% / Hang Seng +2.8% today on ceasefire talks (CBS News).',
-    sources:[
-      {name:'NDRC Oil Price (CN)',url:'https://www.ndrc.gov.cn/fzggw/jgsj/jjjg/',freq:'Every 10 days'},
-      {name:'GlobalPetrolPrices China',url:'https://www.globalpetrolprices.com/China/gasoline_prices/',freq:'Monthly'},
-    ]
-  },
-  {
-    id:'kr', flag:'🇰🇷', country:'South Korea', city:'Seoul', region:'asia',
-    gasoline:1.230, gasolineBase:1.064, diesel:1.195, dieselBase:1.023, oilExposure:70,
-    policy:'Pump price cap (first time in 30 years, since Mar 9).',
-    note:'Opinet daily data. Price cap introduced Mar 9. ~1,800 KRW/L petrol capped = $1.23/L. 70% Gulf oil dependence. Kospi gained +2.7% today on ceasefire talks. Markets front-running potential resolution.',
-    sources:[
-      {name:'Opinet Korea NPC',url:'https://www.opinet.co.kr/user/main/mainView.do',freq:'Daily'},
-      {name:'GlobalPetrolPrices S.Korea',url:'https://www.globalpetrolprices.com/South-Korea/gasoline_prices/',freq:'Weekly'},
-    ]
-  },
-  {
-    id:'jp', flag:'🇯🇵', country:'Japan', city:'Tokyo', region:'asia',
-    gasoline:1.242, gasolineBase:1.107, diesel:1.162, dieselBase:1.028, oilExposure:95,
-    policy:'Strategic reserve release (Mar 8). METI monitoring.',
-    note:'Japan 95% Gulf-dependent. Strategic reserves deployed Mar 8. METI weekly survey. ~¥185/L petrol = $1.242 at ¥149/$. +12% gasoline. Nikkei +1.4% today on ceasefire optimism.',
-    sources:[
-      {name:'METI Petroleum Data',url:'https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/',freq:'Weekly'},
-      {name:'GlobalPetrolPrices Japan',url:'https://www.globalpetrolprices.com/Japan/gasoline_prices/',freq:'Weekly'},
-    ]
-  },
-  {
-    id:'jo', flag:'🇯🇴', country:'Jordan', city:'Amman', region:'africa',
-    gasoline:1.42, gasolineBase:1.25, diesel:1.28, dieselBase:1.12, oilExposure:95,
-    policy:'Regulated. Government monitoring closely — Jordan adjacent to conflict zone.',
-    note:'Jordan imports ~95% of oil. Heavily exposed to Gulf disruption. Near-war-zone location amplifies economic pressure.',
-    sources:[{name:'Numbeo Amman',url:'https://www.numbeo.com/cost-of-living/in/Amman',freq:'Continuous'}]
-  },
-  {
-    id:'tn', flag:'🇹🇳', country:'Tunisia', city:'Tunis', region:'africa',
-    gasoline:1.38, gasolineBase:1.32, diesel:1.18, dieselBase:1.12, oilExposure:85,
-    policy:'STIR regulated pricing. Government subsidises partially.',
-    note:'Tunisia imports most oil. Some domestic production. STIR (state oil company) controls prices. Monthly updates.',
-    sources:[{name:'GlobalPetrolPrices Tunisia',url:'https://www.globalpetrolprices.com/Tunisia/gasoline_prices/',freq:'Monthly'}]
-  },
-  {
-    id:'hu', flag:'🇭🇺', country:'Hungary', city:'Budapest', region:'europe',
-    gasoline:1.82, gasolineBase:1.58, diesel:1.75, dieselBase:1.52, oilExposure:65,
-    policy:'Temporarily reduced excise duties (IRU Mar 26 confirmed).',
-    note:'EU Oil Bulletin weekly. Hungary dependent on Mol refinery. Excise cut moderating some impact.',
-    sources:[{name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'}]
-  },
-  {
-    id:'nl', flag:'🇳🇱', country:'Netherlands', city:'Amsterdam', region:'europe',
-    gasoline:2.45, gasolineBase:2.10, diesel:2.18, dieselBase:1.88, oilExposure:40,
-    policy:'No direct intervention. Rotterdam hub — EU largest refinery complex.',
-    note:'EU Oil Bulletin. Diesel >€2/L confirmed IRU Mar 20. High tax base means % change lower despite high absolute price.',
-    sources:[{name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'},{name:'ANWB',url:'https://www.anwb.nl/auto/brandstof-en-milieu/brandstofprijzen',freq:'Daily'}]
-  },
-  {
-    id:'it', flag:'🇮🇹', country:'Italy', city:'Rome', region:'europe',
-    gasoline:2.08, gasolineBase:1.78, diesel:2.05, dieselBase:1.75, oilExposure:45,
-    policy:'€100M industry support package. Excise duty reduction.',
-    note:'EU Oil Bulletin. Italy diesel >€2/L confirmed IRU. €100M transport industry support (IRU Mar 26).',
-    sources:[{name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'}]
-  },
-  {
-    id:'bg', flag:'🇧🇬', country:'Bulgaria', city:'Sofia', region:'europe',
-    gasoline:1.62, gasolineBase:1.38, diesel:1.55, dieselBase:1.32, oilExposure:55,
-    policy:'No major intervention. Lower income EU member — proportionally higher burden.',
-    note:'EU Oil Bulletin. Lukoil Neftochim refinery. Lower wages mean fuel shock hits harder as % of income.',
-    sources:[{name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'}]
-  },
-  {
-    id:'pl', flag:'🇵🇱', country:'Poland', city:'Warsaw', region:'europe',
-    gasoline:1.68, gasolineBase:1.44, diesel:1.62, dieselBase:1.38, oilExposure:35,
-    policy:'No major intervention. AdBlue supply disruption risk flagged.',
-    note:'EU Oil Bulletin. Orlen domestic refining limits exposure. AdBlue supply warning for Euro 6 trucks (IRU Mar 26).',
-    sources:[{name:'EU Weekly Oil Bulletin',url:'https://ec.europa.eu/energy/observatory/reports/Oil_Bulletin.pdf',freq:'Weekly Mon'},{name:'e-petrol.pl',url:'https://www.e-petrol.pl',freq:'Daily'}]
-  },
-  {
-    id:'ng', flag:'🇳🇬', country:'Nigeria', city:'Lagos', region:'africa',
-    gasoline:1.016, gasolineBase:0.617, diesel:1.219, dieselBase:0.799, oilExposure:20,
-    policy:'NO subsidy (removed 2023). Government refusing price intervention.',
-    note:'Nigeria +64.5% gasoline — hardest hit DESPITE being oil producer. No strategic reserve. Dangote importing crude at global prices. 1,400 NGN/L = $1.02 (Times Live Mar 30).',
-    sources:[{name:'GlobalPetrolPrices Nigeria',url:'https://www.globalpetrolprices.com/Nigeria/gasoline_prices/',freq:'Weekly'},{name:'Vanguard Nigeria',url:'https://www.vanguardngr.com',freq:'Daily'}]
-  },
-  {
-    id:'mz', flag:'🇲🇿', country:'Mozambique', city:'Maputo', region:'africa',
-    gasoline:1.18, gasolineBase:1.05, diesel:1.12, dieselBase:0.98, oilExposure:90,
-    policy:'ANPG regulated monthly pricing. No emergency measures.',
-    note:'STATIC until ANPG monthly announcement. One of Africa\'s poorest nations, 90%+ oil import dependent.',
-    sources:[{name:'ANPG Mozambique',url:'https://www.anpg.gov.mz',freq:'Monthly'}]
-  },
-  {
-    id:'co', flag:'🇨🇴', country:'Colombia', city:'Bogotá', region:'americas',
-    gasoline:1.15, gasolineBase:1.05, diesel:0.98, dieselBase:0.88, oilExposure:25,
-    policy:'SICOM/CREG price controls. FEPC stabilisation fund active.',
-    note:'Ecopetrol domestic production limits exposure. FEPC fuel stabilisation fund absorbing some shock. +9.5% gasoline.',
-    sources:[{name:'SICOM Colombia',url:'https://www.sicom.gov.co',freq:'Monthly'}]
-  },
-  {
-    id:'mx', flag:'🇲🇽', country:'Mexico', city:'Mexico City', region:'americas',
-    gasoline:1.35, gasolineBase:1.10, diesel:1.45, dieselBase:1.15, oilExposure:30,
-    policy:'Presidential price CAP <24 MXN/L (~$1.35). Sheinbaum voluntary pact with 96% of stations (Mar 11).',
-    note:'Without cap market price ~$1.54 (GlobalPetrolPrices Mar 23). Pemex domestic production + imports. +22.7% gasoline (capped).',
-    sources:[{name:'CRE Mexico',url:'https://www.gob.mx/cre',freq:'Weekly'},{name:'GlobalPetrolPrices Mexico',url:'https://www.globalpetrolprices.com/Mexico/gasoline_prices/',freq:'Weekly'}]
-  }
-];
+// ── FETCH DATA FROM JSON (auto-updated daily) ──────────────────────────────
+let countries = [];
+
+fetch('../data/fuel.json?' + Date.now())
+  .then(r => r.json())
+  .then(data => {
+    // Map JSON field names to what the panel expects
+    countries = data.countries.map(c => ({
+      ...c,
+      gasolineBase: c.gasoline_base,
+      dieselBase:   c.diesel_base,
+      oilExposure:  c.oil_exposure
+    }));
+    initPanel();
+  })
+  .catch(() => {
+    document.getElementById('tbody').innerHTML = 
+      '<tr><td colspan="8" style="padding:20px;color:#e05a2b;font-family:monospace">Error loading data. Please refresh.</td></tr>';
+  });
+
+function initPanel() {
+
 
 countries.forEach(d => {
   d.gasolineChg = (d.gasoline - d.gasolineBase) / d.gasolineBase * 100;
@@ -629,6 +349,8 @@ document.getElementById('search').addEventListener('input',e=>{searchTerm=e.targ
 
 applyFilters();
 setTimeout(()=>selectRow(filtered[0]?.id),100);
+
+}
 </script>
 </body>
 </html,
