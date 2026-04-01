@@ -3,113 +3,100 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Commodities & Futures Panel — War Impact — March 31, 2026</title>
+<title>Commodities & Futures — War Impact</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
-  :root {
-    --bg:#0a0c0f; --panel:#111318; --panel2:#161a20;
-    --border:#1e2430; --border2:#252c38;
-    --text:#c8d4e0; --text-dim:#6a7a90; --text-bright:#e8f0f8;
-    --accent:#e05a2b; --accent2:#f28c3a;
-    --green:#3ab87a; --red:#e05a2b; --yellow:#e8b84a; --blue:#4a90d9;
-    --purple:#9b6fd4;
-    --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif;
-  }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body { background:var(--bg); color:var(--text); font-family:var(--sans); font-size:13px; }
+:root {
+  --bg:#0a0c0f; --panel:#111318; --panel2:#161a20;
+  --border:#1e2430; --border2:#252c38;
+  --text:#c8d4e0; --text-dim:#6a7a90; --text-bright:#e8f0f8;
+  --accent:#e05a2b; --accent2:#f28c3a;
+  --green:#3ab87a; --red:#e05a2b; --yellow:#e8b84a; --blue:#4a90d9;
+  --purple:#9b6fd4;
+  --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--bg); color:var(--text); font-family:var(--sans); font-size:13px; }
 
-  header { border-bottom:1px solid var(--border); padding:12px 24px; display:flex; align-items:center; gap:14px; background:var(--bg); position:sticky; top:0; z-index:100; flex-wrap:wrap; }
-  .badge { background:var(--accent); color:#fff; font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.1em; padding:3px 8px; text-transform:uppercase; }
-  .badge-new { background:var(--blue); color:#fff; font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.1em; padding:3px 8px; text-transform:uppercase; }
-  .header-title { font-family:var(--mono); font-size:14px; font-weight:500; color:var(--text-bright); }
-  .header-date { font-family:var(--mono); font-size:11px; color:var(--accent2); margin-left:auto; }
+header { border-bottom:1px solid var(--border); padding:12px 24px; display:flex; align-items:center; gap:12px; background:var(--bg); position:sticky; top:0; z-index:100; flex-wrap:wrap; }
+.badge { background:var(--accent); color:#fff; font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.1em; padding:3px 8px; text-transform:uppercase; }
+.badge-new { background:var(--blue); color:#fff; font-family:var(--mono); font-size:10px; font-weight:600; padding:3px 8px; }
+.header-title { font-family:var(--mono); font-size:13px; color:var(--text-bright); font-weight:500; }
+.header-date { font-family:var(--mono); font-size:11px; color:var(--accent2); margin-left:auto; }
 
-  .ticker-bar { background:var(--panel); border-bottom:1px solid var(--border); padding:7px 24px; display:flex; gap:28px; overflow-x:auto; scrollbar-width:none; }
-  .ticker-bar::-webkit-scrollbar { display:none; }
-  .ticker-item { display:flex; align-items:center; gap:7px; flex-shrink:0; font-family:var(--mono); font-size:11px; }
-  .t-label { color:var(--text-dim); }
-  .t-val { color:var(--text-bright); font-weight:500; }
-  .t-chg { font-size:10px; }
-  .up { color:var(--red); }
-  .down { color:var(--green); }
-  .neutral { color:var(--text-dim); }
+.section-nav { display:flex; gap:2px; padding:10px 24px; border-bottom:1px solid var(--border); overflow-x:auto; scrollbar-width:none; }
+.nav-btn { background:var(--panel); border:1px solid var(--border2); color:var(--text-dim); font-family:var(--mono); font-size:11px; padding:5px 14px; cursor:pointer; white-space:nowrap; transition:all .15s; }
+.nav-btn:hover { border-color:var(--accent2); color:var(--accent2); }
+.nav-btn.active { background:var(--accent); border-color:var(--accent); color:#fff; }
 
-  .section-nav { display:flex; gap:2px; padding:10px 24px; border-bottom:1px solid var(--border); overflow-x:auto; scrollbar-width:none; }
-  .section-nav::-webkit-scrollbar { display:none; }
-  .nav-btn { background:var(--panel); border:1px solid var(--border2); color:var(--text-dim); font-family:var(--mono); font-size:11px; padding:5px 14px; cursor:pointer; white-space:nowrap; transition:all .15s; }
-  .nav-btn:hover { border-color:var(--accent2); color:var(--accent2); }
-  .nav-btn.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+.main { padding:20px 24px; max-width:1300px; margin:0 auto; }
+.section { display:none; }
+.section.active { display:block; }
 
-  .main-content { padding:20px 24px; max-width:1400px; margin:0 auto; }
+.section-title { font-family:var(--mono); font-size:15px; color:var(--text-bright); font-weight:500; margin-bottom:6px; }
+.section-desc { font-family:var(--sans); font-size:12px; color:var(--text-dim); line-height:1.6; margin-bottom:20px; max-width:700px; }
 
-  .section { display:none; }
-  .section.active { display:block; }
+/* ALERT BOXES */
+.alert-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; margin-bottom:24px; }
+.alert-box { padding:14px; border-left:3px solid; }
+.alert-box.red { background:rgba(224,90,43,.07); border-color:var(--red); }
+.alert-box.yellow { background:rgba(232,184,74,.07); border-color:var(--yellow); }
+.alert-box.blue { background:rgba(74,144,217,.07); border-color:var(--blue); }
+.alert-box.purple { background:rgba(155,111,212,.07); border-color:var(--purple); }
+.alert-title { font-family:var(--mono); font-size:11px; font-weight:600; margin-bottom:5px; }
+.alert-text { font-family:var(--sans); font-size:12px; color:var(--text-dim); line-height:1.6; }
 
-  .section-header { margin-bottom:20px; }
-  .section-title { font-family:var(--mono); font-size:16px; color:var(--text-bright); font-weight:500; margin-bottom:6px; }
-  .section-desc { font-family:var(--sans); font-size:13px; color:var(--text-dim); line-height:1.6; max-width:700px; }
+/* COMMODITY TABLE */
+.ctable { width:100%; border-collapse:collapse; margin-bottom:28px; }
+.ctable thead tr { background:var(--panel2); border-bottom:2px solid var(--border2); }
+.ctable thead th { font-family:var(--mono); font-size:10px; color:var(--text-dim); text-transform:uppercase; letter-spacing:.08em; padding:9px 12px; text-align:left; white-space:nowrap; }
+.ctable thead th.right { text-align:right; }
+.ctable tbody tr { border-bottom:1px solid var(--border); transition:background .1s; }
+.ctable tbody tr:hover { background:var(--panel); }
+.ctable td { font-family:var(--mono); font-size:12px; padding:9px 12px; vertical-align:middle; }
+.ctable td.right { text-align:right; }
 
-  /* COMMODITY CARDS */
-  .commodity-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:14px; margin-bottom:28px; }
+.cname { font-family:var(--sans); font-size:13px; color:var(--text-bright); font-weight:500; }
+.cunit { font-size:10px; color:var(--text-dim); margin-top:1px; }
+.cat-pill { font-family:var(--mono); font-size:9px; padding:2px 6px; border-radius:2px; }
+.cat-energy { color:var(--accent2); background:rgba(242,140,58,.12); border:1px solid rgba(242,140,58,.2); }
+.cat-grains { color:var(--green); background:rgba(58,184,122,.12); border:1px solid rgba(58,184,122,.2); }
+.cat-fertiliser { color:var(--purple); background:rgba(155,111,212,.12); border:1px solid rgba(155,111,212,.2); }
 
-  .commodity-card { background:var(--panel); border:1px solid var(--border2); padding:16px; cursor:pointer; transition:border-color .15s; }
-  .commodity-card:hover { border-color:var(--accent2); }
-  .commodity-card.selected { border-color:var(--accent); background:#1a1f2a; }
+.price-now { font-size:14px; font-weight:600; }
+.price-base { font-size:11px; color:var(--text-dim); margin-top:1px; }
+.price-peak { font-size:11px; color:var(--text-dim); }
 
-  .card-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; }
-  .card-name { font-family:var(--sans); font-size:14px; font-weight:600; color:var(--text-bright); }
-  .card-unit { font-family:var(--mono); font-size:10px; color:var(--text-dim); margin-top:2px; }
-  .card-category { font-family:var(--mono); font-size:10px; padding:2px 7px; border-radius:2px; }
-  .cat-energy { color:var(--accent2); background:rgba(242,140,58,.1); border:1px solid rgba(242,140,58,.2); }
-  .cat-grains { color:var(--green); background:rgba(58,184,122,.1); border:1px solid rgba(58,184,122,.2); }
-  .cat-fertiliser { color:var(--purple); background:rgba(155,111,212,.1); border:1px solid rgba(155,111,212,.2); }
+/* % CHANGE BAR */
+.bar-cell { min-width:180px; }
+.bar-wrap { display:flex; align-items:center; gap:8px; }
+.bar-label { font-family:var(--mono); font-size:12px; font-weight:700; min-width:52px; text-align:right; }
+.bar-track { flex:1; height:8px; background:var(--panel2); border-radius:2px; overflow:hidden; }
+.bar-fill { height:100%; border-radius:2px; transition:width .4s ease; }
+.bar-up-high { background:var(--red); }
+.bar-up-med { background:var(--yellow); }
+.bar-up-low { background:var(--blue); }
+.bar-down { background:var(--green); }
 
-  .card-prices { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:12px; }
-  .card-price-item { }
-  .cp-label { font-family:var(--mono); font-size:9px; color:var(--text-dim); text-transform:uppercase; letter-spacing:.08em; margin-bottom:3px; }
-  .cp-val { font-family:var(--mono); font-size:15px; font-weight:600; color:var(--text-bright); }
-  .cp-chg { font-family:var(--mono); font-size:11px; font-weight:700; }
+.note-cell { font-family:var(--sans); font-size:11px; color:var(--text-dim); max-width:320px; line-height:1.5; }
+.source-link { font-family:var(--mono); font-size:10px; color:var(--accent2); text-decoration:none; }
+.source-link:hover { text-decoration:underline; }
 
-  .card-sparkline { height:50px; margin-bottom:10px; }
+.from-peak { font-size:11px; }
+.fp-down { color:var(--green); }
+.fp-up { color:var(--text-dim); }
 
-  .card-note { font-family:var(--sans); font-size:11px; color:var(--text-dim); line-height:1.5; border-top:1px solid var(--border); padding-top:8px; }
+/* TICKER */
+.ticker-bar { background:var(--panel); border-bottom:1px solid var(--border); padding:7px 24px; display:flex; gap:24px; overflow-x:auto; scrollbar-width:none; }
+.ticker-bar::-webkit-scrollbar { display:none; }
+.ticker-item { display:flex; align-items:center; gap:6px; flex-shrink:0; font-family:var(--mono); font-size:11px; }
+.t-label { color:var(--text-dim); }
+.t-val { color:var(--text-bright); font-weight:500; }
+.t-up { color:var(--red); font-size:10px; }
+.t-dn { color:var(--green); font-size:10px; }
 
-  /* CHART SECTION */
-  .chart-container { background:var(--panel); border:1px solid var(--border2); padding:20px; margin-bottom:20px; }
-  .chart-title { font-family:var(--mono); font-size:12px; color:var(--text-bright); margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; }
-  .chart-subtitle { font-family:var(--mono); font-size:10px; color:var(--text-dim); }
-  .chart-wrap { position:relative; height:280px; }
-
-  /* SUMMARY TABLE */
-  .summary-table { width:100%; border-collapse:collapse; }
-  .summary-table thead tr { background:var(--panel2); border-bottom:2px solid var(--border2); }
-  .summary-table thead th { font-family:var(--mono); font-size:10px; color:var(--text-dim); text-transform:uppercase; letter-spacing:.08em; padding:9px 12px; text-align:left; }
-  .summary-table tbody tr { border-bottom:1px solid var(--border); transition:background .1s; }
-  .summary-table tbody tr:hover { background:var(--panel); }
-  .summary-table td { font-family:var(--mono); font-size:12px; padding:9px 12px; }
-  .tname { font-family:var(--sans); font-size:13px; color:var(--text-bright); font-weight:500; }
-  .pill { display:inline-flex; font-size:10px; font-weight:700; padding:1px 6px; border-radius:2px; }
-  .pill.up { color:var(--red); background:rgba(224,90,43,.12); }
-  .pill.down { color:var(--green); background:rgba(58,184,122,.12); }
-
-  /* ALERT BOXES */
-  .alert-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:12px; margin-bottom:24px; }
-  .alert-box { padding:14px; border-left:3px solid; }
-  .alert-box.red { background:rgba(224,90,43,.07); border-color:var(--red); }
-  .alert-box.yellow { background:rgba(232,184,74,.07); border-color:var(--yellow); }
-  .alert-box.blue { background:rgba(74,144,217,.07); border-color:var(--blue); }
-  .alert-box.purple { background:rgba(155,111,212,.07); border-color:var(--purple); }
-  .alert-title { font-family:var(--mono); font-size:11px; font-weight:600; margin-bottom:5px; }
-  .alert-text { font-family:var(--sans); font-size:12px; color:var(--text-dim); line-height:1.6; }
-
-  .source-link { font-family:var(--mono); font-size:10px; color:var(--accent2); text-decoration:none; }
-  .source-link:hover { text-decoration:underline; }
-
-  footer { padding:12px 24px; border-top:1px solid var(--border); font-family:var(--mono); font-size:10px; color:var(--text-dim); display:flex; gap:16px; flex-wrap:wrap; }
-  footer a { color:var(--accent2); text-decoration:none; }
-
-  @media(max-width:700px) { .commodity-grid { grid-template-columns:1fr; } }
+footer { padding:12px 24px; border-top:1px solid var(--border); font-family:var(--mono); font-size:10px; color:var(--text-dim); display:flex; gap:16px; flex-wrap:wrap; }
+footer a { color:var(--accent2); text-decoration:none; }
 </style>
 </head>
 <body>
@@ -117,532 +104,243 @@
 <header>
   <div class="badge">📈 Commodities</div>
   <div class="badge-new">NEW</div>
-  <div class="header-title">Commodities & Futures Panel — Iran War Impact</div>
-  <div class="header-date" id="comm-date">March 31, 2026 · Day 31</div>
+  <div class="header-title">Commodities & Futures — Iran War Impact</div>
+  <div class="header-date" id="hdate">—</div>
 </header>
 
-<div class="ticker-bar" id="ticker"></div>
+<div class="ticker-bar" id="ticker">Loading...</div>
 
 <div class="section-nav">
-  <button class="nav-btn active" data-section="overview">Overview</button>
-  <button class="nav-btn" data-section="energy">Energy Futures</button>
-  <button class="nav-btn" data-section="grains">Grains & Oilseeds</button>
-  <button class="nav-btn" data-section="fertiliser">Fertiliser</button>
-  <button class="nav-btn" data-section="charts">Price Charts</button>
+  <button class="nav-btn active" data-s="overview">Overview</button>
+  <button class="nav-btn" data-s="energy">Energy</button>
+  <button class="nav-btn" data-s="grains">Grains & Oilseeds</button>
+  <button class="nav-btn" data-s="fertiliser">Fertiliser</button>
 </div>
 
-<div class="main-content">
+<div class="main">
 
-  <!-- OVERVIEW -->
-  <div class="section active" id="section-overview">
-    <div class="section-header">
-      <div class="section-title">War Impact — Commodity Overview</div>
-      <div class="section-desc">Commodity futures prices vs pre-war baseline (Feb 24, 2026). The conflict's biggest market impact has been on European natural gas (+85%) and fertiliser (+37%), with grains showing more moderate moves due to ample supplies from record harvests.</div>
-    </div>
-
+  <div class="section active" id="s-overview">
+    <div class="section-title">War Impact — All Commodities</div>
+    <div class="section-desc">% change vs pre-war baseline (Feb 24, 2026). Sorted by impact.</div>
     <div class="alert-grid">
-      <div class="alert-box red">
-        <div class="alert-title" style="color:var(--red)">⚡ Energy Shock</div>
-        <div class="alert-text">TTF European gas +85% since war. Qatar LNG force majeure + Hormuz closure = dual supply shock. Henry Hub stable at $3.06 — US-Europe arbitrage spread at ~$15/MMBtu.</div>
-      </div>
-      <div class="alert-box purple">
-        <div class="alert-title" style="color:var(--purple)">🌱 Fertiliser Crisis</div>
-        <div class="alert-text">Urea +37% to $665/tonne. Hormuz carries 30% of global fertiliser. Spring planting season at risk. Corn acreage projected down 6M acres. WFP: 45M more food insecure.</div>
-      </div>
-      <div class="alert-box yellow">
-        <div class="alert-title" style="color:var(--yellow)">🌾 Grains — Moderate</div>
-        <div class="alert-text">Record US corn/soy harvests capping upside. "Soybean Pivot" underway as farmers avoid nitrogen-intensive corn. Wheat at 9-month high $6.42 on Mar 9, now $6.07.</div>
-      </div>
-      <div class="alert-box blue">
-        <div class="alert-title" style="color:var(--blue)">🕊 Ceasefire Signal</div>
-        <div class="alert-text">Brent fell ~5% on Mar 25 on US 15-point ceasefire proposal. Iran denies direct talks. Goldman base case: Hormuz normalises April over 4 weeks. Markets pricing in ~30% probability.</div>
-      </div>
+      <div class="alert-box red"><div class="alert-title" style="color:var(--red)">⚡ Energy Shock</div><div class="alert-text">TTF European gas +85%. Qatar LNG force majeure + Hormuz closure = dual supply shock. Henry Hub stable — $15/MMBtu US-Europe arbitrage.</div></div>
+      <div class="alert-box purple"><div class="alert-title" style="color:var(--purple)">🌱 Fertiliser Crisis</div><div class="alert-text">Urea +37% to $665/tonne. Spring planting season at risk. WFP: 45M more food insecure. No strategic nitrogen reserve exists.</div></div>
+      <div class="alert-box yellow"><div class="alert-title" style="color:var(--yellow)">🌾 Grains — Moderate</div><div class="alert-text">Record US corn/soy harvests capping upside. "Soybean Pivot" underway. Wheat at 9-month high $6.42 on Mar 9, now $6.07.</div></div>
+      <div class="alert-box blue"><div class="alert-title" style="color:var(--blue)">🕊 Ceasefire Signal</div><div class="alert-text">Brent -5% on Mar 25 US ceasefire proposal. Iran denies direct talks. Goldman: Hormuz normalises April over 4 weeks at ~30% probability.</div></div>
     </div>
-
-    <div class="chart-container">
-      <div class="chart-title">
-        All Commodities — % Change vs Pre-War (Feb 24)
-        <span class="chart-subtitle">As of March 31, 2026</span>
-      </div>
-      <div class="chart-wrap">
-        <canvas id="overview-chart"></canvas>
-      </div>
-    </div>
-
-    <table class="summary-table">
-      <thead>
-        <tr>
-          <th>Commodity</th>
-          <th>Category</th>
-          <th>Pre-war</th>
-          <th>Peak</th>
-          <th>Current</th>
-          <th>Δ vs Pre-war</th>
-          <th>From Peak</th>
-          <th>Source</th>
-        </tr>
-      </thead>
-      <tbody id="summary-tbody"></tbody>
-    </table>
+    <table class="ctable" id="t-overview"></table>
   </div>
 
-  <!-- ENERGY -->
-  <div class="section" id="section-energy">
-    <div class="section-header">
-      <div class="section-title">Energy Futures</div>
-      <div class="section-desc">Crude oil, WTI, and natural gas futures. The Henry Hub–TTF spread of ~$15/MMBtu is the defining trade of 2026 — US LNG exporters extracting massive arbitrage while Europe faces an energy crisis.</div>
-    </div>
-    <div class="commodity-grid" id="energy-cards"></div>
-    <div class="chart-container">
-      <div class="chart-title">Energy Futures — Price Journey Since War Started<span class="chart-subtitle">Feb 24 – Mar 31, 2026</span></div>
-      <div class="chart-wrap"><canvas id="energy-chart"></canvas></div>
-    </div>
+  <div class="section" id="s-energy">
+    <div class="section-title">Energy Futures</div>
+    <div class="section-desc">Crude oil and natural gas futures. The Henry Hub–TTF spread of ~$15/MMBtu is the defining trade of 2026 — US LNG exporters benefiting massively while Europe faces an energy crisis.</div>
+    <table class="ctable" id="t-energy"></table>
   </div>
 
-  <!-- GRAINS -->
-  <div class="section" id="section-grains">
-    <div class="section-header">
-      <div class="section-title">Grains & Oilseeds Futures (CBOT)</div>
-      <div class="section-desc">CBOT futures for corn, soybeans, wheat, and soybean oil. Record US harvests are limiting war-related upside, but fertiliser disruption threatens 2026/27 planting season yields.</div>
-    </div>
-    <div class="commodity-grid" id="grains-cards"></div>
-    <div class="chart-container">
-      <div class="chart-title">Grains & Oilseeds — % Change vs Pre-War<span class="chart-subtitle">Indexed to 100 = Feb 24, 2026</span></div>
-      <div class="chart-wrap"><canvas id="grains-chart"></canvas></div>
-    </div>
+  <div class="section" id="s-grains">
+    <div class="section-title">Grains & Oilseeds (CBOT)</div>
+    <div class="section-desc">CBOT futures. Record US harvests are limiting war-related upside, but fertiliser disruption threatens 2026/27 planting season yields. Mar 30 closing prices.</div>
+    <table class="ctable" id="t-grains"></table>
   </div>
 
-  <!-- FERTILISER -->
-  <div class="section" id="section-fertiliser">
-    <div class="section-header">
-      <div class="section-title">Fertiliser Markets</div>
-      <div class="section-desc">Urea prices have surged 37% since the war began. The Hormuz closure has cut off ~30% of globally traded fertiliser. Spring planting in the Northern Hemisphere is happening NOW — shortages will affect 2026/27 harvest yields.</div>
-    </div>
-    <div class="commodity-grid" id="fertiliser-cards"></div>
-    <div class="chart-container">
-      <div class="chart-title">Urea Price — War Impact<span class="chart-subtitle">USD/tonne, Feb 24 – Mar 31, 2026</span></div>
-      <div class="chart-wrap"><canvas id="fertiliser-chart"></canvas></div>
-    </div>
+  <div class="section" id="s-fertiliser">
+    <div class="section-title">Fertiliser Markets</div>
+    <div class="section-desc">Urea prices have surged 37% since war began. The Hormuz closure cut off ~30% of globally traded fertiliser. Spring planting in the Northern Hemisphere is happening NOW.</div>
+    <table class="ctable" id="t-fertiliser"></table>
     <div class="alert-grid" style="margin-top:20px">
-      <div class="alert-box purple">
-        <div class="alert-title" style="color:var(--purple)">CF Industries (US) — Winner</div>
-        <div class="alert-text">Using cheap domestic Henry Hub gas ($3.06) while selling at global prices. Stock up 30% in March to ~$137. 97% capacity utilisation.</div>
-      </div>
-      <div class="alert-box red">
-        <div class="alert-title" style="color:var(--red)">Yara International (Europe) — Loser</div>
-        <div class="alert-text">Reliant on TTF gas at €62/MWh. Forced to cut European production by 25%. Massive cost disadvantage vs US/Russian producers.</div>
-      </div>
-      <div class="alert-box yellow">
-        <div class="alert-title" style="color:var(--yellow)">No Strategic Reserve</div>
-        <div class="alert-text">Unlike oil (SPR), there is no global strategic nitrogen reserve. Once spring planting decisions are made, yields cannot be recovered mid-season.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CHARTS -->
-  <div class="section" id="section-charts">
-    <div class="section-header">
-      <div class="section-title">Comparative Price Charts</div>
-      <div class="section-desc">All commodities indexed to 100 on Feb 24 (pre-war). Shows the relative severity of price impacts across energy, grains, and fertilisers.</div>
-    </div>
-    <div class="chart-container">
-      <div class="chart-title">All Commodities Indexed — Feb 24 = 100<span class="chart-subtitle">Higher = more expensive vs pre-war baseline</span></div>
-      <div class="chart-wrap" style="height:360px"><canvas id="indexed-chart"></canvas></div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
-      <div class="chart-container">
-        <div class="chart-title">Natural Gas Divergence<span class="chart-subtitle">Henry Hub vs TTF (EUR/MWh ÷ 3 for scale)</span></div>
-        <div class="chart-wrap"><canvas id="gas-divergence-chart"></canvas></div>
-      </div>
-      <div class="chart-container">
-        <div class="chart-title">Fertiliser vs Oil Correlation<span class="chart-subtitle">Urea vs Brent — both indexed to Feb 24 = 100</span></div>
-        <div class="chart-wrap"><canvas id="fert-oil-chart"></canvas></div>
-      </div>
+      <div class="alert-box purple"><div class="alert-title" style="color:var(--purple)">CF Industries (US) — Winner</div><div class="alert-text">Using cheap Henry Hub gas ($3.06) while selling at global prices. Stock +30% in March to ~$137. 97% capacity utilisation.</div></div>
+      <div class="alert-box red"><div class="alert-title" style="color:var(--red)">Yara International (EU) — Loser</div><div class="alert-text">Reliant on TTF gas at €62/MWh. Forced 25% production cuts across European fleet. Massive cost disadvantage.</div></div>
+      <div class="alert-box yellow"><div class="alert-title" style="color:var(--yellow)">No Strategic Reserve</div><div class="alert-text">Unlike oil (SPR), no global strategic nitrogen reserve exists. Once spring planting decisions are made, yields cannot be recovered mid-season.</div></div>
     </div>
   </div>
 
 </div>
 
 <footer>
-  <span>Futures: <a href="https://www.cmegroup.com" target="_blank">CME/CBOT</a> · <a href="https://www.brownfieldagnews.com" target="_blank">Brownfield Ag News (Mar 30)</a> · <a href="https://www.eia.gov" target="_blank">EIA</a></span>
-  <span>· Fertiliser: <a href="https://markets.financialcontent.com/stocks/article/marketminute-2026-3-31-the-nitrogen-trap-natural-gas-spikes-send-urea-prices-soaring-to-665-threatening-global-food-security" target="_blank">FinancialContent / Green Markets</a></span>
-  <span>· Pre-war baseline: Feb 24, 2026 · War started: Feb 28, 2026</span>
+  <span>Sources: <a href="https://www.brownfieldagnews.com" target="_blank">Brownfield Ag News (Mar 30)</a> · <a href="https://www.eia.gov" target="_blank">EIA</a> · <a href="https://www.cmegroup.com" target="_blank">CME/CBOT</a> · <a href="https://markets.financialcontent.com" target="_blank">FinancialContent</a></span>
+  <span style="margin-left:auto">Pre-war baseline: Feb 24, 2026</span>
 </footer>
 
 <script>
-// ── DATA ─────────────────────────────────────────────────────────────────────
-const DATA = {
+// ── DYNAMIC DATE ──────────────────────────────────────────────────────────
+(function(){
+  const warStart = new Date('2026-02-28');
+  const now = new Date();
+  const day = Math.floor((now - warStart) / 86400000);
+  const ds = now.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  document.getElementById('hdate').textContent = ds + ' · Day ' + day;
+})();
+
+// ── HARDCODED DATA (also fetched from JSON to stay current) ───────────────
+const FALLBACK = {
   energy: [
     { id:"brent", name:"Brent Crude", unit:"USD/bbl", category:"energy",
       now:98.99, base:70.10, peak:120.00, peak_date:"Mar 3",
-      front_month:"May 2026",
-      note:"Still +41% vs pre-war despite ceasefire-talk pullback. Peak $120 on Mar 3. Goldman base case: Hormuz normalises April.",
-      source:"Reuters/CNBC", source_url:"https://www.cnbc.com/2026/03/25/oil-price-wti-brent-gas-lng-trump-iran-talks-hormuz.html",
-      history:[70.10,78.50,120.00,108.00,103.00,104.49,98.99],
-      color:"#e05a2b" },
+      front_month:"May 2026", color:"#e05a2b",
+      note:"Still +41% vs pre-war despite ceasefire-talk pullback. Peak $120 on Mar 3.",
+      source:"Reuters/CNBC", source_url:"https://www.cnbc.com" },
     { id:"wti", name:"WTI Crude", unit:"USD/bbl", category:"energy",
       now:87.26, base:67.00, peak:119.50, peak_date:"Mar 3",
-      front_month:"May 2026",
-      note:"US domestic benchmark. +30% vs pre-war. Typically trades $5-10 below Brent.",
-      source:"EIA", source_url:"https://www.eia.gov/petroleum/gasdiesel/",
-      history:[67.00,74.00,119.50,95.00,90.00,92.35,87.26],
-      color:"#f28c3a" },
+      front_month:"May 2026", color:"#f28c3a",
+      note:"US domestic benchmark. +30% vs pre-war. Trades $5-10 below Brent.",
+      source:"EIA", source_url:"https://www.eia.gov" },
     { id:"henry_hub", name:"Nat. Gas (Henry Hub)", unit:"USD/MMBtu", category:"energy",
       now:3.06, base:3.10, peak:3.25, peak_date:"Mar 3",
-      front_month:"Apr 2026",
-      note:"US domestic gas relatively stable. Stark contrast to TTF +85%. US LNG exporters extracting ~$15/MMBtu arbitrage.",
-      source:"EIA/NYMEX", source_url:"https://www.eia.gov/naturalgas/weekly/",
-      history:[3.10,3.15,3.25,3.18,3.12,3.05,3.06],
-      color:"#4a90d9" },
+      front_month:"Apr 2026", color:"#4a90d9",
+      note:"US domestic gas stable. Contrast with TTF +85%. ~$15/MMBtu US-Europe arbitrage.",
+      source:"EIA/NYMEX", source_url:"https://www.eia.gov/naturalgas/weekly/" },
     { id:"ttf", name:"Nat. Gas (TTF Europe)", unit:"EUR/MWh", category:"energy",
       now:62.50, base:32.00, peak:68.00, peak_date:"Mar 5",
-      front_month:"Apr 2026",
-      note:"+85% since war. Qatar LNG force majeure + Hormuz closure = dual shock. Japan/Korea/Taiwan critically exposed (85% LNG via Hormuz).",
-      source:"ICE/Bloomberg", source_url:"https://www.tradingnews.com/news/natrual-gas-futures-price-forecast-henry-hub-climbs-to-3-06-usd-qatar-lng",
-      history:[32.00,38.00,65.00,68.00,64.00,63.00,62.50],
-      color:"#9b6fd4" },
+      front_month:"Apr 2026", color:"#9b6fd4",
+      note:"+85% since war. Qatar LNG force majeure + Hormuz closure = dual supply shock.",
+      source:"ICE/Bloomberg", source_url:"https://www.tradingnews.com" },
   ],
   agriculture: [
     { id:"corn", name:"Corn / Maize", unit:"USD/bushel", category:"grains",
       now:4.558, base:4.300, peak:4.85, peak_date:"Mar 9",
-      front_month:"May 2026",
-      note:"Record US harvest (432M tonnes) capping upside. Corn acreage down ~6M acres — farmers pivoting to soybeans (less nitrogen). Mar 30 close: $4.55¾.",
-      source:"CBOT/Brownfield Ag", source_url:"https://www.brownfieldagnews.com/market-news/closing-grain-and-livestock-futures-march-30-2026/",
-      history:[4.300,4.380,4.650,4.850,4.720,4.620,4.558],
-      color:"#e8b84a" },
+      front_month:"May 2026", color:"#e8b84a",
+      note:"Record US harvest capping upside. Corn acreage down ~6M acres — farmers switching to soybeans.",
+      source:"CBOT/Brownfield Ag", source_url:"https://www.brownfieldagnews.com" },
     { id:"soybeans", name:"Soybeans", unit:"USD/bushel", category:"grains",
       now:11.598, base:10.200, peak:12.40, peak_date:"Mar 7",
-      front_month:"May 2026",
-      note:"Benefiting from 'Soybean Pivot' + biofuel RVO mandate. Brazil record harvest (184.7MMT) moderating upside. Mar 30 close: $11.59¾.",
-      source:"CBOT/Brownfield Ag", source_url:"https://www.brownfieldagnews.com/market-news/closing-grain-and-livestock-futures-march-30-2026/",
-      history:[10.200,10.450,11.800,12.400,12.100,11.750,11.598],
-      color:"#3ab87a" },
+      front_month:"May 2026", color:"#3ab87a",
+      note:"Benefiting from Soybean Pivot + biofuel RVO mandate. Brazil record harvest moderating upside.",
+      source:"CBOT/Brownfield Ag", source_url:"https://www.brownfieldagnews.com" },
     { id:"wheat", name:"Wheat (Chicago SRW)", unit:"USD/bushel", category:"grains",
       now:6.073, base:5.800, peak:6.418, peak_date:"Mar 9",
-      front_month:"May 2026",
-      note:"9-month high $6.42 on Mar 9. Plains drought risk + war premium. Fertiliser disruption threatening 2026/27 yields. Mar 30 close: $6.07.",
-      source:"CBOT/Brownfield Ag", source_url:"https://www.brownfieldagnews.com/market-news/closing-grain-and-livestock-futures-march-30-2026/",
-      history:[5.800,5.920,6.250,6.418,6.200,6.050,6.073],
-      color:"#c8d4e0" },
+      front_month:"May 2026", color:"#c8d4e0",
+      note:"9-month high $6.42 on Mar 9. Plains drought risk + war premium.",
+      source:"CBOT/Brownfield Ag", source_url:"https://www.brownfieldagnews.com" },
     { id:"soy_oil", name:"Soybean Oil", unit:"cents/lb", category:"grains",
       now:68.47, base:48.50, peak:74.20, peak_date:"Mar 6",
-      front_month:"May 2026",
-      note:"+41% vs pre-war. Biofuel RVO mandate + cooking oil demand premium. Key indicator for food inflation transmission. Mar 30 close: 68.47c.",
-      source:"CBOT/Brownfield Ag", source_url:"https://www.brownfieldagnews.com/market-news/closing-grain-and-livestock-futures-march-30-2026/",
-      history:[48.50,52.00,68.00,74.20,71.00,69.50,68.47],
-      color:"#f28c3a" },
+      front_month:"May 2026", color:"#f28c3a",
+      note:"+41% vs pre-war. Biofuel RVO mandate + cooking oil demand premium.",
+      source:"CBOT/Brownfield Ag", source_url:"https://www.brownfieldagnews.com" },
   ],
   fertiliser: [
     { id:"urea_me", name:"Urea (FOB Middle East)", unit:"USD/tonne", category:"fertiliser",
       now:665, base:485, peak:665, peak_date:"Mar 31",
-      front_month:"Spot",
-      note:"+37% since war. TTF gas +85% → fertiliser production costs surge. Yara cutting 25% European production. Spring planting at risk. No strategic nitrogen reserve exists.",
-      source:"FinancialContent/Green Markets", source_url:"https://markets.financialcontent.com/stocks/article/marketminute-2026-3-31-the-nitrogen-trap-natural-gas-spikes-send-urea-prices-soaring-to-665-threatening-global-food-security",
-      history:[485,510,590,620,645,655,665],
-      color:"#9b6fd4" },
+      front_month:"Spot", color:"#9b6fd4",
+      note:"+37% since war. TTF gas +85% → fertiliser costs surge. Yara cutting 25% EU production.",
+      source:"FinancialContent/Green Markets", source_url:"https://markets.financialcontent.com" },
     { id:"urea_us", name:"Urea (NOLA, US Gulf)", unit:"USD/tonne", category:"fertiliser",
       now:590, base:490, peak:590, peak_date:"Mar 31",
-      front_month:"Spot",
-      note:"+20% in two weeks. Illinois retail: ~$823/tonne (+42%). CF Industries stock +30% in March (benefiting from cheap Henry Hub gas).",
-      source:"FinancialContent/Green Markets", source_url:"https://markets.financialcontent.com/stocks/article/marketminute-2026-3-31-the-nitrogen-trap-natural-gas-spikes-send-urea-prices-soaring-to-665-threatening-global-food-security",
-      history:[490,500,530,555,570,580,590],
-      color:"#4a90d9" },
+      front_month:"Spot", color:"#4a90d9",
+      note:"+20% in two weeks. Illinois retail: ~$823/tonne (+42%). CF Industries stock +30% March.",
+      source:"FinancialContent/Green Markets", source_url:"https://markets.financialcontent.com" },
   ]
 };
 
-const LABELS = ["Feb 24","Feb 28","Mar 3","Mar 10","Mar 17","Mar 24","Mar 31"];
-const WAR_LINE = 1; // index of Feb 28
+// ── TRY TO FETCH LIVE DATA FROM JSON ─────────────────────────────────────
+let DATA = FALLBACK;
 
-// ── CHART DEFAULTS ────────────────────────────────────────────────────────────
-Chart.defaults.color = '#6a7a90';
-Chart.defaults.borderColor = '#1e2430';
-Chart.defaults.font.family = "'IBM Plex Mono', monospace";
-Chart.defaults.font.size = 10;
-
-function chartOpts(title) {
-  return {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { position:'top', labels:{ padding:16, usePointStyle:true, pointStyleWidth:8 } },
-      tooltip: { backgroundColor:'#161a20', borderColor:'#252c38', borderWidth:1, padding:10,
-        titleFont:{size:11}, bodyFont:{size:11} }
-    },
-    scales: {
-      x: { grid:{ color:'#1e2430' }, ticks:{ color:'#6a7a90' } },
-      y: { grid:{ color:'#1e2430' }, ticks:{ color:'#6a7a90' } }
+fetch('../data/commodities.json?' + Date.now())
+  .then(r => r.json())
+  .then(json => {
+    // Merge live prices into FALLBACK structure
+    function mergePrices(fallbackArr, jsonArr) {
+      if (!jsonArr) return fallbackArr;
+      return fallbackArr.map(item => {
+        const live = jsonArr.find(j => j.id === item.id);
+        if (live) return { ...item, now: live.now };
+        return item;
+      });
     }
-  };
+    DATA = {
+      energy:      mergePrices(FALLBACK.energy, json.energy),
+      agriculture: mergePrices(FALLBACK.agriculture, json.agriculture),
+      fertiliser:  mergePrices(FALLBACK.fertiliser, json.fertiliser),
+    };
+    renderAll();
+  })
+  .catch(() => renderAll());  // use fallback if fetch fails
+
+// ── TABLE BUILDER ─────────────────────────────────────────────────────────
+const THEAD = `<thead><tr>
+  <th>Commodity</th><th>Category</th>
+  <th class="right">Pre-war</th><th class="right">Peak</th><th class="right">Current</th>
+  <th>% Change vs Pre-war</th><th class="right">From Peak</th><th>Note</th>
+</tr></thead>`;
+
+function pct(now, base) { return (now - base) / base * 100; }
+
+function barClass(p) {
+  if (p >= 30) return 'bar-up-high';
+  if (p >= 10) return 'bar-up-med';
+  if (p >= 0)  return 'bar-up-low';
+  return 'bar-down';
 }
 
-// ── TICKER ────────────────────────────────────────────────────────────────────
-const ALL_ITEMS = [...DATA.energy, ...DATA.agriculture, ...DATA.fertiliser];
-document.getElementById('ticker').innerHTML = ALL_ITEMS.map(d => {
-  const pct = ((d.now - d.base) / d.base * 100);
-  const cls = pct > 0 ? 'up' : 'down';
-  return `<div class="ticker-item">
-    <span class="t-label">${d.name}</span>
-    <span class="t-val">${d.now}${d.unit.includes('bushel')||d.unit.includes('lb')||d.unit.includes('MMBtu') ? '' : ''} ${d.unit.split('/')[1]||''}</span>
-    <span class="t-chg ${cls}">${pct>0?'+':''}${pct.toFixed(1)}%</span>
-  </div>`;
-}).join('');
-
-// ── PILL HTML ─────────────────────────────────────────────────────────────────
-function pill(pct) {
-  const cls = pct > 0.5 ? 'up' : pct < -0.5 ? 'down' : '';
-  return `<span class="pill ${cls}">${pct>0?'+':''}${pct.toFixed(1)}%</span>`;
+function barColor(p) {
+  if (p >= 30) return '#e05a2b';
+  if (p >= 10) return '#e8b84a';
+  if (p >= 0)  return '#4a90d9';
+  return '#3ab87a';
 }
 
 function catBadge(cat) {
-  const map = { energy:'cat-energy', grains:'cat-grains', fertiliser:'cat-fertiliser' };
-  return `<span class="card-category ${map[cat]||''}">${cat}</span>`;
+  return `<span class="cat-pill cat-${cat}">${cat}</span>`;
 }
 
-// ── COMMODITY CARDS ───────────────────────────────────────────────────────────
-function buildCard(d) {
-  const pctNow = ((d.now - d.base) / d.base * 100);
-  const pctPeak = ((d.peak - d.base) / d.base * 100);
-  const col = pctNow >= 30 ? '#e05a2b' : pctNow >= 10 ? '#e8b84a' : pctNow > 0 ? '#4a90d9' : '#3ab87a';
-  return `<div class="commodity-card" data-id="${d.id}">
-    <div class="card-header">
-      <div><div class="card-name">${d.name}</div><div class="card-unit">${d.unit} · ${d.front_month}</div></div>
-      ${catBadge(d.category)}
-    </div>
-    <div class="card-prices">
-      <div class="card-price-item">
-        <div class="cp-label">Now</div>
-        <div class="cp-val" style="color:${col}">${d.now}</div>
-        <div class="cp-chg" style="color:${col}">${pctNow>0?'+':''}${pctNow.toFixed(1)}%</div>
-      </div>
-      <div class="card-price-item">
-        <div class="cp-label">Pre-war</div>
-        <div class="cp-val" style="color:var(--text-dim)">${d.base}</div>
-        <div class="cp-chg" style="color:var(--text-dim)">Feb 24</div>
-      </div>
-      <div class="card-price-item">
-        <div class="cp-label">Peak</div>
-        <div class="cp-val" style="color:var(--red)">${d.peak}</div>
-        <div class="cp-chg" style="color:var(--text-dim)">${d.peak_date} (+${pctPeak.toFixed(0)}%)</div>
-      </div>
-    </div>
-    <canvas class="card-sparkline" id="spark-${d.id}"></canvas>
-    <div class="card-note">${d.note} <a href="${d.source_url}" target="_blank" class="source-link">[${d.source}]</a></div>
-  </div>`;
-}
-
-function buildCards(items, containerId) {
-  document.getElementById(containerId).innerHTML = items.map(buildCard).join('');
-  items.forEach(d => {
-    const ctx = document.getElementById(`spark-${d.id}`);
-    if (!ctx) return;
-    new Chart(ctx, {
-      type:'line',
-      data: {
-        labels: LABELS,
-        datasets: [{ data:d.history, borderColor:d.color, borderWidth:2,
-          fill:true, backgroundColor: d.color + '18',
-          pointRadius:2, pointHoverRadius:4, tension:0.3 }]
-      },
-      options: {
-        responsive:true, maintainAspectRatio:false,
-        plugins:{ legend:{display:false}, tooltip:{enabled:false} },
-        scales:{
-          x:{ display:false },
-          y:{ display:false,
-              min: Math.min(...d.history) * 0.90,
-              max: Math.max(...d.history) * 1.05
-          }
-        },
-        animation:false,
-        elements:{ line:{ borderWidth:2 }, point:{ radius:0 } }
-      }
-    });
-  });
-}
-
-buildCards(DATA.energy, 'energy-cards');
-buildCards(DATA.agriculture, 'grains-cards');
-buildCards(DATA.fertiliser, 'fertiliser-cards');
-
-// ── SUMMARY TABLE ─────────────────────────────────────────────────────────────
-document.getElementById('summary-tbody').innerHTML = ALL_ITEMS.map(d => {
-  const pctNow = ((d.now - d.base) / d.base * 100);
-  const pctPeak = ((d.peak - d.base) / d.base * 100);
-  const pctFromPeak = ((d.now - d.peak) / d.peak * 100);
+function buildRow(d) {
+  const p = pct(d.now, d.base);
+  const fromPeak = pct(d.now, d.peak);
+  const barW = Math.min(Math.abs(p) / 100 * 100, 100);
+  const color = barColor(p);
+  const fpClass = fromPeak < -5 ? 'fp-down' : 'fp-up';
   return `<tr>
-    <td><span class="tname">${d.name}</span><br><span style="font-size:10px;color:var(--text-dim)">${d.unit}</span></td>
-    <td><span class="card-category ${d.category==='energy'?'cat-energy':d.category==='grains'?'cat-grains':'cat-fertiliser'}">${d.category}</span></td>
-    <td>${d.base}</td>
-    <td style="color:var(--red)">${d.peak} <span style="font-size:10px;color:var(--text-dim)">${d.peak_date}</span></td>
-    <td style="color:var(--text-bright);font-weight:600">${d.now}</td>
-    <td>${pill(pctNow)}</td>
-    <td><span style="color:${pctFromPeak < -10 ? 'var(--green)' : 'var(--text-dim)'};font-size:11px">${pctFromPeak.toFixed(1)}%</span></td>
-    <td><a href="${d.source_url}" target="_blank" class="source-link">${d.source}</a></td>
+    <td><div class="cname">${d.name}</div><div class="cunit">${d.unit} · ${d.front_month}</div></td>
+    <td>${catBadge(d.category)}</td>
+    <td class="right">${d.base}</td>
+    <td class="right" style="color:var(--red)">${d.peak} <span style="font-size:10px;color:var(--text-dim)">${d.peak_date}</span></td>
+    <td class="right" style="color:${color};font-weight:700;font-size:14px">${d.now}</td>
+    <td class="bar-cell">
+      <div class="bar-wrap">
+        <span class="bar-label" style="color:${color}">${p>0?'+':''}${p.toFixed(1)}%</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:${barW}%;background:${color}"></div>
+        </div>
+      </div>
+    </td>
+    <td class="right"><span class="from-peak ${fpClass}">${fromPeak.toFixed(1)}%</span></td>
+    <td class="note-cell">${d.note} <a href="${d.source_url}" target="_blank" class="source-link">[${d.source}]</a></td>
   </tr>`;
-}).join('');
+}
 
-// ── OVERVIEW CHART ────────────────────────────────────────────────────────────
-new Chart(document.getElementById('overview-chart'), {
-  type: 'bar',
-  data: {
-    labels: ALL_ITEMS.map(d => d.name),
-    datasets: [
-      { label:'% Change Now vs Pre-war', data: ALL_ITEMS.map(d => +((d.now-d.base)/d.base*100).toFixed(1)),
-        backgroundColor: ALL_ITEMS.map(d => { const p=(d.now-d.base)/d.base*100; return p>=30?'rgba(224,90,43,0.8)':p>=10?'rgba(232,184,74,0.8)':'rgba(74,144,217,0.8)'; }),
-        borderRadius:2 },
-      { label:'% Change Peak vs Pre-war', data: ALL_ITEMS.map(d => +((d.peak-d.base)/d.base*100).toFixed(1)),
-        backgroundColor: 'rgba(155,111,212,0.4)', borderRadius:2 }
-    ]
-  },
-  options: { ...chartOpts(), indexAxis:'y',
-    scales: { x:{ grid:{color:'#1e2430'}, ticks:{callback:v=>v+'%'} }, y:{grid:{color:'#1e2430'}} }
-  }
-});
+function buildTable(items, tableId) {
+  const el = document.getElementById(tableId);
+  if (!el) return;
+  el.innerHTML = THEAD + '<tbody>' + items.map(buildRow).join('') + '</tbody>';
+}
 
-// ── ENERGY CHART ──────────────────────────────────────────────────────────────
-// Normalise to index 100
-// Energy chart - show each commodity normalised to its own range
-// Use bar chart for % change - cleaner than spikey line chart
-new Chart(document.getElementById('energy-chart'), {
-  type:'bar',
-  data: {
-    labels: LABELS,
-    datasets: DATA.energy.map(d => ({
-      label: d.name,
-      data: d.history.map(v => +((v - d.base) / d.base * 100).toFixed(1)),
-      backgroundColor: d.color + '99',
-      borderColor: d.color,
-      borderWidth: 1,
-      borderRadius: 2,
-    }))
-  },
-  options: { ...chartOpts(),
-    scales: {
-      x:{ grid:{color:'#1e2430'}, stacked:false },
-      y:{ grid:{color:'#1e2430'}, ticks:{callback:v=>v+'%'}, title:{display:true,text:'% Change vs Pre-war',color:'#6a7a90'} }
-    }
-  }
-});
+function renderAll() {
+  const all = [...DATA.energy, ...DATA.agriculture, ...DATA.fertiliser]
+    .sort((a,b) => pct(b.now,b.base) - pct(a.now,a.base));
 
-// ── GRAINS CHART ──────────────────────────────────────────────────────────────
-new Chart(document.getElementById('grains-chart'), {
-  type:'line',
-  data: {
-    labels: LABELS,
-    datasets: DATA.agriculture.map(d => ({
-      label: d.name,
-      data: d.history.map(v => +((v - d.base) / d.base * 100).toFixed(1)),
-      borderColor: d.color, borderWidth:2,
-      fill:false, pointRadius:3, tension:0.3
-    }))
-  },
-  options: { ...chartOpts(),
-    scales: {
-      x:{grid:{color:'#1e2430'}},
-      y:{grid:{color:'#1e2430'},
-         ticks:{callback:v=>v+'%'},
-         title:{display:true,text:'% Change vs Pre-war',color:'#6a7a90'}}
-    }
-  }
-});
+  buildTable(all, 't-overview');
+  buildTable(DATA.energy, 't-energy');
+  buildTable(DATA.agriculture, 't-grains');
+  buildTable(DATA.fertiliser, 't-fertiliser');
 
-// ── FERTILISER CHART ──────────────────────────────────────────────────────────
-new Chart(document.getElementById('fertiliser-chart'), {
-  type:'line',
-  data: {
-    labels: LABELS,
-    datasets: DATA.fertiliser.map(d => ({
-      label: d.name,
-      data: d.history,
-      borderColor: d.color, borderWidth:2,
-      fill:true, backgroundColor: d.color+'18',
-      pointRadius:4, pointRadius:4, tension:0.3
-    }))
-  },
-  options: { ...chartOpts(),
-    scales: {
-      x:{grid:{color:'#1e2430'}},
-      y:{grid:{color:'#1e2430'},
-         min: 450,
-         ticks:{callback:v=>'$'+v}}
-    }
-  }
-});
+  // Ticker
+  document.getElementById('ticker').innerHTML = all.map(d => {
+    const p = pct(d.now, d.base);
+    const cls = p > 0 ? 't-up' : 't-dn';
+    return `<div class="ticker-item">
+      <span class="t-label">${d.name}</span>
+      <span class="t-val">${d.now} ${d.unit.split('/')[1]||''}</span>
+      <span class="${cls}">${p>0?'+':''}${p.toFixed(1)}%</span>
+    </div>`;
+  }).join('');
+}
 
-// ── INDEXED ALL CHART ─────────────────────────────────────────────────────────
-const all_indexed = [...DATA.energy, ...DATA.agriculture, ...DATA.fertiliser].filter(d =>
-  ['brent','ttf','corn','soybeans','wheat','urea_me'].includes(d.id)
-);
-new Chart(document.getElementById('indexed-chart'), {
-  type:'line',
-  data: {
-    labels: LABELS,
-    datasets: all_indexed.map(d => ({
-      label: d.name,
-      data: d.history.map(v => +(v/d.base*100).toFixed(1)),
-      borderColor: d.color, borderWidth:2,
-      fill:false, pointRadius:3, tension:0.3
-    }))
-  },
-  options: { ...chartOpts(),
-    scales: {
-      x:{grid:{color:'#1e2430'}},
-      y:{grid:{color:'#1e2430'}, title:{display:true,text:'Index (Feb 24 = 100)',color:'#6a7a90'},
-        ticks:{callback:v=>v}}
-    }
-  }
-});
-
-// ── GAS DIVERGENCE CHART ──────────────────────────────────────────────────────
-const hh = DATA.energy.find(d=>d.id==='henry_hub');
-const ttf = DATA.energy.find(d=>d.id==='ttf');
-new Chart(document.getElementById('gas-divergence-chart'), {
-  type:'line',
-  data: {
-    labels: LABELS,
-    datasets: [
-      { label:'Henry Hub (USD/MMBtu)', data:hh.history, borderColor:'#4a90d9', borderWidth:2, fill:false, pointRadius:3, tension:0.3 },
-      { label:'TTF ÷3 (EUR/MWh÷3)', data:ttf.history.map(v=>+(v/3).toFixed(2)), borderColor:'#9b6fd4', borderWidth:2, fill:false, pointRadius:3, tension:0.3 }
-    ]
-  },
-  options: { ...chartOpts(),
-    scales:{x:{grid:{color:'#1e2430'}},y:{grid:{color:'#1e2430'}}}
-  }
-});
-
-// ── FERTILISER vs OIL CHART ───────────────────────────────────────────────────
-const brent = DATA.energy.find(d=>d.id==='brent');
-const urea = DATA.fertiliser.find(d=>d.id==='urea_me');
-new Chart(document.getElementById('fert-oil-chart'), {
-  type:'line',
-  data: {
-    labels: LABELS,
-    datasets: [
-      { label:'Brent (indexed)', data:brent.history.map(v=>+(v/brent.base*100).toFixed(1)), borderColor:'#e05a2b', borderWidth:2, fill:false, pointRadius:3, tension:0.3 },
-      { label:'Urea ME (indexed)', data:urea.history.map(v=>+(v/urea.base*100).toFixed(1)), borderColor:'#9b6fd4', borderWidth:2, fill:false, pointRadius:3, tension:0.3 }
-    ]
-  },
-  options: { ...chartOpts(),
-    scales:{x:{grid:{color:'#1e2430'}},y:{grid:{color:'#1e2430'},ticks:{callback:v=>v}}}
-  }
-});
-
-// ── DYNAMIC DATE
-(function() {
-  const warStart = new Date('2026-02-28');
-  const now = new Date();
-  const day = Math.floor((now - warStart) / 86400000);
-  const dateStr = now.toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
-  const el = document.getElementById('comm-date');
-  if (el) el.textContent = dateStr + ' · Day ' + day;
-})();
-
-// ── SECTION NAV ───────────────────────────────────────────────────────────────
+// ── SECTION NAV ───────────────────────────────────────────────────────────
 document.querySelectorAll('.nav-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
     document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById('section-'+btn.dataset.section).classList.add('active');
+    document.getElementById('s-'+btn.dataset.s).classList.add('active');
   });
 });
 </script>
