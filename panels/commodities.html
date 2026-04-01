@@ -118,7 +118,7 @@
   <div class="badge">📈 Commodities</div>
   <div class="badge-new">NEW</div>
   <div class="header-title">Commodities & Futures Panel — Iran War Impact</div>
-  <div class="header-date">March 31, 2026 · Day 31</div>
+  <div class="header-date" id="comm-date">March 31, 2026 · Day 31</div>
 </header>
 
 <div class="ticker-bar" id="ticker"></div>
@@ -500,21 +500,25 @@ new Chart(document.getElementById('overview-chart'), {
 
 // ── ENERGY CHART ──────────────────────────────────────────────────────────────
 // Normalise to index 100
+// Energy chart - show each commodity normalised to its own range
+// Use bar chart for % change - cleaner than spikey line chart
 new Chart(document.getElementById('energy-chart'), {
-  type:'line',
+  type:'bar',
   data: {
     labels: LABELS,
     datasets: DATA.energy.map(d => ({
       label: d.name,
-      data: d.history.map(v => +(v/d.base*100).toFixed(1)),
-      borderColor: d.color, borderWidth:2,
-      fill:false, pointRadius:3, tension:0.3
+      data: d.history.map(v => +((v - d.base) / d.base * 100).toFixed(1)),
+      backgroundColor: d.color + '99',
+      borderColor: d.color,
+      borderWidth: 1,
+      borderRadius: 2,
     }))
   },
   options: { ...chartOpts(),
     scales: {
-      x:{ grid:{color:'#1e2430'} },
-      y:{ grid:{color:'#1e2430'}, ticks:{callback:v=>v}, min:60, suggestedMax:140 }
+      x:{ grid:{color:'#1e2430'}, stacked:false },
+      y:{ grid:{color:'#1e2430'}, ticks:{callback:v=>v+'%'}, title:{display:true,text:'% Change vs Pre-war',color:'#6a7a90'} }
     }
   }
 });
@@ -526,7 +530,7 @@ new Chart(document.getElementById('grains-chart'), {
     labels: LABELS,
     datasets: DATA.agriculture.map(d => ({
       label: d.name,
-      data: d.history.map(v => +(v/d.base*100).toFixed(1)),
+      data: d.history.map(v => +((v - d.base) / d.base * 100).toFixed(1)),
       borderColor: d.color, borderWidth:2,
       fill:false, pointRadius:3, tension:0.3
     }))
@@ -534,8 +538,9 @@ new Chart(document.getElementById('grains-chart'), {
   options: { ...chartOpts(),
     scales: {
       x:{grid:{color:'#1e2430'}},
-      y:{grid:{color:'#1e2430'}, min:90, suggestedMax:145,
-         title:{display:true,text:'Index (Feb 24 = 100)',color:'#6a7a90'}}
+      y:{grid:{color:'#1e2430'},
+         ticks:{callback:v=>v+'%'},
+         title:{display:true,text:'% Change vs Pre-war',color:'#6a7a90'}}
     }
   }
 });
@@ -550,13 +555,15 @@ new Chart(document.getElementById('fertiliser-chart'), {
       data: d.history,
       borderColor: d.color, borderWidth:2,
       fill:true, backgroundColor: d.color+'18',
-      pointRadius:3, tension:0.3
+      pointRadius:4, pointRadius:4, tension:0.3
     }))
   },
   options: { ...chartOpts(),
     scales: {
       x:{grid:{color:'#1e2430'}},
-      y:{grid:{color:'#1e2430'}, ticks:{callback:v=>'$'+v}}
+      y:{grid:{color:'#1e2430'},
+         min: 450,
+         ticks:{callback:v=>'$'+v}}
     }
   }
 });
@@ -618,6 +625,16 @@ new Chart(document.getElementById('fert-oil-chart'), {
     scales:{x:{grid:{color:'#1e2430'}},y:{grid:{color:'#1e2430'},ticks:{callback:v=>v}}}
   }
 });
+
+// ── DYNAMIC DATE
+(function() {
+  const warStart = new Date('2026-02-28');
+  const now = new Date();
+  const day = Math.floor((now - warStart) / 86400000);
+  const dateStr = now.toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+  const el = document.getElementById('comm-date');
+  if (el) el.textContent = dateStr + ' · Day ' + day;
+})();
 
 // ── SECTION NAV ───────────────────────────────────────────────────────────────
 document.querySelectorAll('.nav-btn').forEach(btn => {
