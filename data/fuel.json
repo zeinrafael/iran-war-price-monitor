@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_updated": "2026-07-14T09:54:39.999778+00:00",
+    "last_updated": "2026-07-15T09:58:44.873076+00:00",
     "baseline_date": "2026-02-24",
     "war_start": "2026-02-28",
     "brent_now": 98.41,
@@ -95,9 +95,9 @@
       "country": "Spain",
       "city": "Madrid",
       "region": "europe",
-      "gasoline": 1.6944,
+      "gasoline": 1.7099,
       "gasoline_base": 1.38,
-      "diesel": 1.6987,
+      "diesel": 1.7242,
       "diesel_base": 1.22,
       "oil_exposure": 38,
       "update_cadence": "daily",
